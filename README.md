@@ -44,11 +44,11 @@ His career spans $20bn institutional asset management, market-neutral digital-as
 
 ## Writing & talks
 
-- [**Hologram: From Indexing Content to Indexing Meaning**](https://singularitynet.io/) — SingularityNet, May 2026
-- [**The Next Revolution is Geometric Computation**](https://quantum-journal.org/) — Quantum, Jan 2026
-- [**Insights on Web3, AI, and Crypto Trends**](https://altfundsglobal.com/) — AltFunds, Jun 2025
-- [**The Real-World Asset Thesis**](https://arete.capital/) — Arete Capital, Jan 2024
-- **Liquidity Drought Ahead** — OX1, Oct 2023
+- [**Hologram: From Indexing Content to Indexing Meaning**](https://www.linkedin.com/posts/mihaelaulieru_hologram-from-indexing-content-to-indexing-activity-7461255099261300736-LaH6) — SingularityNet, May 2026
+- [**The Next Revolution is Geometric Computation**](https://www.youtube.com/watch?v=0wRCzByWidM) — Quantum, Jan 2026
+- [**Insights on Web3, AI, and Crypto Trends**](https://www.linkedin.com/posts/kiran-kaur-raina-b2922622a_my-latest-conversation-with-ilya-paveliev-share-7425166836108967936-4g62) — AltFunds, Jun 2025
+- [**The Real-World Asset Thesis**](https://www.aretecapital.xyz/posts/realworld-asset-thesis-tradmarkets) — Arete Capital, Jan 2024
+- [**Liquidity Drought Ahead**](https://trinityinvestor.substack.com/p/liquidity-drought-ahead) — Substack, Oct 2023
 
 ---
 
