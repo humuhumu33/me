@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
 import banner from "@/assets/banner.jpeg";
 import portrait from "@/assets/portrait.png";
 import {
@@ -162,6 +163,8 @@ function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
 export function Index() {
   const [tab, setTab] = useState<Tab>("experience");
   const [dark, setDark] = useState(false);
+  const pagerRef = useRef<HTMLDivElement | null>(null);
+  const tabs: Tab[] = ["experience", "thinking", "life"];
 
   useEffect(() => {
     const prefers = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -171,6 +174,22 @@ export function Index() {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
 
+  const scrollToTab = (t: Tab) => {
+    setTab(t);
+    const el = pagerRef.current;
+    if (!el) return;
+    const idx = tabs.indexOf(t);
+    el.scrollTo({ left: idx * el.clientWidth, behavior: "smooth" });
+  };
+
+  const onPagerScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    const idx = Math.round(el.scrollLeft / el.clientWidth);
+    const next = tabs[idx];
+    if (next && next !== tab) setTab(next);
+  };
+
+
   return (
     <main className="min-h-screen w-screen bg-background text-foreground md:h-screen md:overflow-hidden">
       <p className="sr-only">
@@ -179,9 +198,9 @@ export function Index() {
         <a href="/feed.json">/feed.json</a>.
       </p>
 
-      {/* ============ MOBILE LAYOUT ( < md ) ============ */}
-      <div className="md:hidden flex flex-col">
-        {/* Hero — full-bleed banner */}
+      {/* ============ MOBILE LAYOUT ( < md ) — dark only ============ */}
+      <div className="md:hidden dark flex flex-col bg-background text-foreground">
+        {/* Hero — full-bleed banner (no top text) */}
         <section
           className="relative"
           itemScope
@@ -199,20 +218,6 @@ export function Index() {
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-            {/* Top bar over hero */}
-            <div className="absolute top-0 inset-x-0 flex items-center justify-between px-6 pt-6">
-              <div className="flex items-center gap-3 text-[0.65rem] tracking-aman uppercase text-white/90">
-                <span className="inline-block h-px w-7 bg-accent" />
-                IP · MMXXVI
-              </div>
-              <button
-                onClick={() => setDark((d) => !d)}
-                className="text-[0.65rem] tracking-aman uppercase text-white/85 hover:text-white transition-colors"
-                aria-label="Toggle theme"
-              >
-                {dark ? "Light" : "Dark"}
-              </button>
-            </div>
           </div>
 
           {/* Portrait overlapping hero seam */}
@@ -283,7 +288,7 @@ export function Index() {
             {(["experience", "thinking", "life"] as Tab[]).map((t) => (
               <button
                 key={t}
-                onClick={() => setTab(t)}
+                onClick={() => scrollToTab(t)}
                 aria-current={tab === t ? "page" : undefined}
                 className={`relative py-4 text-[0.7rem] tracking-aman uppercase transition-colors ${
                   tab === t ? "text-foreground" : "text-muted-foreground"
@@ -298,133 +303,142 @@ export function Index() {
           </div>
         </nav>
 
-        {/* Tab body */}
-        <section
-          className="px-6 pt-12 pb-20 transition-opacity duration-300"
-          key={tab}
-          aria-labelledby="mobile-section-heading"
+        {/* Swipeable horizontal pager */}
+        <div
+          ref={pagerRef}
+          onScroll={onPagerScroll}
+          className="flex w-full snap-x snap-mandatory overflow-x-auto overflow-y-hidden scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+          aria-label="Swipe between sections"
         >
-          <div className="flex items-baseline justify-between mb-8">
-            <h2 id="mobile-section-heading" className="font-display text-[1.75rem] leading-tight font-light text-foreground/90">
-              {tab === "experience" && "Selected experience"}
-              {tab === "thinking" && "Writing & talks"}
-              {tab === "life" && "Beyond the desk"}
-            </h2>
-            <span className="text-[0.65rem] tracking-aman uppercase text-muted-foreground shrink-0 ml-3">
-              {tab === "experience" && `${experience.length} roles`}
-              {tab === "thinking" && `${thinking.length} pieces`}
-              {tab === "life" && "Notes"}
-            </span>
-          </div>
+          {(["experience", "thinking", "life"] as Tab[]).map((paneTab) => (
+            <section
+              key={paneTab}
+              className="snap-start shrink-0 basis-full min-w-full px-6 pt-12 pb-20"
+              aria-label={paneTab}
+            >
+              <div className="flex items-baseline justify-between mb-8">
+                <h2 className="font-display text-[1.75rem] leading-tight font-light text-foreground/90">
+                  {paneTab === "experience" && "Selected experience"}
+                  {paneTab === "thinking" && "Writing & talks"}
+                  {paneTab === "life" && "Beyond the desk"}
+                </h2>
+                <span className="text-[0.65rem] tracking-aman uppercase text-muted-foreground shrink-0 ml-3">
+                  {paneTab === "experience" && `${experience.length} roles`}
+                  {paneTab === "thinking" && `${thinking.length} pieces`}
+                  {paneTab === "life" && "Notes"}
+                </span>
+              </div>
 
-          {tab === "experience" && (
-            <ol className="divide-y divide-border list-none p-0">
-              {experience.map((e) => (
-                <li
-                  key={e.org}
-                  className="py-6"
-                  itemScope
-                  itemType="https://schema.org/OrganizationRole"
-                >
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h3
-                      className="font-display text-[1.5rem] leading-tight text-foreground m-0"
+              {paneTab === "experience" && (
+                <ol className="divide-y divide-border list-none p-0">
+                  {experience.map((e) => (
+                    <li
+                      key={e.org}
+                      className="py-6"
                       itemScope
-                      itemType="https://schema.org/Organization"
-                      itemProp="worksFor"
+                      itemType="https://schema.org/OrganizationRole"
                     >
-                      {e.orgUrl ? (
-                        <a
-                          href={e.orgUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          itemProp="url"
-                          className="hover:text-accent transition-colors"
+                      <div className="flex items-baseline justify-between gap-4">
+                        <h3
+                          className="font-display text-[1.5rem] leading-tight text-foreground m-0"
+                          itemScope
+                          itemType="https://schema.org/Organization"
+                          itemProp="worksFor"
                         >
-                          <span itemProp="name">{e.org}</span>
-                        </a>
-                      ) : (
-                        <span itemProp="name">{e.org}</span>
-                      )}
-                    </h3>
-                    <span className="font-display text-sm text-muted-foreground tabular-nums shrink-0">
-                      <YearsTime entry={e} />
-                    </span>
-                  </div>
-                  <p
-                    className="mt-2 text-[0.7rem] tracking-aman uppercase text-muted-foreground"
-                    itemProp="roleName"
-                  >
-                    {e.role}
-                  </p>
-                  <p className="mt-3 text-[1rem] leading-[1.65] text-muted-foreground">
-                    {e.note}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          )}
-
-          {tab === "thinking" && (
-            <ul className="space-y-5 list-none p-0">
-              {thinking.map((p) => (
-                <li
-                  key={p.title}
-                  itemScope
-                  itemType="https://schema.org/CreativeWork"
-                >
-                  <a
-                    href={p.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    itemProp="url"
-                    className="group relative flex flex-col overflow-hidden border border-border bg-background/40 transition-colors active:border-accent"
-                  >
-                    <div className="relative h-32 w-full overflow-hidden" style={{ background: p.gradient }}>
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]" />
-                      <div className="absolute inset-0 flex items-end justify-between gap-3 p-4 pr-14">
-                        <span className="text-[0.65rem] tracking-aman uppercase text-white/90" itemProp="genre">
-                          {p.kind}
-                        </span>
-                        <span className="font-display text-white text-base tracking-[0.02em] truncate" itemProp="publisher">
-                          {p.venue}
+                          {e.orgUrl ? (
+                            <a
+                              href={e.orgUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              itemProp="url"
+                              className="hover:text-accent transition-colors"
+                            >
+                              <span itemProp="name">{e.org}</span>
+                            </a>
+                          ) : (
+                            <span itemProp="name">{e.org}</span>
+                          )}
+                        </h3>
+                        <span className="font-display text-sm text-muted-foreground tabular-nums shrink-0">
+                          <YearsTime entry={e} />
                         </span>
                       </div>
-                      <span aria-hidden="true" className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-background/90 text-foreground text-sm">
-                        ↗
-                      </span>
-                    </div>
-                    <div className="p-5">
-                      <h3 className="font-display text-[1.375rem] leading-snug text-foreground m-0" itemProp="name">
-                        {p.title}
-                      </h3>
-                      <p className="mt-3 text-[0.65rem] tracking-aman uppercase text-muted-foreground">
-                        <time dateTime={p.dateISO} itemProp="datePublished">{p.date}</time>
+                      <p
+                        className="mt-2 text-[0.7rem] tracking-aman uppercase text-muted-foreground"
+                        itemProp="roleName"
+                      >
+                        {e.role}
                       </p>
-                    </div>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
+                      <p className="mt-3 text-[1rem] leading-[1.65] text-muted-foreground">
+                        {e.note}
+                      </p>
+                    </li>
+                  ))}
+                </ol>
+              )}
 
-          {tab === "life" && (
-            <ol className="space-y-8 list-none p-0">
-              {life.map((l, i) => (
-                <li key={i}>
-                  <span aria-hidden="true" className="text-[0.65rem] tracking-aman uppercase text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="mt-3 font-display text-[1.375rem] leading-[1.4] text-foreground/90">
-                    {l}
-                  </p>
-                </li>
-              ))}
-            </ol>
-          )}
+              {paneTab === "thinking" && (
+                <ul className="space-y-5 list-none p-0">
+                  {thinking.map((p) => (
+                    <li
+                      key={p.title}
+                      itemScope
+                      itemType="https://schema.org/CreativeWork"
+                    >
+                      <a
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        itemProp="url"
+                        className="group relative flex flex-col overflow-hidden border border-border bg-background/40 transition-colors active:border-accent"
+                      >
+                        <div className="relative h-32 w-full overflow-hidden" style={{ background: p.gradient }}>
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]" />
+                          <div className="absolute inset-0 flex items-end justify-between gap-3 p-4 pr-14">
+                            <span className="text-[0.65rem] tracking-aman uppercase text-white/90" itemProp="genre">
+                              {p.kind}
+                            </span>
+                            <span className="font-display text-white text-base tracking-[0.02em] truncate" itemProp="publisher">
+                              {p.venue}
+                            </span>
+                          </div>
+                          <span aria-hidden="true" className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-background/90 text-foreground text-sm">
+                            ↗
+                          </span>
+                        </div>
+                        <div className="p-5">
+                          <h3 className="font-display text-[1.375rem] leading-snug text-foreground m-0" itemProp="name">
+                            {p.title}
+                          </h3>
+                          <p className="mt-3 text-[0.65rem] tracking-aman uppercase text-muted-foreground">
+                            <time dateTime={p.dateISO} itemProp="datePublished">{p.date}</time>
+                          </p>
+                        </div>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
 
-        </section>
+              {paneTab === "life" && (
+                <ol className="space-y-8 list-none p-0">
+                  {life.map((l, i) => (
+                    <li key={i}>
+                      <span aria-hidden="true" className="text-[0.65rem] tracking-aman uppercase text-muted-foreground">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <p className="mt-3 font-display text-[1.375rem] leading-[1.4] text-foreground/90">
+                        {l}
+                      </p>
+                    </li>
+                  ))}
+                </ol>
+              )}
+            </section>
+          ))}
+        </div>
       </div>
+
 
       {/* ============ DESKTOP LAYOUT ( ≥ md ) ============ */}
       <div className="hidden md:grid h-full w-full" style={{ gridTemplateColumns: "38.2fr 61.8fr", gridTemplateRows: "100%" }}>
