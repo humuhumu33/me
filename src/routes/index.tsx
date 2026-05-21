@@ -29,9 +29,20 @@ const personSchema = {
   description: person.description,
   disambiguatingDescription: nowStatement,
   url: `${SITE_URL}/`,
-  mainEntityOfPage: `${SITE_URL}/`,
+  mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/` },
   image: `${SITE_URL}${PORTRAIT_PATH}`,
   email: `mailto:${person.email}`,
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: person.email,
+    contactType: "Professional Inquiries",
+    availableLanguage: ["English"],
+  },
+  seeks: {
+    "@type": "Demand",
+    description:
+      "Advisory and investment opportunities in deep tech and AI infrastructure",
+  },
   knowsAbout: person.knowsAbout,
   sameAs: person.sameAs,
   alumniOf: {
@@ -57,6 +68,25 @@ const personSchema = {
       },
     },
   })),
+  dateModified: CONTENT_UPDATED_AT,
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  name: person.name,
+  url: `${SITE_URL}/`,
+  inLanguage: "en",
+  publisher: { "@id": `${SITE_URL}/#person` },
+};
+
+const profilePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${SITE_URL}/#profilepage`,
+  url: `${SITE_URL}/`,
+  mainEntity: { "@id": `${SITE_URL}/#person` },
   dateModified: CONTENT_UPDATED_AT,
 };
 
@@ -133,14 +163,10 @@ export const Route = createFileRoute("/")({
       },
     ],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(personSchema),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(publicationsSchema),
-      },
+      { type: "application/ld+json", children: JSON.stringify(personSchema) },
+      { type: "application/ld+json", children: JSON.stringify(websiteSchema) },
+      { type: "application/ld+json", children: JSON.stringify(profilePageSchema) },
+      { type: "application/ld+json", children: JSON.stringify(publicationsSchema) },
     ],
   }),
   component: Index,
@@ -263,11 +289,13 @@ export function Index() {
             <p className="text-[0.7rem] tracking-aman uppercase text-muted-foreground">
               Co-founder · Investor
             </p>
-            <h1 className="mt-5 font-display text-[clamp(3rem,13vw,4.5rem)] leading-[0.95] tracking-tight font-light text-foreground">
-              <span itemProp="name">
-                Ilya <span className="italic text-accent">Paveliev</span>
-              </span>
-            </h1>
+            <p
+              role="presentation"
+              aria-hidden="true"
+              className="mt-5 font-display text-[clamp(3rem,13vw,4.5rem)] leading-[0.95] tracking-tight font-light text-foreground"
+            >
+              Ilya <span className="italic text-accent">Paveliev</span>
+            </p>
             <div className="mx-auto mt-7 h-px w-12 bg-border" />
             <p className="mx-auto mt-6 max-w-[32ch] text-[1rem] leading-[1.7] text-muted-foreground">
               Building software-defined compute for local AI. Investing across
@@ -342,11 +370,11 @@ export function Index() {
               aria-label={paneTab}
             >
               <div className="flex items-baseline justify-between mb-8">
-                <h2 className="font-display text-[1.75rem] leading-tight font-light text-foreground/90">
-                  {paneTab === "experience" && "Selected experience"}
-                  {paneTab === "thinking" && "Writing & talks"}
-                  {paneTab === "life" && "Beyond the desk"}
-                </h2>
+              <p role="presentation" aria-hidden="true" className="font-display text-[1.75rem] leading-tight font-light text-foreground/90">
+                {paneTab === "experience" && "Selected experience"}
+                {paneTab === "thinking" && "Writing & talks"}
+                {paneTab === "life" && "Beyond the desk"}
+              </p>
                 <span className="text-[0.65rem] tracking-aman uppercase text-muted-foreground shrink-0 ml-3">
                   {paneTab === "experience" && `${experience.length} roles`}
                   {paneTab === "thinking" && `${thinking.length} pieces`}
