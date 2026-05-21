@@ -210,7 +210,7 @@ export function Index() {
           <meta itemProp="jobTitle" content={person.jobTitle} />
           <meta itemProp="description" content={person.description} />
 
-          <div className="relative h-[39vh] w-full overflow-hidden bg-panel">
+          <div className="relative h-[31vh] w-full overflow-hidden bg-panel">
             <img
               src={banner}
               alt=""
@@ -221,8 +221,8 @@ export function Index() {
           </div>
 
           {/* Portrait overlapping hero seam */}
-          <figure className="-mt-[18vw] flex justify-center px-6 m-0">
-            <div className="relative h-[36vw] w-[36vw] max-h-44 max-w-44 rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)]">
+          <figure className="-mt-[22vw] flex justify-center px-6 m-0">
+            <div className="relative h-[43vw] w-[43vw] max-h-52 max-w-52 rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)]">
               <img
                 src={portrait}
                 alt={PORTRAIT_ALT}
