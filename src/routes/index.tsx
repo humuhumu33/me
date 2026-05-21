@@ -68,15 +68,15 @@ const thinking = [
     venue: "SingularityNet",
     date: "May 2026",
     kind: "Talk",
-    url: "https://singularitynet.io/",
+    url: "https://www.linkedin.com/posts/mihaelaulieru_hologram-from-indexing-content-to-indexing-activity-7461255099261300736-LaH6",
     gradient: "linear-gradient(135deg, oklch(0.42 0.09 65), oklch(0.78 0.10 75))",
   },
   {
     title: "The Next Revolution is Geometric Computation",
     venue: "Quantum",
     date: "Jan 2026",
-    kind: "Essay",
-    url: "https://quantum-journal.org/",
+    kind: "Talk",
+    url: "https://www.youtube.com/watch?v=0wRCzByWidM",
     gradient: "linear-gradient(135deg, oklch(0.30 0.04 240), oklch(0.62 0.08 220))",
   },
   {
@@ -84,7 +84,7 @@ const thinking = [
     venue: "AltFunds",
     date: "Jun 2025",
     kind: "Interview",
-    url: "https://altfundsglobal.com/",
+    url: "https://www.linkedin.com/posts/kiran-kaur-raina-b2922622a_my-latest-conversation-with-ilya-paveliev-share-7425166836108967936-4g62",
     gradient: "linear-gradient(135deg, oklch(0.36 0.05 30), oklch(0.74 0.09 55))",
   },
   {
