@@ -17,7 +17,10 @@
   --color-surface: var(--surface);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-panel: var(--panel);
+  --color-panel-foreground: var(--panel-foreground);
 }
+
 
 :root {
   /* Aman warm cream + stone + muted gold */
