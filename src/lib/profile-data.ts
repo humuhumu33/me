@@ -184,7 +184,7 @@ export const life: readonly string[] = [
   "Father to two wonderful daughters.",
 ];
 
-export const SITE_URL = "https://harmony-scroll-free.lovable.app";
+export const SITE_URL = "https://ilyapaveliev.com";
 export const PORTRAIT_PATH = "/og-portrait.jpg";
 export const PORTRAIT_ALT =
   "Portrait of Ilya Paveliev, co-founder of Hologram Technologies and general partner at Arete Capital.";

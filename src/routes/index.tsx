@@ -119,7 +119,7 @@ export const Route = createFileRoute("/")({
       { rel: "me", href: "https://x.com/TrinityInvestor" },
       { rel: "me", href: `mailto:${person.email}` },
       { rel: "alternate", type: "application/feed+json", href: "/feed.json", title: "Writing & talks" },
-      { rel: "alternate", type: "application/json", href: "/api/profile", title: "Profile data" },
+      { rel: "alternate", type: "application/json", href: "/api/profile.json", title: "Profile data" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -198,7 +198,7 @@ export function Index() {
     <main className="min-h-screen w-screen bg-background text-foreground md:h-screen md:overflow-hidden">
       <p className="sr-only">
         Updated <time dateTime={CONTENT_UPDATED_AT}>{CONTENT_UPDATED_AT}</time>. Structured data is
-        available at <a href="/api/profile">/api/profile</a> and{" "}
+        available at <a href="/api/profile.json">/api/profile.json</a> and{" "}
         <a href="/feed.json">/feed.json</a>.
       </p>
 

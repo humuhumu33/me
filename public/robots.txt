@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Allow: /api/profile
+Allow: /api/profile.json
 Allow: /feed.json
 
 User-agent: GPTBot
@@ -21,4 +21,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://harmony-scroll-free.lovable.app/sitemap.xml
+Sitemap: https://ilyapaveliev.com/sitemap.xml
