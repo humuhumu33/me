@@ -113,7 +113,7 @@ const life = [
   "Father to two wonderful daughters.",
 ];
 
-function Index() {
+export function Index() {
   const [tab, setTab] = useState<Tab>("experience");
   const [dark, setDark] = useState(false);
 

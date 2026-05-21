@@ -1,0 +1,7 @@
+# Ilya Paveliev
+
+> Personal site of Ilya Paveliev — co-founder of Hologram Technologies and founding partner of Arete Capital. Deep tech, AI, and venture investing.
+
+## Pages
+
+- [Home](/): Single-page portfolio covering experience, writing & talks, and life.
