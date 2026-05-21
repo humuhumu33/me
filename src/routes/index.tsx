@@ -237,7 +237,11 @@ export function Index() {
               alt=""
               role="presentation"
               className="absolute inset-0 h-full w-full object-cover"
+              style={{ filter: "sepia(0.18) saturate(0.7) contrast(0.95) brightness(0.92)" }}
             />
+            {/* Warm amber wash — Aman cinematic tone */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,131,86,0.12),transparent_65%)] mix-blend-overlay" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(28,22,16,0.18)_0%,transparent_35%,transparent_55%,rgba(0,0,0,0.35)_100%)]" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
           </div>
 
@@ -482,7 +486,11 @@ export function Index() {
               alt=""
               role="presentation"
               className="absolute inset-0 h-full w-full object-cover"
+              style={{ filter: "sepia(0.18) saturate(0.7) contrast(0.95) brightness(0.92)" }}
             />
+            {/* Warm amber wash — Aman cinematic tone */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,131,86,0.12),transparent_65%)] mix-blend-overlay" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(28,22,16,0.22)_0%,transparent_40%,transparent_55%,rgba(10,8,6,0.45)_100%)]" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-panel" />
             <div className="absolute top-[3.82vh] left-[3.82vw] flex items-center gap-3 text-[0.65rem] tracking-aman uppercase text-white/85">
               <span className="inline-block h-px w-8 bg-accent" />
