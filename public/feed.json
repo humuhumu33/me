@@ -1,0 +1,98 @@
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": "Ilya Paveliev — Writing & talks",
+  "home_page_url": "https://ilyapaveliev.com/",
+  "feed_url": "https://ilyapaveliev.com/feed.json",
+  "description": "Co-founder of Hologram Technologies and founding partner of Arete Capital. Building software-defined compute for local AI and investing across deep tech, AI and real-world assets.",
+  "icon": "https://ilyapaveliev.com/og-portrait.jpg",
+  "authors": [
+    {
+      "name": "Ilya Paveliev",
+      "url": "https://ilyapaveliev.com/",
+      "avatar": "https://ilyapaveliev.com/og-portrait.jpg"
+    }
+  ],
+  "language": "en",
+  "items": [
+    {
+      "id": "https://www.linkedin.com/posts/mihaelaulieru_hologram-from-indexing-content-to-indexing-activity-7461255099261300736-LaH6",
+      "url": "https://www.linkedin.com/posts/mihaelaulieru_hologram-from-indexing-content-to-indexing-activity-7461255099261300736-LaH6",
+      "title": "Hologram: From Indexing Content to Indexing Meaning",
+      "content_text": "Talk — SingularityNet. Hologram: From Indexing Content to Indexing Meaning.",
+      "date_published": "2026-05-01T00:00:00.000Z",
+      "tags": [
+        "Talk",
+        "SingularityNet"
+      ],
+      "authors": [
+        {
+          "name": "Ilya Paveliev"
+        }
+      ]
+    },
+    {
+      "id": "https://www.youtube.com/watch?v=0wRCzByWidM",
+      "url": "https://www.youtube.com/watch?v=0wRCzByWidM",
+      "title": "The Next Revolution is Geometric Computation",
+      "content_text": "Talk — Quantum. The Next Revolution is Geometric Computation.",
+      "date_published": "2026-01-01T00:00:00.000Z",
+      "tags": [
+        "Talk",
+        "Quantum"
+      ],
+      "authors": [
+        {
+          "name": "Ilya Paveliev"
+        }
+      ]
+    },
+    {
+      "id": "https://www.linkedin.com/posts/kiran-kaur-raina-b2922622a_my-latest-conversation-with-ilya-paveliev-share-7425166836108967936-4g62",
+      "url": "https://www.linkedin.com/posts/kiran-kaur-raina-b2922622a_my-latest-conversation-with-ilya-paveliev-share-7425166836108967936-4g62",
+      "title": "Insights on Web3, AI, and Crypto Trends",
+      "content_text": "Interview — AltFunds. Insights on Web3, AI, and Crypto Trends.",
+      "date_published": "2025-06-01T00:00:00.000Z",
+      "tags": [
+        "Interview",
+        "AltFunds"
+      ],
+      "authors": [
+        {
+          "name": "Ilya Paveliev"
+        }
+      ]
+    },
+    {
+      "id": "https://www.aretecapital.xyz/posts/realworld-asset-thesis-tradmarkets",
+      "url": "https://www.aretecapital.xyz/posts/realworld-asset-thesis-tradmarkets",
+      "title": "The Real-World Asset Thesis",
+      "content_text": "Memo — Arete Capital. The Real-World Asset Thesis.",
+      "date_published": "2024-01-01T00:00:00.000Z",
+      "tags": [
+        "Memo",
+        "Arete Capital"
+      ],
+      "authors": [
+        {
+          "name": "Ilya Paveliev"
+        }
+      ]
+    },
+    {
+      "id": "https://trinityinvestor.substack.com/p/liquidity-drought-ahead",
+      "url": "https://trinityinvestor.substack.com/p/liquidity-drought-ahead",
+      "title": "Liquidity Drought Ahead",
+      "content_text": "Essay — Substack. Liquidity Drought Ahead.",
+      "date_published": "2023-10-01T00:00:00.000Z",
+      "tags": [
+        "Essay",
+        "Substack"
+      ],
+      "authors": [
+        {
+          "name": "Ilya Paveliev"
+        }
+      ]
+    }
+  ]
+}

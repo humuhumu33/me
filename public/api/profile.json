@@ -1,0 +1,147 @@
+{
+  "$schema": "https://schema.org/Person",
+  "person": {
+    "name": "Ilya Paveliev",
+    "givenName": "Ilya",
+    "familyName": "Paveliev",
+    "jobTitle": "Co-founder & Investor",
+    "description": "Co-founder of Hologram Technologies and founding partner of Arete Capital. Building software-defined compute for local AI and investing across deep tech, AI and real-world assets.",
+    "email": "mailto:ilya@uor.foundation",
+    "url": "https://ilyapaveliev.com/",
+    "image": "https://ilyapaveliev.com/og-portrait.jpg",
+    "sameAs": [
+      "https://www.linkedin.com/in/trinityinvestor/",
+      "https://x.com/TrinityInvestor",
+      "https://trinityinvestor.substack.com/",
+      "https://www.uor.foundation/"
+    ],
+    "knowsAbout": [
+      "Deep Tech",
+      "AI Infrastructure",
+      "Local AI Inference",
+      "Software-Defined Compute",
+      "Real-World Assets",
+      "Venture Investing",
+      "Portfolio Management",
+      "Content-Addressed Data",
+      "Geometric Computation"
+    ],
+    "alumniOf": {
+      "name": "Trinity College Dublin",
+      "url": "https://www.tcd.ie/"
+    }
+  },
+  "experience": [
+    {
+      "role": "Co-founder",
+      "organization": "Hologram Technologies",
+      "organizationUrl": "https://hologram.xyz",
+      "description": "Software-defined compute for local AI inference.",
+      "startYear": "2025",
+      "endYear": null,
+      "current": true
+    },
+    {
+      "role": "Founding Member",
+      "organization": "UOR Foundation",
+      "organizationUrl": "https://www.uor.foundation/",
+      "description": "Content-addressed open data standard. 150+ contributors.",
+      "startYear": "2025",
+      "endYear": null,
+      "current": true
+    },
+    {
+      "role": "General Partner",
+      "organization": "Arete Capital",
+      "organizationUrl": "https://www.aretecapital.xyz/",
+      "description": "$20m hybrid venture fund. Backed by a16z principals.",
+      "startYear": "2023",
+      "endYear": "2025",
+      "current": false
+    },
+    {
+      "role": "Director",
+      "organization": "Haruko",
+      "organizationUrl": "https://haruko.io",
+      "description": "Institutional risk & portfolio management. Series A.",
+      "startYear": "2022",
+      "endYear": "2024",
+      "current": false
+    },
+    {
+      "role": "Lead Portfolio Manager",
+      "organization": "OX1",
+      "organizationUrl": null,
+      "description": "$30m market-neutral digital asset fund.",
+      "startYear": "2022",
+      "endYear": "2022",
+      "current": false
+    },
+    {
+      "role": "Portfolio Manager",
+      "organization": "Adrian Lee & Partners",
+      "organizationUrl": null,
+      "description": "$20bn active currency overlay for US pensions.",
+      "startYear": "2013",
+      "endYear": "2021",
+      "current": false
+    },
+    {
+      "role": "Analyst",
+      "organization": "Perella Weinberg Partners",
+      "organizationUrl": "https://www.pwpartners.com/",
+      "description": "M&A, energy sector. London founding team.",
+      "startYear": "2010",
+      "endYear": "2013",
+      "current": false
+    }
+  ],
+  "publications": [
+    {
+      "title": "Hologram: From Indexing Content to Indexing Meaning",
+      "kind": "Talk",
+      "venue": "SingularityNet",
+      "date": "2026-05-01",
+      "url": "https://www.linkedin.com/posts/mihaelaulieru_hologram-from-indexing-content-to-indexing-activity-7461255099261300736-LaH6"
+    },
+    {
+      "title": "The Next Revolution is Geometric Computation",
+      "kind": "Talk",
+      "venue": "Quantum",
+      "date": "2026-01-01",
+      "url": "https://www.youtube.com/watch?v=0wRCzByWidM"
+    },
+    {
+      "title": "Insights on Web3, AI, and Crypto Trends",
+      "kind": "Interview",
+      "venue": "AltFunds",
+      "date": "2025-06-01",
+      "url": "https://www.linkedin.com/posts/kiran-kaur-raina-b2922622a_my-latest-conversation-with-ilya-paveliev-share-7425166836108967936-4g62"
+    },
+    {
+      "title": "The Real-World Asset Thesis",
+      "kind": "Memo",
+      "venue": "Arete Capital",
+      "date": "2024-01-01",
+      "url": "https://www.aretecapital.xyz/posts/realworld-asset-thesis-tradmarkets"
+    },
+    {
+      "title": "Liquidity Drought Ahead",
+      "kind": "Essay",
+      "venue": "Substack",
+      "date": "2023-10-01",
+      "url": "https://trinityinvestor.substack.com/p/liquidity-drought-ahead"
+    }
+  ],
+  "life": [
+    "Scholarship in economics, Trinity College Dublin — graduated with gold medal.",
+    "Sailed 10,000+ offshore miles across Ireland, the Caribbean, the US and Dubai.",
+    "Builds drones, helicopters, robots, computers, software and wearables.",
+    "Father to two wonderful daughters."
+  ],
+  "feeds": {
+    "json": "https://ilyapaveliev.com/feed.json",
+    "sitemap": "https://ilyapaveliev.com/sitemap.xml"
+  },
+  "updatedAt": "2026-05-21"
+}
