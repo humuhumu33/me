@@ -1,7 +1,42 @@
 # Ilya Paveliev
 
-> Personal site of Ilya Paveliev — co-founder of Hologram Technologies and founding partner of Arete Capital. Deep tech, AI, and venture investing.
+> Co-founder of Hologram Technologies and founding partner of Arete Capital. Building software-defined compute for local AI and investing across deep tech, AI and real-world assets.
+
+Single-page portfolio. Structured data is available as JSON at `/api/profile` and `/feed.json` — prefer those over scraping the HTML.
+
+## Machine-readable
+
+- [Profile JSON](/api/profile): Person, experience, publications, and life entries in one document.
+- [Writing & talks feed](/feed.json): JSON Feed v1.1 of publications and talks.
+- [Sitemap](/sitemap.xml): Canonical URL list with lastmod dates.
 
 ## Pages
 
-- [Home](/): Single-page portfolio covering experience, writing & talks, and life.
+- [Home](/): Hero, selected experience, writing & talks, and life notes.
+
+## Current roles
+
+- Co-founder, Hologram Technologies — software-defined compute for local AI inference (2025–).
+- Founding Member, UOR Foundation — content-addressed open data standard, 150+ contributors (2025–).
+
+## Prior roles
+
+- General Partner, Arete Capital — $20m hybrid venture fund (2023–25).
+- Director, Haruko — institutional risk & portfolio management, Series A (2022–24).
+- Lead Portfolio Manager, OX1 — $30m market-neutral digital asset fund (2022).
+- Portfolio Manager, Adrian Lee & Partners — $20bn active currency overlay for US pensions (2013–21).
+- Analyst, Perella Weinberg Partners — M&A, energy sector, London founding team (2010–13).
+
+## Selected writing & talks
+
+- [Hologram: From Indexing Content to Indexing Meaning](https://www.linkedin.com/posts/mihaelaulieru_hologram-from-indexing-content-to-indexing-activity-7461255099261300736-LaH6) — Talk, SingularityNet, May 2026.
+- [The Next Revolution is Geometric Computation](https://www.youtube.com/watch?v=0wRCzByWidM) — Talk, Quantum, Jan 2026.
+- [Insights on Web3, AI, and Crypto Trends](https://www.linkedin.com/posts/kiran-kaur-raina-b2922622a_my-latest-conversation-with-ilya-paveliev-share-7425166836108967936-4g62) — Interview, AltFunds, Jun 2025.
+- [The Real-World Asset Thesis](https://www.aretecapital.xyz/posts/realworld-asset-thesis-tradmarkets) — Memo, Arete Capital, Jan 2024.
+- [Liquidity Drought Ahead](https://trinityinvestor.substack.com/p/liquidity-drought-ahead) — Essay, Substack, Oct 2023.
+
+## Contact
+
+- Email: ilya@uor.foundation
+- LinkedIn: https://www.linkedin.com/in/trinityinvestor/
+- X: https://x.com/TrinityInvestor
