@@ -198,7 +198,7 @@ export function Index() {
     <main className="min-h-screen w-screen bg-background text-foreground md:h-screen md:overflow-hidden">
       <p className="sr-only">
         Updated <time dateTime={CONTENT_UPDATED_AT}>{CONTENT_UPDATED_AT}</time>. Structured data is
-        available at <a href="/api/profile">/api/profile</a> and{" "}
+        available at <a href="/api/profile.json">/api/profile.json</a> and{" "}
         <a href="/feed.json">/feed.json</a>.
       </p>
 
