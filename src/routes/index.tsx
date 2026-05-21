@@ -131,7 +131,7 @@ export function Index() {
       <div className="md:hidden flex flex-col">
         {/* Hero — full-bleed banner */}
         <section className="relative">
-          <div className="relative h-[78vh] w-full overflow-hidden bg-panel">
+          <div className="relative h-[39vh] w-full overflow-hidden bg-panel">
             <img src={banner} alt="" className="absolute inset-0 h-full w-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
             {/* Top bar over hero */}
