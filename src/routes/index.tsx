@@ -163,14 +163,10 @@ export const Route = createFileRoute("/")({
       },
     ],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(personSchema),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify(publicationsSchema),
-      },
+      { type: "application/ld+json", children: JSON.stringify(personSchema) },
+      { type: "application/ld+json", children: JSON.stringify(websiteSchema) },
+      { type: "application/ld+json", children: JSON.stringify(profilePageSchema) },
+      { type: "application/ld+json", children: JSON.stringify(publicationsSchema) },
     ],
   }),
   component: Index,
