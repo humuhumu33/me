@@ -204,7 +204,6 @@ function Index() {
               >
                 X
               </a>
-              <span className="text-muted-foreground/70">+44 746 388 1239</span>
             </div>
           </footer>
         </section>
