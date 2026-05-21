@@ -136,7 +136,7 @@ function Index() {
             <img
               src={banner}
               alt=""
-              className="absolute inset-1 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-panel" />
             <div className="absolute top-[3.82vh] left-[3.82vw] flex items-center gap-3 text-[0.65rem] tracking-aman uppercase text-white/85">
