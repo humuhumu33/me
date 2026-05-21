@@ -186,8 +186,9 @@ function Index() {
                 >
                   {t}
                   {tab === t && (
-                    <span className="absolute -bottom-px left-0 h-px w-full bg-accent" />
+                    <span className="absolute -bottom-px left-0 h-px w-full bg-foreground" />
                   )}
+
                 </button>
               ))}
             </nav>
