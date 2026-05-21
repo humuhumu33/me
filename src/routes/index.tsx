@@ -497,6 +497,10 @@ export function Index() {
               IP · MMXXVI
             </div>
           </div>
+
+          {/* Scrollable content area */}
+          <div className="flex min-h-0 flex-1 flex-col overflow-visible">
+            {/* Circular portrait */}
             <figure className="relative flex shrink-0 justify-start px-[3.82vw] m-0">
               <div className="relative -mt-[7.3vw] h-[14.6vw] w-[14.6vw] rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
                 <img
