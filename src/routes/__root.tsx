@@ -14,8 +14,8 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <p className="text-7xl font-bold text-foreground" aria-hidden="true">404</p>
+        <h1 className="mt-4 text-xl font-semibold text-foreground">Page Not Found</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           The page you're looking for doesn't exist or has been moved.
         </p>
@@ -72,16 +72,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "A personal website showcasing Ilya Paveliev's work with a unique, single-page layout." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "A personal website showcasing Ilya Paveliev's work with a unique, single-page layout." },
+      { title: "Ilya Paveliev — Deep Tech Founder & Investor" },
+      { name: "description", content: "Personal site of Ilya Paveliev — co-founder of Hologram Technologies and founding partner of Arete Capital." },
+      { name: "author", content: "Ilya Paveliev" },
+      { property: "og:title", content: "Ilya Paveliev — Deep Tech Founder & Investor" },
+      { property: "og:description", content: "Co-founder of Hologram Technologies. Founding Partner of Arete Capital." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "A personal website showcasing Ilya Paveliev's work with a unique, single-page layout." },
+      { property: "og:site_name", content: "Ilya Paveliev" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Ilya Paveliev — Deep Tech Founder & Investor" },
+      { name: "twitter:description", content: "Co-founder of Hologram Technologies. Founding Partner of Arete Capital." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/abbcc9ed-6d18-4a3e-b846-438c952e8b9a/id-preview-acbef9af--3406e4ac-2d83-469d-93a4-4e0e4111f73c.lovable.app-1779368728089.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/abbcc9ed-6d18-4a3e-b846-438c952e8b9a/id-preview-acbef9af--3406e4ac-2d83-469d-93a4-4e0e4111f73c.lovable.app-1779368728089.png" },
     ],

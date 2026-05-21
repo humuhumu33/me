@@ -11,18 +11,37 @@ export const Route = createFileRoute("/")({
         content:
           "Ilya Paveliev — Co-founder of Hologram Technologies, Founding Partner of Arete Capital. Deep tech, AI and venture investing.",
       },
-      { property: "og:title", content: "Ilya Paveliev" },
+      { property: "og:title", content: "Ilya Paveliev — Deep Tech Founder & Investor" },
       {
         property: "og:description",
         content: "Co-founder, Hologram Technologies. Founding Partner, Arete Capital.",
       },
+      { property: "og:url", content: "https://harmony-scroll-free.lovable.app/" },
     ],
     links: [
+      { rel: "canonical", href: "https://harmony-scroll-free.lovable.app/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Ilya Paveliev",
+          jobTitle: "Deep Tech Founder & Investor",
+          url: "https://harmony-scroll-free.lovable.app/",
+          worksFor: [
+            { "@type": "Organization", name: "Hologram Technologies" },
+            { "@type": "Organization", name: "Arete Capital" },
+          ],
+          alumniOf: { "@type": "CollegeOrUniversity", name: "Trinity College Dublin" },
+        }),
       },
     ],
   }),
@@ -129,9 +148,12 @@ function Index() {
                 Co-founder · Investor
               </p>
               <h1 className="font-display text-[clamp(2.6rem,5.6vw,5.4rem)] leading-[0.95] tracking-tight">
-                Ilya
-                <br />
-                <span className="italic text-accent">Paveliev</span>
+                <span aria-hidden="true">
+                  Ilya
+                  <br />
+                  <span className="italic text-accent">Paveliev</span>
+                </span>
+                <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
               </h1>
               <div className="mt-6 h-px w-[38.2%] bg-foreground/30" />
               <p className="mt-6 max-w-[28ch] text-sm leading-relaxed text-foreground/80">
