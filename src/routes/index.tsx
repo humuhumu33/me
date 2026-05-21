@@ -144,9 +144,13 @@ export const Route = createFileRoute("/")({
 type Tab = "experience" | "thinking" | "life";
 
 function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
+  // Leading separator so DOM textContent reads "Hologram Technologies / 2025 —"
+  // rather than "Hologram Technologies2025 —" when org and date are flex siblings.
+  const sep = <span className="sr-only"> / </span>;
   if (entry.endYear && entry.endYear !== entry.startYear) {
     return (
       <>
+        {sep}
         <time dateTime={entry.startYear}>{entry.startYear}</time>
         <span aria-hidden="true"> — </span>
         <time dateTime={entry.endYear}>{entry.endYear.slice(2)}</time>
@@ -156,12 +160,19 @@ function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
   if (entry.current) {
     return (
       <>
+        {sep}
         <time dateTime={entry.startYear}>{entry.startYear}</time>
         <span aria-hidden="true"> —</span>
+        <span className="sr-only"> present</span>
       </>
     );
   }
-  return <time dateTime={entry.startYear}>{entry.startYear}</time>;
+  return (
+    <>
+      {sep}
+      <time dateTime={entry.startYear}>{entry.startYear}</time>
+    </>
+  );
 }
 
 export function Index() {
