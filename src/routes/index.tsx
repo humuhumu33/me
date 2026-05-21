@@ -14,6 +14,10 @@ import {
   CONTENT_UPDATED_AT,
 } from "@/lib/profile-data";
 
+const currentRoles = experience.filter((e) => e.current);
+const nowStatement =
+  "Currently building Hologram Technologies (software-defined compute for local AI) and contributing to UOR Foundation (content-addressed open data). Investing thesis: deep tech, AI infrastructure, and real-world assets.";
+
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -23,7 +27,9 @@ const personSchema = {
   familyName: person.familyName,
   jobTitle: person.jobTitle,
   description: person.description,
+  disambiguatingDescription: nowStatement,
   url: `${SITE_URL}/`,
+  mainEntityOfPage: `${SITE_URL}/`,
   image: `${SITE_URL}${PORTRAIT_PATH}`,
   email: `mailto:${person.email}`,
   knowsAbout: person.knowsAbout,
@@ -33,13 +39,11 @@ const personSchema = {
     name: person.alumniOf.name,
     url: person.alumniOf.url,
   },
-  worksFor: experience
-    .filter((e) => e.current)
-    .map((e) => ({
-      "@type": "Organization",
-      name: e.org,
-      ...(e.orgUrl ? { url: e.orgUrl } : {}),
-    })),
+  worksFor: currentRoles.map((e) => ({
+    "@type": "Organization",
+    name: e.org,
+    ...(e.orgUrl ? { url: e.orgUrl } : {}),
+  })),
   hasOccupation: experience.map((e) => ({
     "@type": "Role",
     roleName: e.role,
@@ -53,6 +57,7 @@ const personSchema = {
       },
     },
   })),
+  dateModified: CONTENT_UPDATED_AT,
 };
 
 const publicationsSchema = {
@@ -144,9 +149,13 @@ export const Route = createFileRoute("/")({
 type Tab = "experience" | "thinking" | "life";
 
 function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
+  // Leading separator so DOM textContent reads "Hologram Technologies / 2025 —"
+  // rather than "Hologram Technologies2025 —" when org and date are flex siblings.
+  const sep = <span className="sr-only"> / </span>;
   if (entry.endYear && entry.endYear !== entry.startYear) {
     return (
       <>
+        {sep}
         <time dateTime={entry.startYear}>{entry.startYear}</time>
         <span aria-hidden="true"> — </span>
         <time dateTime={entry.endYear}>{entry.endYear.slice(2)}</time>
@@ -156,12 +165,19 @@ function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
   if (entry.current) {
     return (
       <>
+        {sep}
         <time dateTime={entry.startYear}>{entry.startYear}</time>
         <span aria-hidden="true"> —</span>
+        <span className="sr-only"> present</span>
       </>
     );
   }
-  return <time dateTime={entry.startYear}>{entry.startYear}</time>;
+  return (
+    <>
+      {sep}
+      <time dateTime={entry.startYear}>{entry.startYear}</time>
+    </>
+  );
 }
 
 export function Index() {
@@ -203,7 +219,8 @@ export function Index() {
       </p>
 
       {/* ============ MOBILE LAYOUT ( < md ) — dark only ============ */}
-      <div className="md:hidden dark flex flex-col bg-background text-foreground">
+      {/* data-nosnippet: visual duplicate of the desktop layout; canonical structured data lives above. */}
+      <div className="md:hidden dark flex flex-col bg-background text-foreground" data-nosnippet aria-hidden={false}>
         {/* Hero — full-bleed banner (no top text) */}
         <section
           className="relative"
