@@ -346,35 +346,6 @@ function Index() {
               )}
             </div>
 
-            {/* Footer / contact */}
-            <footer className="mt-auto pt-[2.36vh] border-t border-border flex items-center justify-between text-[0.68rem] tracking-aman uppercase text-muted-foreground">
-              <div className="flex items-center gap-[2.36vw]">
-                <a href="mailto:ilya@uor.foundation" className="hover:text-foreground transition-colors">
-                  ilya@uor.foundation
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/trinityinvestor/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-foreground transition-colors"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href="https://x.com/TrinityInvestor"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-foreground transition-colors"
-                >
-                  X
-                </a>
-                <span className="hidden sm:inline">+44 746 388 1239</span>
-              </div>
-              <span className="font-display normal-case tracking-[0.4em] text-muted-foreground/80">
-                ĪP
-              </span>
-
-            </footer>
           </div>
         </section>
       </div>
