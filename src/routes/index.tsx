@@ -42,12 +42,48 @@ const experience = [
 ];
 
 const thinking = [
-  { title: "Hologram: From Indexing Content to Indexing Meaning", venue: "SingularityNet", date: "May 2026" },
-  { title: "The Next Revolution is Geometric Computation", venue: "Quantum", date: "Jan 2026" },
-  { title: "Insights on Web3, AI, and Crypto Trends", venue: "AltFunds", date: "Jun 2025" },
-  { title: "The Real-World Asset Thesis", venue: "Arete Capital", date: "Jan 2024" },
-  { title: "Liquidity Drought Ahead", venue: "OX1", date: "Oct 2023" },
+  {
+    title: "Hologram: From Indexing Content to Indexing Meaning",
+    venue: "SingularityNet",
+    date: "May 2026",
+    kind: "Talk",
+    url: "https://singularitynet.io/",
+    gradient: "linear-gradient(135deg, oklch(0.42 0.09 65), oklch(0.78 0.10 75))",
+  },
+  {
+    title: "The Next Revolution is Geometric Computation",
+    venue: "Quantum",
+    date: "Jan 2026",
+    kind: "Essay",
+    url: "https://quantum-journal.org/",
+    gradient: "linear-gradient(135deg, oklch(0.30 0.04 240), oklch(0.62 0.08 220))",
+  },
+  {
+    title: "Insights on Web3, AI, and Crypto Trends",
+    venue: "AltFunds",
+    date: "Jun 2025",
+    kind: "Interview",
+    url: "https://altfundsglobal.com/",
+    gradient: "linear-gradient(135deg, oklch(0.36 0.05 30), oklch(0.74 0.09 55))",
+  },
+  {
+    title: "The Real-World Asset Thesis",
+    venue: "Arete Capital",
+    date: "Jan 2024",
+    kind: "Memo",
+    url: "https://arete.capital/",
+    gradient: "linear-gradient(135deg, oklch(0.32 0.02 80), oklch(0.70 0.07 80))",
+  },
+  {
+    title: "Liquidity Drought Ahead",
+    venue: "OX1",
+    date: "Oct 2023",
+    kind: "Note",
+    url: "#",
+    gradient: "linear-gradient(135deg, oklch(0.26 0.02 60), oklch(0.55 0.04 60))",
+  },
 ];
+
 
 const life = [
   "Scholarship in economics, Trinity College Dublin — graduated with gold medal.",
