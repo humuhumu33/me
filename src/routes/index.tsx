@@ -126,9 +126,197 @@ export function Index() {
   }, [dark]);
 
   return (
-    <main className="h-screen w-screen overflow-hidden bg-background text-foreground">
-      {/* Golden ratio split: 38.2% / 61.8% */}
-      <div className="grid h-full w-full" style={{ gridTemplateColumns: "38.2fr 61.8fr", gridTemplateRows: "100%" }}>
+    <main className="min-h-screen w-screen bg-background text-foreground md:h-screen md:overflow-hidden">
+      {/* ============ MOBILE LAYOUT ( < md ) ============ */}
+      <div className="md:hidden flex flex-col">
+        {/* Hero — full-bleed banner */}
+        <section className="relative">
+          <div className="relative h-[78vh] w-full overflow-hidden bg-panel">
+            <img src={banner} alt="" className="absolute inset-0 h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
+            {/* Top bar over hero */}
+            <div className="absolute top-0 inset-x-0 flex items-center justify-between px-6 pt-6">
+              <div className="flex items-center gap-3 text-[0.65rem] tracking-aman uppercase text-white/90">
+                <span className="inline-block h-px w-7 bg-accent" />
+                IP · MMXXVI
+              </div>
+              <button
+                onClick={() => setDark((d) => !d)}
+                className="text-[0.65rem] tracking-aman uppercase text-white/85 hover:text-white transition-colors"
+                aria-label="Toggle theme"
+              >
+                {dark ? "Light" : "Dark"}
+              </button>
+            </div>
+          </div>
+
+          {/* Portrait overlapping hero seam */}
+          <div className="-mt-[18vw] flex justify-center px-6">
+            <div className="relative h-[36vw] w-[36vw] max-h-44 max-w-44 rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)]">
+              <img src={portrait} alt="Ilya Paveliev" className="h-full w-full object-cover" />
+            </div>
+          </div>
+
+          {/* Name block */}
+          <div className="px-6 pt-8 text-center">
+            <p className="text-[0.7rem] tracking-aman uppercase text-muted-foreground">
+              Co-founder · Investor
+            </p>
+            <h1 className="mt-5 font-display text-[clamp(3rem,13vw,4.5rem)] leading-[0.95] tracking-tight font-light text-foreground">
+              Ilya <span className="italic text-accent">Paveliev</span>
+            </h1>
+            <div className="mx-auto mt-7 h-px w-12 bg-border" />
+            <p className="mx-auto mt-6 max-w-[32ch] text-[1rem] leading-[1.7] text-muted-foreground">
+              Building software-defined compute for local AI. Investing across
+              deep tech, AI and real-world assets.
+            </p>
+          </div>
+        </section>
+
+        {/* Sticky tab nav */}
+        <nav className="sticky top-0 z-20 mt-16 border-y border-border bg-background/85 backdrop-blur-md">
+          <div className="grid grid-cols-3">
+            {(["experience", "thinking", "life"] as Tab[]).map((t) => (
+              <button
+                key={t}
+                onClick={() => setTab(t)}
+                className={`relative py-4 text-[0.7rem] tracking-aman uppercase transition-colors ${
+                  tab === t ? "text-foreground" : "text-muted-foreground"
+                }`}
+              >
+                {t}
+                {tab === t && (
+                  <span className="absolute -bottom-px left-1/2 -translate-x-1/2 h-px w-10 bg-foreground" />
+                )}
+              </button>
+            ))}
+          </div>
+        </nav>
+
+        {/* Tab body */}
+        <section className="px-6 pt-12 pb-20 transition-opacity duration-300" key={tab}>
+          <div className="flex items-baseline justify-between mb-8">
+            <h2 className="font-display text-[1.75rem] leading-tight font-light text-foreground/90">
+              {tab === "experience" && "Selected experience"}
+              {tab === "thinking" && "Writing & talks"}
+              {tab === "life" && "Beyond the desk"}
+            </h2>
+            <span className="text-[0.65rem] tracking-aman uppercase text-muted-foreground shrink-0 ml-3">
+              {tab === "experience" && `${experience.length} roles`}
+              {tab === "thinking" && `${thinking.length} pieces`}
+              {tab === "life" && "Notes"}
+            </span>
+          </div>
+
+          {tab === "experience" && (
+            <ul className="divide-y divide-border">
+              {experience.map((e) => (
+                <li key={e.org} className="py-6">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <span className="font-display text-[1.5rem] leading-tight text-foreground">
+                      {e.org}
+                    </span>
+                    <span className="font-display text-sm text-muted-foreground tabular-nums shrink-0">
+                      {e.years}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-[0.7rem] tracking-aman uppercase text-muted-foreground">
+                    {e.role}
+                  </p>
+                  <p className="mt-3 text-[1rem] leading-[1.65] text-muted-foreground">
+                    {e.note}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {tab === "thinking" && (
+            <ul className="space-y-5">
+              {thinking.map((p) => (
+                <li key={p.title}>
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group relative flex flex-col overflow-hidden border border-border bg-background/40 transition-colors active:border-accent"
+                  >
+                    <div className="relative h-32 w-full overflow-hidden" style={{ background: p.gradient }}>
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]" />
+                      <div className="absolute inset-0 flex items-end justify-between gap-3 p-4 pr-14">
+                        <span className="text-[0.65rem] tracking-aman uppercase text-white/90">
+                          {p.kind}
+                        </span>
+                        <span className="font-display text-white text-base tracking-[0.02em] truncate">
+                          {p.venue}
+                        </span>
+                      </div>
+                      <span className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-background/90 text-foreground text-sm">
+                        ↗
+                      </span>
+                    </div>
+                    <div className="p-5">
+                      <p className="font-display text-[1.375rem] leading-snug text-foreground">
+                        {p.title}
+                      </p>
+                      <p className="mt-3 text-[0.65rem] tracking-aman uppercase text-muted-foreground">
+                        {p.date}
+                      </p>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {tab === "life" && (
+            <ul className="space-y-8">
+              {life.map((l, i) => (
+                <li key={i}>
+                  <span className="text-[0.65rem] tracking-aman uppercase text-muted-foreground">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <p className="mt-3 font-display text-[1.375rem] leading-[1.4] text-foreground/90">
+                    {l}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {/* Contact footer */}
+          <div className="mt-20 border-t border-border pt-10">
+            <p className="text-[0.65rem] tracking-aman uppercase text-muted-foreground mb-5">
+              Contact
+            </p>
+            <div className="flex flex-col gap-4 text-[1rem] text-foreground">
+              <a href="mailto:ilya@uor.foundation" className="hover:text-accent transition-colors">
+                ilya@uor.foundation
+              </a>
+              <a
+                href="https://www.linkedin.com/in/trinityinvestor/"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-accent transition-colors"
+              >
+                LinkedIn ↗
+              </a>
+              <a
+                href="https://x.com/TrinityInvestor"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-accent transition-colors"
+              >
+                X ↗
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* ============ DESKTOP LAYOUT ( ≥ md ) ============ */}
+      <div className="hidden md:grid h-full w-full" style={{ gridTemplateColumns: "38.2fr 61.8fr", gridTemplateRows: "100%" }}>
+
         {/* LEFT — enclosed panel: banner image + circular portrait + name */}
         <section className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden bg-panel text-panel-foreground">
           {/* Banner (top ~38.2%) */}
