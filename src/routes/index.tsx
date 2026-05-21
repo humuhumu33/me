@@ -14,6 +14,10 @@ import {
   CONTENT_UPDATED_AT,
 } from "@/lib/profile-data";
 
+const currentRoles = experience.filter((e) => e.current);
+const nowStatement =
+  "Currently building Hologram Technologies (software-defined compute for local AI) and contributing to UOR Foundation (content-addressed open data). Investing thesis: deep tech, AI infrastructure, and real-world assets.";
+
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -23,7 +27,9 @@ const personSchema = {
   familyName: person.familyName,
   jobTitle: person.jobTitle,
   description: person.description,
+  disambiguatingDescription: nowStatement,
   url: `${SITE_URL}/`,
+  mainEntityOfPage: `${SITE_URL}/`,
   image: `${SITE_URL}${PORTRAIT_PATH}`,
   email: `mailto:${person.email}`,
   knowsAbout: person.knowsAbout,
@@ -33,13 +39,11 @@ const personSchema = {
     name: person.alumniOf.name,
     url: person.alumniOf.url,
   },
-  worksFor: experience
-    .filter((e) => e.current)
-    .map((e) => ({
-      "@type": "Organization",
-      name: e.org,
-      ...(e.orgUrl ? { url: e.orgUrl } : {}),
-    })),
+  worksFor: currentRoles.map((e) => ({
+    "@type": "Organization",
+    name: e.org,
+    ...(e.orgUrl ? { url: e.orgUrl } : {}),
+  })),
   hasOccupation: experience.map((e) => ({
     "@type": "Role",
     roleName: e.role,
@@ -53,6 +57,7 @@ const personSchema = {
       },
     },
   })),
+  dateModified: CONTENT_UPDATED_AT,
 };
 
 const publicationsSchema = {
