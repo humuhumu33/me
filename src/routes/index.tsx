@@ -278,9 +278,10 @@ function Index() {
                           </p>
                           <div className="mt-2 flex items-center justify-between text-[0.62rem] tracking-aman uppercase text-muted-foreground">
                             <span>{p.date}</span>
-                            <span className="text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span className="text-foreground opacity-0 group-hover:opacity-100 transition-opacity">
                               Open ·
                             </span>
+
                           </div>
                         </div>
                       </a>
