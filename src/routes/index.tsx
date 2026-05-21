@@ -2,26 +2,119 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import banner from "@/assets/banner.jpeg";
 import portrait from "@/assets/portrait.png";
+import {
+  person,
+  experience,
+  thinking,
+  life,
+  SITE_URL,
+  PORTRAIT_PATH,
+  PORTRAIT_ALT,
+  CONTENT_UPDATED_AT,
+} from "@/lib/profile-data";
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE_URL}/#person`,
+  name: person.name,
+  givenName: person.givenName,
+  familyName: person.familyName,
+  jobTitle: person.jobTitle,
+  description: person.description,
+  url: `${SITE_URL}/`,
+  image: `${SITE_URL}${PORTRAIT_PATH}`,
+  email: `mailto:${person.email}`,
+  knowsAbout: person.knowsAbout,
+  sameAs: person.sameAs,
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: person.alumniOf.name,
+    url: person.alumniOf.url,
+  },
+  worksFor: experience
+    .filter((e) => e.current)
+    .map((e) => ({
+      "@type": "Organization",
+      name: e.org,
+      ...(e.orgUrl ? { url: e.orgUrl } : {}),
+    })),
+  hasOccupation: experience.map((e) => ({
+    "@type": "Role",
+    roleName: e.role,
+    startDate: e.startYear,
+    ...(e.endYear ? { endDate: e.endYear } : {}),
+    "@reverse": {
+      employee: {
+        "@type": "Organization",
+        name: e.org,
+        ...(e.orgUrl ? { url: e.orgUrl } : {}),
+      },
+    },
+  })),
+};
+
+const publicationsSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Writing & talks by Ilya Paveliev",
+  itemListOrder: "https://schema.org/ItemListOrderDescending",
+  numberOfItems: thinking.length,
+  itemListElement: thinking.map((t, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "CreativeWork",
+      name: t.title,
+      url: t.url,
+      datePublished: t.dateISO,
+      genre: t.kind,
+      author: { "@type": "Person", name: person.name, "@id": `${SITE_URL}/#person` },
+      publisher: { "@type": "Organization", name: t.venue },
+    },
+  })),
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ilya Paveliev — Deep Tech Founder & Investor" },
+      { title: "Ilya Paveliev — Co-founder & Investor in Deep Tech and AI" },
+      { name: "description", content: person.description },
+      { name: "author", content: person.name },
       {
-        name: "description",
+        name: "keywords",
         content:
-          "Ilya Paveliev — Co-founder of Hologram Technologies, Founding Partner of Arete Capital. Deep tech, AI and venture investing.",
+          "Ilya Paveliev, Hologram Technologies, Arete Capital, UOR Foundation, deep tech, AI infrastructure, local AI, real-world assets, venture capital",
       },
-      { property: "og:title", content: "Ilya Paveliev — Deep Tech Founder & Investor" },
-      {
-        property: "og:description",
-        content: "Co-founder, Hologram Technologies. Founding Partner, Arete Capital.",
-      },
-      { property: "og:url", content: "https://harmony-scroll-free.lovable.app/" },
+      // Open Graph
+      { property: "og:type", content: "profile" },
+      { property: "og:site_name", content: person.name },
+      { property: "og:title", content: "Ilya Paveliev — Co-founder & Investor" },
+      { property: "og:description", content: person.description },
+      { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:image", content: `${SITE_URL}${PORTRAIT_PATH}` },
+      { property: "og:image:alt", content: PORTRAIT_ALT },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "1200" },
+      { property: "profile:first_name", content: person.givenName },
+      { property: "profile:last_name", content: person.familyName },
+      { property: "profile:username", content: person.twitterHandle },
+      // Twitter
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: `@${person.twitterHandle}` },
+      { name: "twitter:creator", content: `@${person.twitterHandle}` },
+      { name: "twitter:title", content: "Ilya Paveliev — Co-founder & Investor" },
+      { name: "twitter:description", content: person.description },
+      { name: "twitter:image", content: `${SITE_URL}${PORTRAIT_PATH}` },
+      { name: "twitter:image:alt", content: PORTRAIT_ALT },
     ],
     links: [
-      { rel: "canonical", href: "https://harmony-scroll-free.lovable.app/" },
+      { rel: "canonical", href: `${SITE_URL}/` },
+      { rel: "me", href: "https://www.linkedin.com/in/trinityinvestor/" },
+      { rel: "me", href: "https://x.com/TrinityInvestor" },
+      { rel: "me", href: `mailto:${person.email}` },
+      { rel: "alternate", type: "application/feed+json", href: "/feed.json", title: "Writing & talks" },
+      { rel: "alternate", type: "application/json", href: "/api/profile", title: "Profile data" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -32,18 +125,11 @@ export const Route = createFileRoute("/")({
     scripts: [
       {
         type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Person",
-          name: "Ilya Paveliev",
-          jobTitle: "Deep Tech Founder & Investor",
-          url: "https://harmony-scroll-free.lovable.app/",
-          worksFor: [
-            { "@type": "Organization", name: "Hologram Technologies" },
-            { "@type": "Organization", name: "Arete Capital" },
-          ],
-          alumniOf: { "@type": "CollegeOrUniversity", name: "Trinity College Dublin" },
-        }),
+        children: JSON.stringify(personSchema),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(publicationsSchema),
       },
     ],
   }),
@@ -52,66 +138,26 @@ export const Route = createFileRoute("/")({
 
 type Tab = "experience" | "thinking" | "life";
 
-const experience = [
-  { role: "Co-founder", org: "Hologram Technologies", note: "Software-defined compute for local AI inference.", years: "2025 —" },
-  { role: "Founding Member", org: "UOR Foundation", note: "Content-addressed open data standard. 150+ contributors.", years: "2025 —" },
-  { role: "General Partner", org: "Arete Capital", note: "$20m hybrid venture fund. Backed by a16z principals.", years: "2023 — 25" },
-  { role: "Director", org: "Haruko", note: "Institutional risk & portfolio management. Series A.", years: "2022 — 24" },
-  { role: "Lead Portfolio Manager", org: "OX1", note: "$30m market-neutral digital asset fund.", years: "2022" },
-  { role: "Portfolio Manager", org: "Adrian Lee & Partners", note: "$20bn active currency overlay for US pensions.", years: "2013 — 21" },
-  { role: "Analyst", org: "Perella Weinberg Partners", note: "M&A, energy sector. London founding team.", years: "2010 — 13" },
-];
-
-const thinking = [
-  {
-    title: "Hologram: From Indexing Content to Indexing Meaning",
-    venue: "SingularityNet",
-    date: "May 2026",
-    kind: "Talk",
-    url: "https://www.linkedin.com/posts/mihaelaulieru_hologram-from-indexing-content-to-indexing-activity-7461255099261300736-LaH6",
-    gradient: "linear-gradient(135deg, oklch(0.42 0.09 65), oklch(0.78 0.10 75))",
-  },
-  {
-    title: "The Next Revolution is Geometric Computation",
-    venue: "Quantum",
-    date: "Jan 2026",
-    kind: "Talk",
-    url: "https://www.youtube.com/watch?v=0wRCzByWidM",
-    gradient: "linear-gradient(135deg, oklch(0.30 0.04 240), oklch(0.62 0.08 220))",
-  },
-  {
-    title: "Insights on Web3, AI, and Crypto Trends",
-    venue: "AltFunds",
-    date: "Jun 2025",
-    kind: "Interview",
-    url: "https://www.linkedin.com/posts/kiran-kaur-raina-b2922622a_my-latest-conversation-with-ilya-paveliev-share-7425166836108967936-4g62",
-    gradient: "linear-gradient(135deg, oklch(0.36 0.05 30), oklch(0.74 0.09 55))",
-  },
-  {
-    title: "The Real-World Asset Thesis",
-    venue: "Arete Capital",
-    date: "Jan 2024",
-    kind: "Memo",
-    url: "https://www.aretecapital.xyz/posts/realworld-asset-thesis-tradmarkets",
-    gradient: "linear-gradient(135deg, oklch(0.32 0.02 80), oklch(0.70 0.07 80))",
-  },
-  {
-    title: "Liquidity Drought Ahead",
-    venue: "Substack",
-    date: "Oct 2023",
-    kind: "Essay",
-    url: "https://trinityinvestor.substack.com/p/liquidity-drought-ahead",
-    gradient: "linear-gradient(135deg, oklch(0.26 0.02 60), oklch(0.55 0.04 60))",
-  },
-];
-
-
-const life = [
-  "Scholarship in economics, Trinity College Dublin — graduated with gold medal.",
-  "Sailed 10,000+ offshore miles across Ireland, the Caribbean, the US and Dubai.",
-  "Builds drones, helicopters, robots, computers, software and wearables.",
-  "Father to two wonderful daughters.",
-];
+function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
+  if (entry.endYear && entry.endYear !== entry.startYear) {
+    return (
+      <>
+        <time dateTime={entry.startYear}>{entry.startYear}</time>
+        <span aria-hidden="true"> — </span>
+        <time dateTime={entry.endYear}>{entry.endYear.slice(2)}</time>
+      </>
+    );
+  }
+  if (entry.current) {
+    return (
+      <>
+        <time dateTime={entry.startYear}>{entry.startYear}</time>
+        <span aria-hidden="true"> —</span>
+      </>
+    );
+  }
+  return <time dateTime={entry.startYear}>{entry.startYear}</time>;
+}
 
 export function Index() {
   const [tab, setTab] = useState<Tab>("experience");
@@ -127,12 +173,31 @@ export function Index() {
 
   return (
     <main className="min-h-screen w-screen bg-background text-foreground md:h-screen md:overflow-hidden">
+      <p className="sr-only">
+        Updated <time dateTime={CONTENT_UPDATED_AT}>{CONTENT_UPDATED_AT}</time>. Structured data is
+        available at <a href="/api/profile">/api/profile</a> and{" "}
+        <a href="/feed.json">/feed.json</a>.
+      </p>
+
       {/* ============ MOBILE LAYOUT ( < md ) ============ */}
       <div className="md:hidden flex flex-col">
         {/* Hero — full-bleed banner */}
-        <section className="relative">
+        <section
+          className="relative"
+          itemScope
+          itemType="https://schema.org/Person"
+        >
+          <link itemProp="url" href={`${SITE_URL}/`} />
+          <meta itemProp="jobTitle" content={person.jobTitle} />
+          <meta itemProp="description" content={person.description} />
+
           <div className="relative h-[39vh] w-full overflow-hidden bg-panel">
-            <img src={banner} alt="" className="absolute inset-0 h-full w-full object-cover" />
+            <img
+              src={banner}
+              alt=""
+              role="presentation"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
             {/* Top bar over hero */}
             <div className="absolute top-0 inset-x-0 flex items-center justify-between px-6 pt-6">
@@ -151,11 +216,17 @@ export function Index() {
           </div>
 
           {/* Portrait overlapping hero seam */}
-          <div className="-mt-[18vw] flex justify-center px-6">
+          <figure className="-mt-[18vw] flex justify-center px-6 m-0">
             <div className="relative h-[36vw] w-[36vw] max-h-44 max-w-44 rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)]">
-              <img src={portrait} alt="Ilya Paveliev" className="h-full w-full object-cover" />
+              <img
+                src={portrait}
+                alt={PORTRAIT_ALT}
+                itemProp="image"
+                className="h-full w-full object-cover"
+              />
             </div>
-          </div>
+            <figcaption className="sr-only">{PORTRAIT_ALT}</figcaption>
+          </figure>
 
           {/* Name block */}
           <div className="px-6 pt-8 text-center">
@@ -163,7 +234,9 @@ export function Index() {
               Co-founder · Investor
             </p>
             <h1 className="mt-5 font-display text-[clamp(3rem,13vw,4.5rem)] leading-[0.95] tracking-tight font-light text-foreground">
-              Ilya <span className="italic text-accent">Paveliev</span>
+              <span itemProp="name">
+                Ilya <span className="italic text-accent">Paveliev</span>
+              </span>
             </h1>
             <div className="mx-auto mt-7 h-px w-12 bg-border" />
             <p className="mx-auto mt-6 max-w-[32ch] text-[1rem] leading-[1.7] text-muted-foreground">
@@ -172,41 +245,46 @@ export function Index() {
             </p>
             <div className="mt-8 flex items-center justify-center gap-4 text-muted-foreground">
               <a
-                href="mailto:ilya@uor.foundation"
-                aria-label="Email"
+                href={`mailto:${person.email}`}
+                aria-label="Email Ilya Paveliev"
+                rel="me"
+                itemProp="email"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-border hover:text-accent hover:border-accent transition-colors"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
               </a>
               <a
                 href="https://www.linkedin.com/in/trinityinvestor/"
                 target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
+                rel="me noopener noreferrer"
+                aria-label="LinkedIn profile (opens in new tab)"
+                itemProp="sameAs"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-border hover:text-accent hover:border-accent transition-colors"
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
               </a>
               <a
                 href="https://x.com/TrinityInvestor"
                 target="_blank"
-                rel="noreferrer"
-                aria-label="X"
+                rel="me noopener noreferrer"
+                aria-label="X profile (opens in new tab)"
+                itemProp="sameAs"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-border hover:text-accent hover:border-accent transition-colors"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               </a>
             </div>
           </div>
         </section>
 
         {/* Sticky tab nav */}
-        <nav className="sticky top-0 z-20 mt-16 border-y border-border bg-background/85 backdrop-blur-md">
+        <nav className="sticky top-0 z-20 mt-16 border-y border-border bg-background/85 backdrop-blur-md" aria-label="Sections">
           <div className="grid grid-cols-3">
             {(["experience", "thinking", "life"] as Tab[]).map((t) => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
+                aria-current={tab === t ? "page" : undefined}
                 className={`relative py-4 text-[0.7rem] tracking-aman uppercase transition-colors ${
                   tab === t ? "text-foreground" : "text-muted-foreground"
                 }`}
@@ -221,9 +299,13 @@ export function Index() {
         </nav>
 
         {/* Tab body */}
-        <section className="px-6 pt-12 pb-20 transition-opacity duration-300" key={tab}>
+        <section
+          className="px-6 pt-12 pb-20 transition-opacity duration-300"
+          key={tab}
+          aria-labelledby="mobile-section-heading"
+        >
           <div className="flex items-baseline justify-between mb-8">
-            <h2 className="font-display text-[1.75rem] leading-tight font-light text-foreground/90">
+            <h2 id="mobile-section-heading" className="font-display text-[1.75rem] leading-tight font-light text-foreground/90">
               {tab === "experience" && "Selected experience"}
               {tab === "thinking" && "Writing & talks"}
               {tab === "life" && "Beyond the desk"}
@@ -236,18 +318,43 @@ export function Index() {
           </div>
 
           {tab === "experience" && (
-            <ul className="divide-y divide-border">
+            <ol className="divide-y divide-border list-none p-0">
               {experience.map((e) => (
-                <li key={e.org} className="py-6">
+                <li
+                  key={e.org}
+                  className="py-6"
+                  itemScope
+                  itemType="https://schema.org/OrganizationRole"
+                >
                   <div className="flex items-baseline justify-between gap-4">
-                    <span className="font-display text-[1.5rem] leading-tight text-foreground">
-                      {e.org}
-                    </span>
+                    <h3
+                      className="font-display text-[1.5rem] leading-tight text-foreground m-0"
+                      itemScope
+                      itemType="https://schema.org/Organization"
+                      itemProp="worksFor"
+                    >
+                      {e.orgUrl ? (
+                        <a
+                          href={e.orgUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          itemProp="url"
+                          className="hover:text-accent transition-colors"
+                        >
+                          <span itemProp="name">{e.org}</span>
+                        </a>
+                      ) : (
+                        <span itemProp="name">{e.org}</span>
+                      )}
+                    </h3>
                     <span className="font-display text-sm text-muted-foreground tabular-nums shrink-0">
-                      {e.years}
+                      <YearsTime entry={e} />
                     </span>
                   </div>
-                  <p className="mt-2 text-[0.7rem] tracking-aman uppercase text-muted-foreground">
+                  <p
+                    className="mt-2 text-[0.7rem] tracking-aman uppercase text-muted-foreground"
+                    itemProp="roleName"
+                  >
                     {e.role}
                   </p>
                   <p className="mt-3 text-[1rem] leading-[1.65] text-muted-foreground">
@@ -255,39 +362,44 @@ export function Index() {
                   </p>
                 </li>
               ))}
-            </ul>
+            </ol>
           )}
 
           {tab === "thinking" && (
-            <ul className="space-y-5">
+            <ul className="space-y-5 list-none p-0">
               {thinking.map((p) => (
-                <li key={p.title}>
+                <li
+                  key={p.title}
+                  itemScope
+                  itemType="https://schema.org/CreativeWork"
+                >
                   <a
                     href={p.url}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
+                    itemProp="url"
                     className="group relative flex flex-col overflow-hidden border border-border bg-background/40 transition-colors active:border-accent"
                   >
                     <div className="relative h-32 w-full overflow-hidden" style={{ background: p.gradient }}>
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]" />
                       <div className="absolute inset-0 flex items-end justify-between gap-3 p-4 pr-14">
-                        <span className="text-[0.65rem] tracking-aman uppercase text-white/90">
+                        <span className="text-[0.65rem] tracking-aman uppercase text-white/90" itemProp="genre">
                           {p.kind}
                         </span>
-                        <span className="font-display text-white text-base tracking-[0.02em] truncate">
+                        <span className="font-display text-white text-base tracking-[0.02em] truncate" itemProp="publisher">
                           {p.venue}
                         </span>
                       </div>
-                      <span className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-background/90 text-foreground text-sm">
+                      <span aria-hidden="true" className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-background/90 text-foreground text-sm">
                         ↗
                       </span>
                     </div>
                     <div className="p-5">
-                      <p className="font-display text-[1.375rem] leading-snug text-foreground">
+                      <h3 className="font-display text-[1.375rem] leading-snug text-foreground m-0" itemProp="name">
                         {p.title}
-                      </p>
+                      </h3>
                       <p className="mt-3 text-[0.65rem] tracking-aman uppercase text-muted-foreground">
-                        {p.date}
+                        <time dateTime={p.dateISO} itemProp="datePublished">{p.date}</time>
                       </p>
                     </div>
                   </a>
@@ -297,10 +409,10 @@ export function Index() {
           )}
 
           {tab === "life" && (
-            <ul className="space-y-8">
+            <ol className="space-y-8 list-none p-0">
               {life.map((l, i) => (
                 <li key={i}>
-                  <span className="text-[0.65rem] tracking-aman uppercase text-muted-foreground">
+                  <span aria-hidden="true" className="text-[0.65rem] tracking-aman uppercase text-muted-foreground">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <p className="mt-3 font-display text-[1.375rem] leading-[1.4] text-foreground/90">
@@ -308,7 +420,7 @@ export function Index() {
                   </p>
                 </li>
               ))}
-            </ul>
+            </ol>
           )}
 
         </section>
@@ -318,12 +430,22 @@ export function Index() {
       <div className="hidden md:grid h-full w-full" style={{ gridTemplateColumns: "38.2fr 61.8fr", gridTemplateRows: "100%" }}>
 
         {/* LEFT — enclosed panel: banner image + circular portrait + name */}
-        <section className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden bg-panel text-panel-foreground">
+        <section
+          className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden bg-panel text-panel-foreground"
+          itemScope
+          itemType="https://schema.org/Person"
+          aria-label="Profile"
+        >
+          <link itemProp="url" href={`${SITE_URL}/`} />
+          <meta itemProp="jobTitle" content={person.jobTitle} />
+          <meta itemProp="description" content={person.description} />
+
           {/* Banner (top ~38.2%) */}
           <div className="relative h-[38.2%] w-full shrink-0 overflow-hidden">
             <img
               src={banner}
               alt=""
+              role="presentation"
               className="absolute inset-0 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-panel" />
@@ -335,17 +457,19 @@ export function Index() {
 
           {/* Scrollable content area */}
           <div className="flex min-h-0 flex-1 flex-col overflow-visible">
-            {/* Circular portrait — diameter = 38.2% of left column (14.6vw), overlaps banner by half */}
-            <div className="relative flex shrink-0 justify-start px-[3.82vw]">
+            {/* Circular portrait */}
+            <figure className="relative flex shrink-0 justify-start px-[3.82vw] m-0">
               <div className="relative -mt-[7.3vw] h-[14.6vw] w-[14.6vw] rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
                 <img
                   src={portrait}
-                  alt="Ilya Paveliev"
+                  alt={PORTRAIT_ALT}
+                  itemProp="image"
                   className="h-full w-full object-cover"
                 />
               </div>
-              <span className="absolute left-[calc(3.82vw+14.6vw-0.5rem)] bottom-[-0.25rem] h-2 w-2 rounded-full bg-accent" />
-            </div>
+              <span aria-hidden="true" className="absolute left-[calc(3.82vw+14.6vw-0.5rem)] bottom-[-0.25rem] h-2 w-2 rounded-full bg-accent" />
+              <figcaption className="sr-only">{PORTRAIT_ALT}</figcaption>
+            </figure>
 
             {/* Name + bio */}
             <div className="px-[3.82vw] pt-[2.36vh] flex-1 min-h-0 overflow-y-auto">
@@ -357,7 +481,7 @@ export function Index() {
                   Ilya{" "}
                   <span className="italic text-accent">Paveliev</span>
                 </span>
-                <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
+                <span className="sr-only" itemProp="name">Ilya Paveliev — Co-founder & Investor in Deep Tech and AI</span>
               </h1>
               <div className="mt-[2.36vh] h-px w-[38.2%] bg-panel-foreground/25" />
               <p className="mt-[1.46vh] max-w-[38ch] text-[0.809rem] leading-[1.618] text-panel-foreground/75">
@@ -370,13 +494,19 @@ export function Index() {
             {/* Contact details — bottom left */}
             <div className="shrink-0 px-[3.82vw] pb-[3.82vh] pt-[2vh]">
               <div className="flex flex-wrap items-center gap-x-[1.5vw] gap-y-2 text-[0.65rem] tracking-aman uppercase text-panel-foreground/55">
-                <a href="mailto:ilya@uor.foundation" className="hover:text-panel-foreground transition-colors">
-                  ilya@uor.foundation
+                <a
+                  href={`mailto:${person.email}`}
+                  rel="me"
+                  itemProp="email"
+                  className="hover:text-panel-foreground transition-colors"
+                >
+                  {person.email}
                 </a>
                 <a
                   href="https://www.linkedin.com/in/trinityinvestor/"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="me noopener noreferrer"
+                  itemProp="sameAs"
                   className="hover:text-panel-foreground transition-colors"
                 >
                   LinkedIn
@@ -384,7 +514,8 @@ export function Index() {
                 <a
                   href="https://x.com/TrinityInvestor"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="me noopener noreferrer"
+                  itemProp="sameAs"
                   className="hover:text-panel-foreground transition-colors"
                 >
                   X
@@ -396,17 +527,18 @@ export function Index() {
 
 
         {/* RIGHT — content */}
-        <section className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden bg-surface">
-          {/* Top bar — golden ratio height: 100/φ⁵ ≈ 9.02vh */}
+        <section className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden bg-surface" aria-labelledby="desktop-section-heading">
+          {/* Top bar */}
           <header
             className="flex items-center justify-between border-b border-border px-[2.36vw]"
             style={{ height: "9.02vh" }}
           >
-            <nav className="flex items-center gap-[2.36vw] text-[0.618rem] tracking-aman uppercase">
+            <nav className="flex items-center gap-[2.36vw] text-[0.618rem] tracking-aman uppercase" aria-label="Sections">
               {(["experience", "thinking", "life"] as Tab[]).map((t) => (
                 <button
                   key={t}
                   onClick={() => setTab(t)}
+                  aria-current={tab === t ? "page" : undefined}
                   className={`relative pb-1 transition-colors ${
                     tab === t ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                   }`}
@@ -428,10 +560,10 @@ export function Index() {
             </button>
           </header>
 
-          {/* Body — fills remaining 90.98vh */}
+          {/* Body */}
           <div className="flex flex-1 min-h-0 flex-col px-[3.82vw] py-[3.82vh]">
             <div className="flex items-baseline justify-between mb-[2.36vh]">
-              <h2 className="font-display text-[clamp(1.618rem,2.36vw,2.618rem)] tracking-[0.02em] text-foreground/90 font-light leading-[1.146]">
+              <h2 id="desktop-section-heading" className="font-display text-[clamp(1.618rem,2.36vw,2.618rem)] tracking-[0.02em] text-foreground/90 font-light leading-[1.146]">
                 {tab === "experience" && "Selected experience"}
                 {tab === "thinking" && "Writing & talks"}
                 {tab === "life" && "Beyond the desk"}
@@ -447,15 +579,37 @@ export function Index() {
 
             <div className="flex-1 min-h-0 overflow-hidden">
               {tab === "experience" && (
-                <ul className="divide-y divide-border">
+                <ol className="divide-y divide-border list-none p-0">
                   {experience.map((e) => (
-                    <li key={e.org} className="grid grid-cols-[1fr_auto] gap-6 py-[1.46vh]">
+                    <li
+                      key={e.org}
+                      className="grid grid-cols-[1fr_auto] gap-6 py-[1.46vh]"
+                      itemScope
+                      itemType="https://schema.org/OrganizationRole"
+                    >
                       <div className="min-w-0">
                         <div className="flex items-baseline gap-3">
-                          <span className="font-display text-[1.25rem] leading-tight text-foreground">
-                            {e.org}
-                          </span>
-                          <span className="text-[0.62rem] tracking-aman uppercase text-muted-foreground">
+                          <h3
+                            className="font-display text-[1.25rem] leading-tight text-foreground m-0"
+                            itemScope
+                            itemType="https://schema.org/Organization"
+                            itemProp="worksFor"
+                          >
+                            {e.orgUrl ? (
+                              <a
+                                href={e.orgUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                itemProp="url"
+                                className="hover:text-accent transition-colors"
+                              >
+                                <span itemProp="name">{e.org}</span>
+                              </a>
+                            ) : (
+                              <span itemProp="name">{e.org}</span>
+                            )}
+                          </h3>
+                          <span className="text-[0.62rem] tracking-aman uppercase text-muted-foreground" itemProp="roleName">
                             {e.role}
                           </span>
 
@@ -463,49 +617,54 @@ export function Index() {
                         <p className="mt-1 text-sm text-muted-foreground truncate">{e.note}</p>
                       </div>
                       <span className="self-center font-display text-sm text-muted-foreground tabular-nums">
-                        {e.years}
+                        <YearsTime entry={e} />
                       </span>
                     </li>
                   ))}
-                </ul>
+                </ol>
               )}
 
               {tab === "thinking" && (
-                <ul className="h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1.46vw] auto-rows-fr">
+                <ul className="h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1.46vw] auto-rows-fr list-none p-0">
                   {thinking.map((p) => (
-                    <li key={p.title} className="min-h-0">
+                    <li
+                      key={p.title}
+                      className="min-h-0"
+                      itemScope
+                      itemType="https://schema.org/CreativeWork"
+                    >
                       <a
                         href={p.url}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
+                        itemProp="url"
                         className="group relative flex h-full flex-col overflow-hidden border border-border bg-background/40 transition-all hover:border-accent/60 hover:-translate-y-0.5"
                       >
-                        {/* Preview banner — fixed height for visual consistency across all cards */}
                         <div
                           className="relative w-full overflow-hidden h-24 sm:h-28 shrink-0"
                           style={{ background: p.gradient }}
                         >
                           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]" />
                           <div className="absolute inset-0 flex items-end justify-between gap-3 p-3 pr-12">
-                            <span className="text-[0.6rem] tracking-aman uppercase text-white/85">
+                            <span className="text-[0.6rem] tracking-aman uppercase text-white/85" itemProp="genre">
                               {p.kind}
                             </span>
-                            <span className="font-display text-white/90 text-sm tracking-[0.02em] truncate">
+                            <span className="font-display text-white/90 text-sm tracking-[0.02em] truncate" itemProp="publisher">
                               {p.venue}
                             </span>
                           </div>
-                          <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-background/85 text-foreground text-xs transition-transform group-hover:rotate-[-12deg]">
+                          <span aria-hidden="true" className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-background/85 text-foreground text-xs transition-transform group-hover:rotate-[-12deg]">
                             ↗
                           </span>
                         </div>
 
                         <div className="flex flex-1 flex-col justify-between p-[1.1vw]">
-                          <p className="font-display text-[1.05rem] leading-snug text-foreground line-clamp-2">
+                          <h3 className="font-display text-[1.05rem] leading-snug text-foreground line-clamp-2 m-0" itemProp="name">
                             {p.title}
-                          </p>
+                          </h3>
                           <div className="mt-2 flex items-center justify-between text-[0.62rem] tracking-aman uppercase text-muted-foreground">
-                            <span>{p.date}</span>
-                            <span className="text-foreground opacity-0 group-hover:opacity-100 transition-opacity">
+                            <time dateTime={p.dateISO} itemProp="datePublished">{p.date}</time>
+                            <span aria-hidden="true" className="text-foreground opacity-0 group-hover:opacity-100 transition-opacity">
                               Open ·
                             </span>
 
@@ -519,10 +678,10 @@ export function Index() {
 
 
               {tab === "life" && (
-                <ul className="space-y-[2.4vh]">
+                <ol className="space-y-[2.4vh] list-none p-0">
                   {life.map((l, i) => (
                     <li key={i} className="flex gap-5">
-                      <span className="font-sans text-[0.62rem] tracking-aman uppercase text-muted-foreground pt-2 w-8">
+                      <span aria-hidden="true" className="font-sans text-[0.62rem] tracking-aman uppercase text-muted-foreground pt-2 w-8">
                         {String(i + 1).padStart(2, "0")}
                       </span>
 
@@ -531,7 +690,7 @@ export function Index() {
                       </p>
                     </li>
                   ))}
-                </ul>
+                </ol>
               )}
             </div>
 
