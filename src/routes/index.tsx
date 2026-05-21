@@ -204,11 +204,12 @@ function Index() {
           {/* Body — fills remaining 90.3vh */}
           <div className="flex flex-1 min-h-0 flex-col px-[3.82vw] py-[3.82vh]">
             <div className="flex items-baseline justify-between mb-[2.36vh]">
-              <h2 className="font-display italic text-[clamp(1.5rem,2.2vw,2.1rem)] text-foreground/90">
+              <h2 className="font-display text-[clamp(1.4rem,2vw,1.9rem)] tracking-[0.02em] text-foreground/90 font-light">
                 {tab === "experience" && "Selected experience"}
                 {tab === "thinking" && "Writing & talks"}
                 {tab === "life" && "Beyond the desk"}
               </h2>
+
               <span className="text-[0.65rem] tracking-aman uppercase text-muted-foreground">
                 {tab === "experience" && `${experience.length} roles`}
                 {tab === "thinking" && `${thinking.length} pieces`}
