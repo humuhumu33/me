@@ -311,33 +311,8 @@ export function Index() {
             </ul>
           )}
 
-          {/* Contact footer */}
-          <div className="mt-20 border-t border-border pt-10">
-            <p className="text-[0.65rem] tracking-aman uppercase text-muted-foreground mb-5">
-              Contact
-            </p>
-            <div className="flex flex-col gap-4 text-[1rem] text-foreground">
-              <a href="mailto:ilya@uor.foundation" className="hover:text-accent transition-colors">
-                ilya@uor.foundation
-              </a>
-              <a
-                href="https://www.linkedin.com/in/trinityinvestor/"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-accent transition-colors"
-              >
-                LinkedIn ↗
-              </a>
-              <a
-                href="https://x.com/TrinityInvestor"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-accent transition-colors"
-              >
-                X ↗
-              </a>
-            </div>
-          </div>
+        </section>
+      </div>
         </section>
       </div>
 
