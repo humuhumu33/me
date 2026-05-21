@@ -305,12 +305,20 @@ function Index() {
                   ilya@uor.foundation
                 </a>
                 <a
-                  href="https://linkedin.com/in/trinityinvestor"
+                  href="https://www.linkedin.com/in/trinityinvestor/"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-foreground transition-colors"
                 >
                   LinkedIn
+                </a>
+                <a
+                  href="https://x.com/TrinityInvestor"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-foreground transition-colors"
+                >
+                  X
                 </a>
                 <span className="hidden sm:inline">+44 746 388 1239</span>
               </div>
