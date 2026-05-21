@@ -170,6 +170,33 @@ export function Index() {
               Building software-defined compute for local AI. Investing across
               deep tech, AI and real-world assets.
             </p>
+            <div className="mt-8 flex items-center justify-center gap-4 text-muted-foreground">
+              <a
+                href="mailto:ilya@uor.foundation"
+                aria-label="Email"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-border hover:text-accent hover:border-accent transition-colors"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/trinityinvestor/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-border hover:text-accent hover:border-accent transition-colors"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+              </a>
+              <a
+                href="https://x.com/TrinityInvestor"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="X"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-border hover:text-accent hover:border-accent transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+            </div>
           </div>
         </section>
 
