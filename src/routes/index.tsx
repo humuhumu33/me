@@ -119,7 +119,7 @@ export const Route = createFileRoute("/")({
       { rel: "me", href: "https://x.com/TrinityInvestor" },
       { rel: "me", href: `mailto:${person.email}` },
       { rel: "alternate", type: "application/feed+json", href: "/feed.json", title: "Writing & talks" },
-      { rel: "alternate", type: "application/json", href: "/api/profile", title: "Profile data" },
+      { rel: "alternate", type: "application/json", href: "/api/profile.json", title: "Profile data" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
