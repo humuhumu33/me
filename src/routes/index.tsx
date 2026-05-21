@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import atmosphere from "@/assets/atmosphere.jpg";
+import atmosphere from "@/assets/lattice.jpg";
+import portrait from "@/assets/ilya-portrait.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -143,23 +144,35 @@ function Index() {
               IP · MMXXVI
             </div>
 
-            <div>
-              <p className="text-[0.7rem] tracking-aman uppercase text-foreground/70 mb-4">
-                Co-founder · Investor
-              </p>
-              <h1 className="font-display text-[clamp(2.6rem,5.6vw,5.4rem)] leading-[0.95] tracking-tight">
-                <span aria-hidden="true">
-                  Ilya
-                  <br />
-                  <span className="italic text-accent">Paveliev</span>
-                </span>
-                <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
-              </h1>
-              <div className="mt-6 h-px w-[38.2%] bg-foreground/30" />
-              <p className="mt-6 max-w-[28ch] text-sm leading-relaxed text-foreground/80">
-                Building software-defined compute for local AI. Investing across
-                deep tech, AI and real-world assets.
-              </p>
+            <div className="flex items-end gap-[2.36vw]">
+              <div className="relative shrink-0">
+                <img
+                  src={portrait}
+                  alt="Portrait of Ilya Paveliev"
+                  width={400}
+                  height={400}
+                  className="h-[16.18vw] w-[16.18vw] max-h-[200px] max-w-[200px] min-h-[110px] min-w-[110px] object-cover object-top rounded-full border border-foreground/15 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.5)] grayscale-[20%]"
+                />
+                <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-accent" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-[0.7rem] tracking-aman uppercase text-foreground/70 mb-3">
+                  Co-founder · Investor
+                </p>
+                <h1 className="font-display text-[clamp(2.2rem,4.6vw,4.4rem)] leading-[0.95] tracking-tight">
+                  <span aria-hidden="true">
+                    Ilya
+                    <br />
+                    <span className="italic text-accent">Paveliev</span>
+                  </span>
+                  <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
+                </h1>
+                <div className="mt-5 h-px w-[61.8%] bg-foreground/30" />
+                <p className="mt-4 max-w-[28ch] text-sm leading-relaxed text-foreground/80">
+                  Building software-defined compute for local AI. Investing across
+                  deep tech, AI and real-world assets.
+                </p>
+              </div>
             </div>
           </div>
         </section>
