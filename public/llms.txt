@@ -2,11 +2,11 @@
 
 > Co-founder of Hologram Technologies and founding partner of Arete Capital. Building software-defined compute for local AI and investing across deep tech, AI and real-world assets.
 
-Single-page portfolio. Structured data is available as JSON at `/api/profile` and `/feed.json` — prefer those over scraping the HTML.
+Single-page portfolio. Structured data is available as JSON at `/api/profile.json` and `/feed.json` — prefer those over scraping the HTML.
 
 ## Machine-readable
 
-- [Profile JSON](/api/profile): Person, experience, publications, and life entries in one document.
+- [Profile JSON](/api/profile.json): Person, experience, publications, and life entries in one document.
 - [Writing & talks feed](/feed.json): JSON Feed v1.1 of publications and talks.
 - [Sitemap](/sitemap.xml): Canonical URL list with lastmod dates.
 
