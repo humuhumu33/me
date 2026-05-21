@@ -219,7 +219,8 @@ export function Index() {
       </p>
 
       {/* ============ MOBILE LAYOUT ( < md ) — dark only ============ */}
-      <div className="md:hidden dark flex flex-col bg-background text-foreground">
+      {/* data-nosnippet: visual duplicate of the desktop layout; canonical structured data lives above. */}
+      <div className="md:hidden dark flex flex-col bg-background text-foreground" data-nosnippet aria-hidden={false}>
         {/* Hero — full-bleed banner (no top text) */}
         <section
           className="relative"
