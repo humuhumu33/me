@@ -42,6 +42,16 @@ His career spans $20bn institutional asset management, market-neutral digital-as
 
 ---
 
+## Writing & talks
+
+- [**Hologram: From Indexing Content to Indexing Meaning**](https://singularitynet.io/) — SingularityNet, May 2026
+- [**The Next Revolution is Geometric Computation**](https://quantum-journal.org/) — Quantum, Jan 2026
+- [**Insights on Web3, AI, and Crypto Trends**](https://altfundsglobal.com/) — AltFunds, Jun 2025
+- [**The Real-World Asset Thesis**](https://arete.capital/) — Arete Capital, Jan 2024
+- **Liquidity Drought Ahead** — OX1, Oct 2023
+
+---
+
 ## Beyond the desk
 
 - Scholarship in economics, **Trinity College Dublin** — graduated with gold medal.
@@ -49,15 +59,6 @@ His career spans $20bn institutional asset management, market-neutral digital-as
 - Builds drones, helicopters, robots, computers, software and wearables.
 - Father to two wonderful daughters.
 
----
-
-## Writing & talks
-
-- **Hologram: From Indexing Content to Indexing Meaning** — SingularityNet, May 2026
-- **The Next Revolution is Geometric Computation** — Quantum, Jan 2026
-- **Insights on Web3, AI, and Crypto Trends** — AltFunds, Jun 2025
-- **The Real-World Asset Thesis** — Arete Capital, Jan 2024
-- **Liquidity Drought Ahead** — OX1, Oct 2023
 
 ---
 
