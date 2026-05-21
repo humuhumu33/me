@@ -214,24 +214,51 @@ function Index() {
               )}
 
               {tab === "thinking" && (
-                <ul className="divide-y divide-border">
+                <ul className="h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1.46vw] auto-rows-fr">
                   {thinking.map((p) => (
-                    <li key={p.title} className="grid grid-cols-[1fr_auto] gap-6 py-[2vh]">
-                      <div>
-                        <p className="font-display text-[1.25rem] leading-snug text-foreground">
-                          {p.title}
-                        </p>
-                        <p className="mt-1 text-[0.7rem] tracking-aman uppercase text-muted-foreground">
-                          {p.venue}
-                        </p>
-                      </div>
-                      <span className="self-center font-display text-sm text-muted-foreground">
-                        {p.date}
-                      </span>
+                    <li key={p.title} className="min-h-0">
+                      <a
+                        href={p.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group relative flex h-full flex-col overflow-hidden border border-border bg-background/40 transition-all hover:border-accent/60 hover:-translate-y-0.5"
+                      >
+                        {/* Preview thumbnail — golden ratio aspect (1 : 0.618) */}
+                        <div
+                          className="relative w-full overflow-hidden"
+                          style={{ aspectRatio: "1.618 / 1", background: p.gradient }}
+                        >
+                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]" />
+                          <div className="absolute inset-0 flex items-end justify-between p-3">
+                            <span className="text-[0.6rem] tracking-aman uppercase text-white/85">
+                              {p.kind}
+                            </span>
+                            <span className="font-display italic text-white/90 text-sm">
+                              {p.venue}
+                            </span>
+                          </div>
+                          <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-background/85 text-foreground text-xs transition-transform group-hover:rotate-[-12deg]">
+                            ↗
+                          </span>
+                        </div>
+
+                        <div className="flex flex-1 flex-col justify-between p-[1.1vw]">
+                          <p className="font-display text-[1.05rem] leading-snug text-foreground line-clamp-2">
+                            {p.title}
+                          </p>
+                          <div className="mt-2 flex items-center justify-between text-[0.62rem] tracking-aman uppercase text-muted-foreground">
+                            <span>{p.date}</span>
+                            <span className="text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                              Open ·
+                            </span>
+                          </div>
+                        </div>
+                      </a>
                     </li>
                   ))}
                 </ul>
               )}
+
 
               {tab === "life" && (
                 <ul className="space-y-[2.4vh]">
