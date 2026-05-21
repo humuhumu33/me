@@ -263,11 +263,13 @@ export function Index() {
             <p className="text-[0.7rem] tracking-aman uppercase text-muted-foreground">
               Co-founder · Investor
             </p>
-            <h1 className="mt-5 font-display text-[clamp(3rem,13vw,4.5rem)] leading-[0.95] tracking-tight font-light text-foreground">
-              <span itemProp="name">
-                Ilya <span className="italic text-accent">Paveliev</span>
-              </span>
-            </h1>
+            <p
+              role="presentation"
+              aria-hidden="true"
+              className="mt-5 font-display text-[clamp(3rem,13vw,4.5rem)] leading-[0.95] tracking-tight font-light text-foreground"
+            >
+              Ilya <span className="italic text-accent">Paveliev</span>
+            </p>
             <div className="mx-auto mt-7 h-px w-12 bg-border" />
             <p className="mx-auto mt-6 max-w-[32ch] text-[1rem] leading-[1.7] text-muted-foreground">
               Building software-defined compute for local AI. Investing across
