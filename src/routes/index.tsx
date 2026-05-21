@@ -332,9 +332,10 @@ function Index() {
                 </a>
                 <span className="hidden sm:inline">+44 746 388 1239</span>
               </div>
-              <span className="font-display italic normal-case tracking-normal text-muted-foreground/80">
-                φ
+              <span className="font-display normal-case tracking-[0.4em] text-muted-foreground/80">
+                ĪP
               </span>
+
             </footer>
           </div>
         </section>
