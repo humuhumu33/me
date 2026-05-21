@@ -163,6 +163,8 @@ function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
 export function Index() {
   const [tab, setTab] = useState<Tab>("experience");
   const [dark, setDark] = useState(false);
+  const pagerRef = useRef<HTMLDivElement | null>(null);
+  const tabs: Tab[] = ["experience", "thinking", "life"];
 
   useEffect(() => {
     const prefers = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -171,6 +173,22 @@ export function Index() {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
   }, [dark]);
+
+  const scrollToTab = (t: Tab) => {
+    setTab(t);
+    const el = pagerRef.current;
+    if (!el) return;
+    const idx = tabs.indexOf(t);
+    el.scrollTo({ left: idx * el.clientWidth, behavior: "smooth" });
+  };
+
+  const onPagerScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const el = e.currentTarget;
+    const idx = Math.round(el.scrollLeft / el.clientWidth);
+    const next = tabs[idx];
+    if (next && next !== tab) setTab(next);
+  };
+
 
   return (
     <main className="min-h-screen w-screen bg-background text-foreground md:h-screen md:overflow-hidden">
