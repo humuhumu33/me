@@ -292,20 +292,19 @@ export function Index() {
                         rel="noreferrer"
                         className="group relative flex h-full flex-col overflow-hidden border border-border bg-background/40 transition-all hover:border-accent/60 hover:-translate-y-0.5"
                       >
-                        {/* Preview thumbnail — golden ratio aspect (1 : 0.618) */}
+                        {/* Preview banner — fixed height for visual consistency across all cards */}
                         <div
-                          className="relative w-full overflow-hidden"
-                          style={{ aspectRatio: "1.618 / 1", background: p.gradient }}
+                          className="relative w-full overflow-hidden h-24 sm:h-28 shrink-0"
+                          style={{ background: p.gradient }}
                         >
                           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]" />
-                          <div className="absolute inset-0 flex items-end justify-between p-3">
+                          <div className="absolute inset-0 flex items-end justify-between gap-3 p-3 pr-12">
                             <span className="text-[0.6rem] tracking-aman uppercase text-white/85">
                               {p.kind}
                             </span>
-                            <span className="font-display text-white/90 text-sm tracking-[0.02em]">
+                            <span className="font-display text-white/90 text-sm tracking-[0.02em] truncate">
                               {p.venue}
                             </span>
-
                           </div>
                           <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-background/85 text-foreground text-xs transition-transform group-hover:rotate-[-12deg]">
                             ↗
