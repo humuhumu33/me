@@ -179,7 +179,7 @@ function Index() {
 
 
         {/* RIGHT — content */}
-        <section className="relative flex h-full flex-col bg-surface">
+        <section className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden bg-surface">
           {/* Top bar — golden ratio height ≈ 9.7vh */}
           <header
             className="flex items-center justify-between border-b border-border px-[2.36vw]"
