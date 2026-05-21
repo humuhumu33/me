@@ -82,8 +82,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Ilya Paveliev — Deep Tech Founder & Investor" },
       { name: "twitter:description", content: "Co-founder of Hologram Technologies. Founding Partner of Arete Capital." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/abbcc9ed-6d18-4a3e-b846-438c952e8b9a/id-preview-acbef9af--3406e4ac-2d83-469d-93a4-4e0e4111f73c.lovable.app-1779368728089.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/abbcc9ed-6d18-4a3e-b846-438c952e8b9a/id-preview-acbef9af--3406e4ac-2d83-469d-93a4-4e0e4111f73c.lovable.app-1779368728089.png" },
     ],
     links: [
       {
