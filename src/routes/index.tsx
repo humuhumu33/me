@@ -128,51 +128,53 @@ function Index() {
     <main className="h-screen w-screen overflow-hidden bg-background text-foreground">
       {/* Golden ratio split: 38.2% / 61.8% */}
       <div className="grid h-full w-full" style={{ gridTemplateColumns: "38.2fr 61.8fr" }}>
-        {/* LEFT — image + name */}
-        <section className="relative h-full overflow-hidden">
-          <img
-            src={atmosphere}
-            alt=""
-            width={1024}
-            height={1024}
-            className="absolute inset-0 h-full w-full object-cover opacity-90 dark:opacity-50"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/0 to-background/80 dark:from-background/30 dark:to-background/90" />
-          <div className="relative flex h-full flex-col justify-between p-[3.82vw]">
-            <div className="flex items-center gap-3 text-[0.7rem] tracking-aman uppercase text-foreground/80">
+        {/* LEFT — banner + portrait + name */}
+        <section className="relative flex h-full flex-col overflow-hidden">
+          {/* Banner — golden ratio height ≈ 38.2% */}
+          <div className="relative w-full overflow-hidden" style={{ height: "38.2%" }}>
+            <img
+              src={atmosphere}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/0 to-background/60 dark:from-background/20 dark:to-background/70" />
+            <div className="absolute top-0 left-0 right-0 flex items-center gap-3 p-[2.36vw] text-[0.7rem] tracking-aman uppercase text-white/90 dark:text-foreground/80">
               <span className="inline-block h-px w-8 bg-accent" />
               IP · MMXXVI
             </div>
+          </div>
 
-            <div className="flex items-end gap-[2.36vw]">
-              <div className="relative shrink-0">
-                <img
-                  src={portrait}
-                  alt="Portrait of Ilya Paveliev"
-                  width={400}
-                  height={400}
-                  className="h-[16.18vw] w-[16.18vw] max-h-[200px] max-w-[200px] min-h-[110px] min-w-[110px] object-cover object-top rounded-full border border-foreground/15 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.5)] grayscale-[20%]"
-                />
-                <span className="absolute -bottom-1 -right-1 h-3 w-3 rounded-full bg-accent" />
-              </div>
-              <div className="min-w-0">
-                <p className="text-[0.7rem] tracking-aman uppercase text-foreground/70 mb-3">
-                  Co-founder · Investor
-                </p>
-                <h1 className="font-display text-[clamp(2.2rem,4.6vw,4.4rem)] leading-[0.95] tracking-tight">
-                  <span aria-hidden="true">
-                    Ilya
-                    <br />
-                    <span className="italic text-accent">Paveliev</span>
-                  </span>
-                  <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
-                </h1>
-                <div className="mt-5 h-px w-[61.8%] bg-foreground/30" />
-                <p className="mt-4 max-w-[28ch] text-sm leading-relaxed text-foreground/80">
-                  Building software-defined compute for local AI. Investing across
-                  deep tech, AI and real-world assets.
-                </p>
-              </div>
+          {/* Portrait — overlaps banner, like LinkedIn */}
+          <div className="relative px-[3.82vw]">
+            <div className="relative -mt-[7vw] flex">
+              <img
+                src={portrait}
+                alt="Portrait of Ilya Paveliev"
+                width={400}
+                height={400}
+                className="h-[14vw] w-[14vw] max-h-[180px] max-w-[180px] min-h-[110px] min-w-[110px] object-cover object-top rounded-full border-4 border-background shadow-[0_10px_40px_-20px_rgba(0,0,0,0.6)]"
+              />
+              <span className="absolute bottom-2 left-[12vw] max-left-[155px] h-3 w-3 rounded-full bg-accent ring-2 ring-background" />
+            </div>
+          </div>
+
+          {/* Name + tagline */}
+          <div className="flex flex-1 min-h-0 flex-col justify-between px-[3.82vw] pb-[3.82vw] pt-[1.5vh]">
+            <div>
+              <p className="text-[0.7rem] tracking-aman uppercase text-foreground/70 mb-3">
+                Co-founder · Investor
+              </p>
+              <h1 className="font-display text-[clamp(2.2rem,4.8vw,4.6rem)] leading-[0.95] tracking-tight">
+                <span aria-hidden="true">
+                  Ilya <span className="italic text-accent">Paveliev</span>
+                </span>
+                <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
+              </h1>
+              <div className="mt-5 h-px w-[38.2%] bg-foreground/30" />
+              <p className="mt-4 max-w-[32ch] text-sm leading-relaxed text-foreground/80">
+                Building software-defined compute for local AI. Investing across
+                deep tech, AI and real-world assets.
+              </p>
             </div>
           </div>
         </section>
