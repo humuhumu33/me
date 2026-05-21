@@ -128,9 +128,9 @@ function Index() {
   return (
     <main className="h-screen w-screen overflow-hidden bg-background text-foreground">
       {/* Golden ratio split: 38.2% / 61.8% */}
-      <div className="grid h-full w-full" style={{ gridTemplateColumns: "38.2fr 61.8fr" }}>
+      <div className="grid h-full w-full" style={{ gridTemplateColumns: "38.2fr 61.8fr", gridTemplateRows: "100%" }}>
         {/* LEFT — enclosed panel: banner image + circular portrait + name */}
-        <section className="relative h-full overflow-hidden bg-panel text-panel-foreground">
+        <section className="relative h-full min-h-0 min-w-0 overflow-hidden bg-panel text-panel-foreground">
           {/* Banner (top ~38.2%) */}
           <div className="relative h-[38.2%] w-full overflow-hidden">
             <img
@@ -179,7 +179,7 @@ function Index() {
 
 
         {/* RIGHT — content */}
-        <section className="relative flex h-full flex-col bg-surface">
+        <section className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden bg-surface">
           {/* Top bar — golden ratio height ≈ 9.7vh */}
           <header
             className="flex items-center justify-between border-b border-border px-[2.36vw]"
