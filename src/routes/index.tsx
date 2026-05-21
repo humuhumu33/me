@@ -262,9 +262,10 @@ function Index() {
                             <span className="text-[0.6rem] tracking-aman uppercase text-white/85">
                               {p.kind}
                             </span>
-                            <span className="font-display italic text-white/90 text-sm">
+                            <span className="font-display text-white/90 text-sm tracking-[0.02em]">
                               {p.venue}
                             </span>
+
                           </div>
                           <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-background/85 text-foreground text-xs transition-transform group-hover:rotate-[-12deg]">
                             ↗
