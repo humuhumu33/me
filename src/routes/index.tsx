@@ -147,36 +147,37 @@ function Index() {
 
           {/* Scrollable content area */}
           <div className="flex min-h-0 flex-1 flex-col overflow-visible">
-            {/* Circular portrait — overlaps banner */}
+            {/* Circular portrait — diameter = 38.2% of left column (14.6vw), overlaps banner by half */}
             <div className="relative flex shrink-0 justify-start px-[3.82vw]">
-              <div className="relative -mt-[13vh] h-[26vh] w-[26vh] rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
+              <div className="relative -mt-[7.3vw] h-[14.6vw] w-[14.6vw] rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
                 <img
                   src={portrait}
                   alt="Ilya Paveliev"
                   className="h-full w-full object-cover"
                 />
               </div>
-              <span className="absolute left-[calc(3.82vw+26vh-0.5rem)] bottom-[-0.25rem] h-2 w-2 rounded-full bg-accent" />
+              <span className="absolute left-[calc(3.82vw+14.6vw-0.5rem)] bottom-[-0.25rem] h-2 w-2 rounded-full bg-accent" />
             </div>
 
             {/* Name + bio */}
-            <div className="px-[3.82vw] pt-[3vh] flex-1 min-h-0 overflow-y-auto">
-              <p className="text-[0.65rem] tracking-aman uppercase text-panel-foreground/60 mb-4">
+            <div className="px-[3.82vw] pt-[2.36vh] flex-1 min-h-0 overflow-y-auto">
+              <p className="text-[0.618rem] tracking-aman uppercase text-panel-foreground/60 mb-[1.618rem]">
                 Co-founder · Investor
               </p>
-              <h1 className="font-display text-[clamp(2.4rem,5vw,4.8rem)] leading-[0.98] tracking-tight font-light text-panel-foreground">
+              <h1 className="font-display text-[clamp(2.618rem,4.85vw,4.236rem)] leading-[1] tracking-tight font-light text-panel-foreground">
                 <span aria-hidden="true">
                   Ilya{" "}
                   <span className="italic text-accent">Paveliev</span>
                 </span>
                 <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
               </h1>
-              <div className="mt-6 h-px w-[38.2%] bg-panel-foreground/25" />
-              <p className="mt-5 max-w-[34ch] text-[0.8rem] leading-[1.7] text-panel-foreground/75">
+              <div className="mt-[2.36vh] h-px w-[38.2%] bg-panel-foreground/25" />
+              <p className="mt-[1.46vh] max-w-[38ch] text-[0.809rem] leading-[1.618] text-panel-foreground/75">
                 Building software-defined compute for local AI. Investing across
                 deep tech, AI and real-world assets.
               </p>
             </div>
+
 
             {/* Contact details — bottom left */}
             <div className="shrink-0 px-[3.82vw] pb-[3.82vh] pt-[2vh]">
@@ -208,12 +209,12 @@ function Index() {
 
         {/* RIGHT — content */}
         <section className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden bg-surface">
-          {/* Top bar — golden ratio height ≈ 9.7vh */}
+          {/* Top bar — golden ratio height: 100/φ⁵ ≈ 9.02vh */}
           <header
             className="flex items-center justify-between border-b border-border px-[2.36vw]"
-            style={{ height: "9.7vh" }}
+            style={{ height: "9.02vh" }}
           >
-            <nav className="flex items-center gap-[2.36vw] text-[0.68rem] tracking-aman uppercase">
+            <nav className="flex items-center gap-[2.36vw] text-[0.618rem] tracking-aman uppercase">
               {(["experience", "thinking", "life"] as Tab[]).map((t) => (
                 <button
                   key={t}
@@ -232,28 +233,29 @@ function Index() {
             </nav>
             <button
               onClick={() => setDark((d) => !d)}
-              className="text-[0.68rem] tracking-aman uppercase text-muted-foreground hover:text-foreground transition-colors"
+              className="text-[0.618rem] tracking-aman uppercase text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Toggle theme"
             >
               {dark ? "Light" : "Dark"}
             </button>
           </header>
 
-          {/* Body — fills remaining 90.3vh */}
+          {/* Body — fills remaining 90.98vh */}
           <div className="flex flex-1 min-h-0 flex-col px-[3.82vw] py-[3.82vh]">
             <div className="flex items-baseline justify-between mb-[2.36vh]">
-              <h2 className="font-display text-[clamp(1.4rem,2vw,1.9rem)] tracking-[0.02em] text-foreground/90 font-light">
+              <h2 className="font-display text-[clamp(1.618rem,2.36vw,2.618rem)] tracking-[0.02em] text-foreground/90 font-light leading-[1.146]">
                 {tab === "experience" && "Selected experience"}
                 {tab === "thinking" && "Writing & talks"}
                 {tab === "life" && "Beyond the desk"}
               </h2>
 
-              <span className="text-[0.65rem] tracking-aman uppercase text-muted-foreground">
+              <span className="text-[0.618rem] tracking-aman uppercase text-muted-foreground">
                 {tab === "experience" && `${experience.length} roles`}
                 {tab === "thinking" && `${thinking.length} pieces`}
                 {tab === "life" && "Notes"}
               </span>
             </div>
+
 
             <div className="flex-1 min-h-0 overflow-hidden">
               {tab === "experience" && (
