@@ -138,30 +138,34 @@ function Index() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/0 to-background/80 dark:from-background/30 dark:to-background/90" />
           <div className="relative flex h-full flex-col justify-between p-[3.82vw]">
-            <div className="flex items-center gap-3 text-[0.7rem] tracking-aman uppercase text-foreground/80">
-              <span className="inline-block h-px w-8 bg-accent" />
+            <div className="flex items-center gap-3 text-[0.65rem] tracking-aman uppercase text-foreground/70">
+              <span className="inline-block h-px w-8 bg-foreground/50" />
               IP · MMXXVI
             </div>
 
             <div>
-              <p className="text-[0.7rem] tracking-aman uppercase text-foreground/70 mb-4">
-                Co-founder · Investor
+              <p className="text-[0.65rem] tracking-aman uppercase text-foreground/60 mb-6">
+                A Personal Site
               </p>
-              <h1 className="font-display text-[clamp(2.6rem,5.6vw,5.4rem)] leading-[0.95] tracking-tight">
+              <h1 className="font-display text-[clamp(2.2rem,4.4vw,4.4rem)] leading-[1.05] tracking-[0.04em] uppercase font-light">
                 <span aria-hidden="true">
-                  Ilya
+                  <span className="relative inline-block">
+                    <span className="absolute -top-[0.18em] left-1/2 -translate-x-1/2 h-px w-[0.55em] bg-foreground/80" />
+                    Ilya
+                  </span>
                   <br />
-                  <span className="italic text-accent">Paveliev</span>
+                  Paveliev
                 </span>
                 <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
               </h1>
-              <div className="mt-6 h-px w-[38.2%] bg-foreground/30" />
-              <p className="mt-6 max-w-[28ch] text-sm leading-relaxed text-foreground/80">
-                Building software-defined compute for local AI. Investing across
-                deep tech, AI and real-world assets.
+              <div className="mt-8 h-px w-12 bg-foreground/40" />
+              <p className="mt-6 max-w-[32ch] text-[0.78rem] leading-[1.7] text-foreground/75">
+                Co-founder of Hologram Technologies. Founding Partner of Arete Capital.
+                Building software-defined compute for local AI; investing across deep tech and real-world assets.
               </p>
             </div>
           </div>
+
         </section>
 
         {/* RIGHT — content */}
@@ -182,8 +186,9 @@ function Index() {
                 >
                   {t}
                   {tab === t && (
-                    <span className="absolute -bottom-px left-0 h-px w-full bg-accent" />
+                    <span className="absolute -bottom-px left-0 h-px w-full bg-foreground" />
                   )}
+
                 </button>
               ))}
             </nav>
@@ -199,11 +204,12 @@ function Index() {
           {/* Body — fills remaining 90.3vh */}
           <div className="flex flex-1 min-h-0 flex-col px-[3.82vw] py-[3.82vh]">
             <div className="flex items-baseline justify-between mb-[2.36vh]">
-              <h2 className="font-display italic text-[clamp(1.5rem,2.2vw,2.1rem)] text-foreground/90">
+              <h2 className="font-display text-[clamp(1.4rem,2vw,1.9rem)] tracking-[0.02em] text-foreground/90 font-light">
                 {tab === "experience" && "Selected experience"}
                 {tab === "thinking" && "Writing & talks"}
                 {tab === "life" && "Beyond the desk"}
               </h2>
+
               <span className="text-[0.65rem] tracking-aman uppercase text-muted-foreground">
                 {tab === "experience" && `${experience.length} roles`}
                 {tab === "thinking" && `${thinking.length} pieces`}
@@ -221,9 +227,10 @@ function Index() {
                           <span className="font-display text-[1.25rem] leading-tight text-foreground">
                             {e.org}
                           </span>
-                          <span className="text-[0.68rem] tracking-aman uppercase text-accent">
+                          <span className="text-[0.62rem] tracking-aman uppercase text-muted-foreground">
                             {e.role}
                           </span>
+
                         </div>
                         <p className="mt-1 text-sm text-muted-foreground truncate">{e.note}</p>
                       </div>
@@ -255,9 +262,10 @@ function Index() {
                             <span className="text-[0.6rem] tracking-aman uppercase text-white/85">
                               {p.kind}
                             </span>
-                            <span className="font-display italic text-white/90 text-sm">
+                            <span className="font-display text-white/90 text-sm tracking-[0.02em]">
                               {p.venue}
                             </span>
+
                           </div>
                           <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-background/85 text-foreground text-xs transition-transform group-hover:rotate-[-12deg]">
                             ↗
@@ -270,9 +278,10 @@ function Index() {
                           </p>
                           <div className="mt-2 flex items-center justify-between text-[0.62rem] tracking-aman uppercase text-muted-foreground">
                             <span>{p.date}</span>
-                            <span className="text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span className="text-foreground opacity-0 group-hover:opacity-100 transition-opacity">
                               Open ·
                             </span>
+
                           </div>
                         </div>
                       </a>
@@ -286,9 +295,10 @@ function Index() {
                 <ul className="space-y-[2.4vh]">
                   {life.map((l, i) => (
                     <li key={i} className="flex gap-5">
-                      <span className="font-display italic text-accent text-lg leading-none pt-1">
+                      <span className="font-sans text-[0.62rem] tracking-aman uppercase text-muted-foreground pt-2 w-8">
                         {String(i + 1).padStart(2, "0")}
                       </span>
+
                       <p className="font-display text-[1.25rem] leading-snug text-foreground/90 max-w-[58ch]">
                         {l}
                       </p>
@@ -322,9 +332,10 @@ function Index() {
                 </a>
                 <span className="hidden sm:inline">+44 746 388 1239</span>
               </div>
-              <span className="font-display italic normal-case tracking-normal text-muted-foreground/80">
-                φ
+              <span className="font-display normal-case tracking-[0.4em] text-muted-foreground/80">
+                ĪP
               </span>
+
             </footer>
           </div>
         </section>
