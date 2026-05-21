@@ -130,13 +130,13 @@ function Index() {
       {/* Golden ratio split: 38.2% / 61.8% */}
       <div className="grid h-full w-full" style={{ gridTemplateColumns: "38.2fr 61.8fr", gridTemplateRows: "100%" }}>
         {/* LEFT — enclosed panel: banner image + circular portrait + name */}
-        <section className="relative h-full min-h-0 min-w-0 overflow-hidden bg-panel text-panel-foreground">
+        <section className="relative flex h-full min-h-0 min-w-1 flex-col overflow-hidden bg-panel text-panel-foreground">
           {/* Banner (top ~38.2%) */}
-          <div className="relative h-[38.2%] w-full overflow-hidden">
+          <div className="relative h-[38.2%] w-full shrink-0 overflow-hidden">
             <img
               src={banner}
               alt=""
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-1 h-full w-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-panel" />
             <div className="absolute top-[3.82vh] left-[3.82vw] flex items-center gap-3 text-[0.65rem] tracking-aman uppercase text-white/85">
@@ -145,35 +145,63 @@ function Index() {
             </div>
           </div>
 
-          {/* Circular portrait — overlaps banner */}
-          <div className="relative flex justify-start px-[3.82vw]">
-            <div className="relative -mt-[13vh] h-[26vh] w-[26vh] rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
-              <img
-                src={portrait}
-                alt="Ilya Paveliev"
-                className="h-full w-full object-cover"
-              />
+          {/* Scrollable content area */}
+          <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+            {/* Circular portrait — overlaps banner */}
+            <div className="relative flex shrink-0 justify-start px-[3.82vw]">
+              <div className="relative -mt-[13vh] h-[26vh] w-[26vh] rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
+                <img
+                  src={portrait}
+                  alt="Ilya Paveliev"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <span className="absolute left-[calc(3.82vw+26vh-0.5rem)] bottom-[-0.25rem] h-2 w-2 rounded-full bg-accent" />
             </div>
-            <span className="absolute left-[calc(3.82vw+26vh-0.5rem)] bottom-[-0.25rem] h-2 w-2 rounded-full bg-accent" />
-          </div>
 
-          {/* Name + bio */}
-          <div className="px-[3.82vw] pt-[3vh] pb-[3.82vh]">
-            <p className="text-[0.65rem] tracking-aman uppercase text-panel-foreground/60 mb-4">
-              Co-founder · Investor
-            </p>
-            <h1 className="font-display text-[clamp(2.4rem,5vw,4.8rem)] leading-[0.98] tracking-tight font-light text-panel-foreground">
-              <span aria-hidden="true">
-                Ilya{" "}
-                <span className="italic text-accent">Paveliev</span>
-              </span>
-              <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
-            </h1>
-            <div className="mt-6 h-px w-[38.2%] bg-panel-foreground/25" />
-            <p className="mt-5 max-w-[34ch] text-[0.8rem] leading-[1.7] text-panel-foreground/75">
-              Building software-defined compute for local AI. Investing across
-              deep tech, AI and real-world assets.
-            </p>
+            {/* Name + bio */}
+            <div className="px-[3.82vw] pt-[3vh] flex-1 min-h-0 overflow-y-auto">
+              <p className="text-[0.65rem] tracking-aman uppercase text-panel-foreground/60 mb-4">
+                Co-founder · Investor
+              </p>
+              <h1 className="font-display text-[clamp(2.4rem,5vw,4.8rem)] leading-[0.98] tracking-tight font-light text-panel-foreground">
+                <span aria-hidden="true">
+                  Ilya{" "}
+                  <span className="italic text-accent">Paveliev</span>
+                </span>
+                <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
+              </h1>
+              <div className="mt-6 h-px w-[38.2%] bg-panel-foreground/25" />
+              <p className="mt-5 max-w-[34ch] text-[0.8rem] leading-[1.7] text-panel-foreground/75">
+                Building software-defined compute for local AI. Investing across
+                deep tech, AI and real-world assets.
+              </p>
+            </div>
+
+            {/* Contact details — bottom left */}
+            <div className="shrink-0 px-[3.82vw] pb-[3.82vh] pt-[2vh]">
+              <div className="flex flex-wrap items-center gap-x-[1.5vw] gap-y-2 text-[0.65rem] tracking-aman uppercase text-panel-foreground/55">
+                <a href="mailto:ilya@uor.foundation" className="hover:text-panel-foreground transition-colors">
+                  ilya@uor.foundation
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/trinityinvestor/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-panel-foreground transition-colors"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://x.com/TrinityInvestor"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-panel-foreground transition-colors"
+                >
+                  X
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
