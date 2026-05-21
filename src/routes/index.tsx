@@ -209,12 +209,12 @@ function Index() {
 
         {/* RIGHT — content */}
         <section className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden bg-surface">
-          {/* Top bar — golden ratio height ≈ 9.7vh */}
+          {/* Top bar — golden ratio height: 100/φ⁵ ≈ 9.02vh */}
           <header
             className="flex items-center justify-between border-b border-border px-[2.36vw]"
-            style={{ height: "9.7vh" }}
+            style={{ height: "9.02vh" }}
           >
-            <nav className="flex items-center gap-[2.36vw] text-[0.68rem] tracking-aman uppercase">
+            <nav className="flex items-center gap-[2.36vw] text-[0.618rem] tracking-aman uppercase">
               {(["experience", "thinking", "life"] as Tab[]).map((t) => (
                 <button
                   key={t}
@@ -233,28 +233,29 @@ function Index() {
             </nav>
             <button
               onClick={() => setDark((d) => !d)}
-              className="text-[0.68rem] tracking-aman uppercase text-muted-foreground hover:text-foreground transition-colors"
+              className="text-[0.618rem] tracking-aman uppercase text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Toggle theme"
             >
               {dark ? "Light" : "Dark"}
             </button>
           </header>
 
-          {/* Body — fills remaining 90.3vh */}
+          {/* Body — fills remaining 90.98vh */}
           <div className="flex flex-1 min-h-0 flex-col px-[3.82vw] py-[3.82vh]">
             <div className="flex items-baseline justify-between mb-[2.36vh]">
-              <h2 className="font-display text-[clamp(1.4rem,2vw,1.9rem)] tracking-[0.02em] text-foreground/90 font-light">
+              <h2 className="font-display text-[clamp(1.618rem,2.36vw,2.618rem)] tracking-[0.02em] text-foreground/90 font-light leading-[1.146]">
                 {tab === "experience" && "Selected experience"}
                 {tab === "thinking" && "Writing & talks"}
                 {tab === "life" && "Beyond the desk"}
               </h2>
 
-              <span className="text-[0.65rem] tracking-aman uppercase text-muted-foreground">
+              <span className="text-[0.618rem] tracking-aman uppercase text-muted-foreground">
                 {tab === "experience" && `${experience.length} roles`}
                 {tab === "thinking" && `${thinking.length} pieces`}
                 {tab === "life" && "Notes"}
               </span>
             </div>
+
 
             <div className="flex-1 min-h-0 overflow-hidden">
               {tab === "experience" && (
