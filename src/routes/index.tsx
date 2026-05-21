@@ -344,11 +344,11 @@ export function Index() {
               aria-label={paneTab}
             >
               <div className="flex items-baseline justify-between mb-8">
-                <h2 className="font-display text-[1.75rem] leading-tight font-light text-foreground/90">
-                  {paneTab === "experience" && "Selected experience"}
-                  {paneTab === "thinking" && "Writing & talks"}
-                  {paneTab === "life" && "Beyond the desk"}
-                </h2>
+              <p role="presentation" aria-hidden="true" className="font-display text-[1.75rem] leading-tight font-light text-foreground/90">
+                {paneTab === "experience" && "Selected experience"}
+                {paneTab === "thinking" && "Writing & talks"}
+                {paneTab === "life" && "Beyond the desk"}
+              </p>
                 <span className="text-[0.65rem] tracking-aman uppercase text-muted-foreground shrink-0 ml-3">
                   {paneTab === "experience" && `${experience.length} roles`}
                   {paneTab === "thinking" && `${thinking.length} pieces`}
