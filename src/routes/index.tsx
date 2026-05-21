@@ -29,9 +29,20 @@ const personSchema = {
   description: person.description,
   disambiguatingDescription: nowStatement,
   url: `${SITE_URL}/`,
-  mainEntityOfPage: `${SITE_URL}/`,
+  mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/` },
   image: `${SITE_URL}${PORTRAIT_PATH}`,
   email: `mailto:${person.email}`,
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: person.email,
+    contactType: "Professional Inquiries",
+    availableLanguage: ["English"],
+  },
+  seeks: {
+    "@type": "Demand",
+    description:
+      "Advisory and investment opportunities in deep tech and AI infrastructure",
+  },
   knowsAbout: person.knowsAbout,
   sameAs: person.sameAs,
   alumniOf: {
@@ -57,6 +68,25 @@ const personSchema = {
       },
     },
   })),
+  dateModified: CONTENT_UPDATED_AT,
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  name: person.name,
+  url: `${SITE_URL}/`,
+  inLanguage: "en",
+  publisher: { "@id": `${SITE_URL}/#person` },
+};
+
+const profilePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${SITE_URL}/#profilepage`,
+  url: `${SITE_URL}/`,
+  mainEntity: { "@id": `${SITE_URL}/#person` },
   dateModified: CONTENT_UPDATED_AT,
 };
 
