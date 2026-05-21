@@ -548,11 +548,10 @@ export function Index() {
                 Co-founder · Investor
               </p>
               <h1 className="font-display text-[clamp(2.618rem,4.85vw,4.236rem)] leading-[1] tracking-tight font-light text-panel-foreground">
-                <span aria-hidden="true">
-                  Ilya{" "}
-                  <span className="italic text-accent">Paveliev</span>
+                <span itemProp="name">
+                  Ilya <span className="italic text-accent">Paveliev</span>
                 </span>
-                <span className="sr-only" itemProp="name">Ilya Paveliev — Co-founder & Investor in Deep Tech and AI</span>
+                <span className="sr-only"> — Co-founder & Investor in Deep Tech and AI</span>
               </h1>
               <div className="mt-[2.36vh] h-px w-[38.2%] bg-panel-foreground/25" />
               <p className="mt-[1.46vh] max-w-[38ch] text-[0.809rem] leading-[1.618] text-panel-foreground/75">
