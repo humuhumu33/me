@@ -313,8 +313,6 @@ export function Index() {
 
         </section>
       </div>
-        </section>
-      </div>
 
       {/* ============ DESKTOP LAYOUT ( ≥ md ) ============ */}
       <div className="hidden md:grid h-full w-full" style={{ gridTemplateColumns: "38.2fr 61.8fr", gridTemplateRows: "100%" }}>
