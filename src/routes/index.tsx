@@ -147,14 +147,14 @@ function Index() {
 
           {/* Circular portrait — overlaps banner */}
           <div className="relative flex justify-start px-[3.82vw]">
-            <div className="relative -mt-[10vh] h-[20vh] w-[20vh] rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
+            <div className="relative -mt-[13vh] h-[26vh] w-[26vh] rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
               <img
                 src={portrait}
                 alt="Ilya Paveliev"
                 className="h-full w-full object-cover"
               />
             </div>
-            <span className="absolute left-[calc(3.82vw+20vh-0.5rem)] bottom-[-0.25rem] h-2 w-2 rounded-full bg-accent" />
+            <span className="absolute left-[calc(3.82vw+26vh-0.5rem)] bottom-[-0.25rem] h-2 w-2 rounded-full bg-accent" />
           </div>
 
           {/* Name + bio */}
