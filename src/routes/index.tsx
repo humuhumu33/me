@@ -146,7 +146,7 @@ function Index() {
           </div>
 
           {/* Scrollable content area */}
-          <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+          <div className="flex min-h-0 flex-1 flex-col overflow-visible">
             {/* Circular portrait — overlaps banner */}
             <div className="relative flex shrink-0 justify-start px-[3.82vw]">
               <div className="relative -mt-[13vh] h-[26vh] w-[26vh] rounded-full overflow-hidden ring-1 ring-accent/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.6)]">
