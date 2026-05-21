@@ -125,93 +125,68 @@ function Index() {
   }, [dark]);
 
   return (
-    <main className="h-screen w-screen overflow-hidden bg-background text-foreground flex flex-col">
-      {/* FULL-WIDTH BANNER — golden ratio height 23.6vh */}
-      <div className="relative w-full shrink-0 overflow-hidden" style={{ height: "23.6vh" }}>
-        <img
-          src={atmosphere}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/0 to-background/80" />
-        <div className="absolute inset-0 flex items-start justify-between px-[3.82vw] pt-[2.36vh]">
-          <div className="flex items-center gap-3 text-[0.62rem] tracking-aman uppercase text-white/95 mix-blend-difference">
-            <span className="inline-block h-px w-8 bg-white/80" />
-            Ilya Paveliev · MMXXVI
-          </div>
-          <button
-            onClick={() => setDark((d) => !d)}
-            className="text-[0.62rem] tracking-aman uppercase text-white/95 hover:text-white mix-blend-difference"
-            aria-label="Toggle theme"
-          >
-            {dark ? "Light" : "Dark"}
-          </button>
-        </div>
-      </div>
-
-      {/* CONTENT — fills remaining 76.4vh */}
-      <div
-        className="grid flex-1 min-h-0 w-full"
-        style={{ gridTemplateColumns: "38.2fr 61.8fr" }}
-      >
-        {/* LEFT — identity, portrait overlaps banner */}
-        <section className="relative flex h-full min-h-0 flex-col border-r border-border px-[3.82vw] pb-[3.2vh]">
-          <div className="relative flex">
+    <main className="h-screen w-screen overflow-hidden bg-background text-foreground">
+      {/* Golden ratio split: 38.2% / 61.8% */}
+      <div className="grid h-full w-full" style={{ gridTemplateColumns: "38.2fr 61.8fr" }}>
+        {/* LEFT — banner + portrait + name */}
+        <section className="relative flex h-full flex-col overflow-hidden">
+          {/* Banner — golden ratio height ≈ 38.2% */}
+          <div className="relative w-full overflow-hidden" style={{ height: "38.2%" }}>
             <img
-              src={portrait}
-              alt="Portrait of Ilya Paveliev"
-              width={400}
-              height={400}
-              className="-mt-[7vh] h-[14vh] w-[14vh] min-h-[88px] min-w-[88px] max-h-[150px] max-w-[150px] object-cover object-top rounded-full border-4 border-background shadow-[0_12px_44px_-24px_rgba(0,0,0,0.55)]"
+              src={atmosphere}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
             />
-          </div>
-
-          <div className="mt-[2.4vh]">
-            <p className="text-[0.6rem] tracking-aman uppercase text-muted-foreground mb-3">
-              Co-founder · Investor
-            </p>
-            <h1 className="font-display text-[clamp(1.9rem,3.6vw,3.4rem)] leading-[0.98] tracking-tight">
-              <span aria-hidden="true">
-                Ilya <span className="italic text-accent">Paveliev</span>
-              </span>
-              <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
-            </h1>
-            <div className="mt-4 h-px w-[38.2%] bg-border" />
-            <p className="mt-4 max-w-[34ch] text-[0.82rem] leading-relaxed text-muted-foreground">
-              Building software-defined compute for local AI. Investing across
-              deep tech, AI and real-world assets.
-            </p>
-          </div>
-
-          <footer className="mt-auto flex flex-col gap-2 text-[0.6rem] tracking-aman uppercase text-muted-foreground">
-            <a href="mailto:ilya@uor.foundation" className="hover:text-foreground transition-colors">
-              ilya@uor.foundation
-            </a>
-            <div className="flex items-center gap-[1.46vw]">
-              <a
-                href="https://www.linkedin.com/in/trinityinvestor/"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-foreground transition-colors"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="https://x.com/TrinityInvestor"
-                target="_blank"
-                rel="noreferrer"
-                className="hover:text-foreground transition-colors"
-              >
-                X
-              </a>
+            <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/0 to-background/60 dark:from-background/20 dark:to-background/70" />
+            <div className="absolute top-0 left-0 right-0 flex items-center gap-3 p-[2.36vw] text-[0.7rem] tracking-aman uppercase text-white/90 dark:text-foreground/80">
+              <span className="inline-block h-px w-8 bg-accent" />
+              IP · MMXXVI
             </div>
-          </footer>
+          </div>
+
+          {/* Portrait — overlaps banner, like LinkedIn */}
+          <div className="relative px-[3.82vw]">
+            <div className="relative -mt-[7vw] flex">
+              <img
+                src={portrait}
+                alt="Portrait of Ilya Paveliev"
+                width={400}
+                height={400}
+                className="h-[14vw] w-[14vw] max-h-[180px] max-w-[180px] min-h-[110px] min-w-[110px] object-cover object-top rounded-full border-4 border-background shadow-[0_10px_40px_-20px_rgba(0,0,0,0.6)]"
+              />
+              <span className="absolute bottom-2 left-[12vw] max-left-[155px] h-3 w-3 rounded-full bg-accent ring-2 ring-background" />
+            </div>
+          </div>
+
+          {/* Name + tagline */}
+          <div className="flex flex-1 min-h-0 flex-col justify-between px-[3.82vw] pb-[3.82vw] pt-[1.5vh]">
+            <div>
+              <p className="text-[0.7rem] tracking-aman uppercase text-foreground/70 mb-3">
+                Co-founder · Investor
+              </p>
+              <h1 className="font-display text-[clamp(2.2rem,4.8vw,4.6rem)] leading-[0.95] tracking-tight">
+                <span aria-hidden="true">
+                  Ilya <span className="italic text-accent">Paveliev</span>
+                </span>
+                <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
+              </h1>
+              <div className="mt-5 h-px w-[38.2%] bg-foreground/30" />
+              <p className="mt-4 max-w-[32ch] text-sm leading-relaxed text-foreground/80">
+                Building software-defined compute for local AI. Investing across
+                deep tech, AI and real-world assets.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* RIGHT — content */}
-        <section className="relative flex h-full min-h-0 flex-col bg-surface">
-          <header className="flex items-center justify-between border-b border-border px-[2.36vw]" style={{ height: "6.2vh" }}>
-            <nav className="flex items-center gap-[2.36vw] text-[0.62rem] tracking-aman uppercase">
+        <section className="relative flex h-full flex-col bg-surface">
+          {/* Top bar — golden ratio height ≈ 9.7vh */}
+          <header
+            className="flex items-center justify-between border-b border-border px-[2.36vw]"
+            style={{ height: "9.7vh" }}
+          >
+            <nav className="flex items-center gap-[2.36vw] text-[0.68rem] tracking-aman uppercase">
               {(["experience", "thinking", "life"] as Tab[]).map((t) => (
                 <button
                   key={t}
@@ -227,37 +202,47 @@ function Index() {
                 </button>
               ))}
             </nav>
-            <span className="text-[0.58rem] tracking-aman uppercase text-muted-foreground">
-              {tab === "experience" && `${experience.length} roles`}
-              {tab === "thinking" && `${thinking.length} pieces`}
-              {tab === "life" && "Notes"}
-            </span>
+            <button
+              onClick={() => setDark((d) => !d)}
+              className="text-[0.68rem] tracking-aman uppercase text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Toggle theme"
+            >
+              {dark ? "Light" : "Dark"}
+            </button>
           </header>
 
-          <div className="flex flex-1 min-h-0 flex-col px-[3.2vw] py-[2.8vh]">
-            <h2 className="font-display italic text-[clamp(1.2rem,1.8vw,1.7rem)] text-foreground/90 mb-[1.8vh]">
-              {tab === "experience" && "Selected experience"}
-              {tab === "thinking" && "Writing & talks"}
-              {tab === "life" && "Beyond the desk"}
-            </h2>
+          {/* Body — fills remaining 90.3vh */}
+          <div className="flex flex-1 min-h-0 flex-col px-[3.82vw] py-[3.82vh]">
+            <div className="flex items-baseline justify-between mb-[2.36vh]">
+              <h2 className="font-display italic text-[clamp(1.5rem,2.2vw,2.1rem)] text-foreground/90">
+                {tab === "experience" && "Selected experience"}
+                {tab === "thinking" && "Writing & talks"}
+                {tab === "life" && "Beyond the desk"}
+              </h2>
+              <span className="text-[0.65rem] tracking-aman uppercase text-muted-foreground">
+                {tab === "experience" && `${experience.length} roles`}
+                {tab === "thinking" && `${thinking.length} pieces`}
+                {tab === "life" && "Notes"}
+              </span>
+            </div>
 
             <div className="flex-1 min-h-0 overflow-hidden">
               {tab === "experience" && (
                 <ul className="divide-y divide-border">
                   {experience.map((e) => (
-                    <li key={e.org} className="grid grid-cols-[1fr_auto] gap-6 py-[1.1vh]">
+                    <li key={e.org} className="grid grid-cols-[1fr_auto] gap-6 py-[1.46vh]">
                       <div className="min-w-0">
                         <div className="flex items-baseline gap-3">
-                          <span className="font-display text-[1.05rem] leading-tight text-foreground">
+                          <span className="font-display text-[1.25rem] leading-tight text-foreground">
                             {e.org}
                           </span>
-                          <span className="text-[0.58rem] tracking-aman uppercase text-accent">
+                          <span className="text-[0.68rem] tracking-aman uppercase text-accent">
                             {e.role}
                           </span>
                         </div>
-                        <p className="mt-0.5 text-[0.78rem] text-muted-foreground truncate">{e.note}</p>
+                        <p className="mt-1 text-sm text-muted-foreground truncate">{e.note}</p>
                       </div>
-                      <span className="self-center font-display text-[0.82rem] text-muted-foreground tabular-nums">
+                      <span className="self-center font-display text-sm text-muted-foreground tabular-nums">
                         {e.years}
                       </span>
                     </li>
@@ -266,7 +251,7 @@ function Index() {
               )}
 
               {tab === "thinking" && (
-                <ul className="h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1.1vw] auto-rows-fr">
+                <ul className="h-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[1.46vw] auto-rows-fr">
                   {thinking.map((p) => (
                     <li key={p.title} className="min-h-0">
                       <a
@@ -275,29 +260,34 @@ function Index() {
                         rel="noreferrer"
                         className="group relative flex h-full flex-col overflow-hidden border border-border bg-background/40 transition-all hover:border-accent/60 hover:-translate-y-0.5"
                       >
+                        {/* Preview thumbnail — golden ratio aspect (1 : 0.618) */}
                         <div
                           className="relative w-full overflow-hidden"
                           style={{ aspectRatio: "1.618 / 1", background: p.gradient }}
                         >
                           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]" />
-                          <div className="absolute inset-0 flex items-end justify-between p-2.5">
-                            <span className="text-[0.55rem] tracking-aman uppercase text-white/85">
+                          <div className="absolute inset-0 flex items-end justify-between p-3">
+                            <span className="text-[0.6rem] tracking-aman uppercase text-white/85">
                               {p.kind}
                             </span>
-                            <span className="font-display italic text-white/90 text-xs">
+                            <span className="font-display italic text-white/90 text-sm">
                               {p.venue}
                             </span>
                           </div>
-                          <span className="absolute top-2.5 right-2.5 flex h-6 w-6 items-center justify-center rounded-full bg-background/85 text-foreground text-[0.7rem] transition-transform group-hover:rotate-[-12deg]">
+                          <span className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-background/85 text-foreground text-xs transition-transform group-hover:rotate-[-12deg]">
                             ↗
                           </span>
                         </div>
-                        <div className="flex flex-1 flex-col justify-between p-[0.9vw]">
-                          <p className="font-display text-[0.95rem] leading-snug text-foreground line-clamp-2">
+
+                        <div className="flex flex-1 flex-col justify-between p-[1.1vw]">
+                          <p className="font-display text-[1.05rem] leading-snug text-foreground line-clamp-2">
                             {p.title}
                           </p>
-                          <div className="mt-1.5 text-[0.55rem] tracking-aman uppercase text-muted-foreground">
-                            {p.date}
+                          <div className="mt-2 flex items-center justify-between text-[0.62rem] tracking-aman uppercase text-muted-foreground">
+                            <span>{p.date}</span>
+                            <span className="text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+                              Open ·
+                            </span>
                           </div>
                         </div>
                       </a>
@@ -306,14 +296,15 @@ function Index() {
                 </ul>
               )}
 
+
               {tab === "life" && (
-                <ul className="space-y-[1.8vh]">
+                <ul className="space-y-[2.4vh]">
                   {life.map((l, i) => (
                     <li key={i} className="flex gap-5">
-                      <span className="font-display italic text-accent text-base leading-none pt-1 tabular-nums">
+                      <span className="font-display italic text-accent text-lg leading-none pt-1">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <p className="font-display text-[1.05rem] leading-snug text-foreground/90 max-w-[58ch]">
+                      <p className="font-display text-[1.25rem] leading-snug text-foreground/90 max-w-[58ch]">
                         {l}
                       </p>
                     </li>
@@ -322,10 +313,34 @@ function Index() {
               )}
             </div>
 
-            <div className="mt-auto pt-[1.4vh] flex items-center justify-between text-[0.58rem] tracking-aman uppercase text-muted-foreground/80">
-              <span>φ · golden ratio</span>
-              <span className="font-display italic normal-case tracking-normal">MMXXVI</span>
-            </div>
+            {/* Footer / contact */}
+            <footer className="mt-auto pt-[2.36vh] border-t border-border flex items-center justify-between text-[0.68rem] tracking-aman uppercase text-muted-foreground">
+              <div className="flex items-center gap-[2.36vw]">
+                <a href="mailto:ilya@uor.foundation" className="hover:text-foreground transition-colors">
+                  ilya@uor.foundation
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/trinityinvestor/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-foreground transition-colors"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://x.com/TrinityInvestor"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-foreground transition-colors"
+                >
+                  X
+                </a>
+                <span className="hidden sm:inline">+44 746 388 1239</span>
+              </div>
+              <span className="font-display italic normal-case tracking-normal text-muted-foreground/80">
+                φ
+              </span>
+            </footer>
           </div>
         </section>
       </div>
