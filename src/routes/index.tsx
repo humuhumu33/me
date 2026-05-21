@@ -130,7 +130,7 @@ function Index() {
       {/* Golden ratio split: 38.2% / 61.8% */}
       <div className="grid h-full w-full" style={{ gridTemplateColumns: "38.2fr 61.8fr", gridTemplateRows: "100%" }}>
         {/* LEFT — enclosed panel: banner image + circular portrait + name */}
-        <section className="relative flex h-full min-h-0 min-w-1 flex-col overflow-hidden bg-panel text-panel-foreground">
+        <section className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden bg-panel text-panel-foreground">
           {/* Banner (top ~38.2%) */}
           <div className="relative h-[38.2%] w-full shrink-0 overflow-hidden">
             <img
