@@ -295,9 +295,10 @@ function Index() {
                 <ul className="space-y-[2.4vh]">
                   {life.map((l, i) => (
                     <li key={i} className="flex gap-5">
-                      <span className="font-display italic text-accent text-lg leading-none pt-1">
+                      <span className="font-sans text-[0.62rem] tracking-aman uppercase text-muted-foreground pt-2 w-8">
                         {String(i + 1).padStart(2, "0")}
                       </span>
+
                       <p className="font-display text-[1.25rem] leading-snug text-foreground/90 max-w-[58ch]">
                         {l}
                       </p>
