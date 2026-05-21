@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import atmosphere from "@/assets/atmosphere.jpg";
+import banner from "@/assets/banner.jpeg";
+import portrait from "@/assets/portrait.png";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
