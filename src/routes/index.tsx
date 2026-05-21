@@ -227,9 +227,10 @@ function Index() {
                           <span className="font-display text-[1.25rem] leading-tight text-foreground">
                             {e.org}
                           </span>
-                          <span className="text-[0.68rem] tracking-aman uppercase text-accent">
+                          <span className="text-[0.62rem] tracking-aman uppercase text-muted-foreground">
                             {e.role}
                           </span>
+
                         </div>
                         <p className="mt-1 text-sm text-muted-foreground truncate">{e.note}</p>
                       </div>
