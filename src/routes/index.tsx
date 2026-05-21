@@ -138,30 +138,34 @@ function Index() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/0 to-background/80 dark:from-background/30 dark:to-background/90" />
           <div className="relative flex h-full flex-col justify-between p-[3.82vw]">
-            <div className="flex items-center gap-3 text-[0.7rem] tracking-aman uppercase text-foreground/80">
-              <span className="inline-block h-px w-8 bg-accent" />
+            <div className="flex items-center gap-3 text-[0.65rem] tracking-aman uppercase text-foreground/70">
+              <span className="inline-block h-px w-8 bg-foreground/50" />
               IP · MMXXVI
             </div>
 
             <div>
-              <p className="text-[0.7rem] tracking-aman uppercase text-foreground/70 mb-4">
-                Co-founder · Investor
+              <p className="text-[0.65rem] tracking-aman uppercase text-foreground/60 mb-6">
+                A Personal Site
               </p>
-              <h1 className="font-display text-[clamp(2.6rem,5.6vw,5.4rem)] leading-[0.95] tracking-tight">
+              <h1 className="font-display text-[clamp(2.2rem,4.4vw,4.4rem)] leading-[1.05] tracking-[0.04em] uppercase font-light">
                 <span aria-hidden="true">
-                  Ilya
+                  <span className="relative inline-block">
+                    <span className="absolute -top-[0.18em] left-1/2 -translate-x-1/2 h-px w-[0.55em] bg-foreground/80" />
+                    Ilya
+                  </span>
                   <br />
-                  <span className="italic text-accent">Paveliev</span>
+                  Paveliev
                 </span>
                 <span className="sr-only">Ilya Paveliev — Deep Tech Founder & Investor</span>
               </h1>
-              <div className="mt-6 h-px w-[38.2%] bg-foreground/30" />
-              <p className="mt-6 max-w-[28ch] text-sm leading-relaxed text-foreground/80">
-                Building software-defined compute for local AI. Investing across
-                deep tech, AI and real-world assets.
+              <div className="mt-8 h-px w-12 bg-foreground/40" />
+              <p className="mt-6 max-w-[32ch] text-[0.78rem] leading-[1.7] text-foreground/75">
+                Co-founder of Hologram Technologies. Founding Partner of Arete Capital.
+                Building software-defined compute for local AI; investing across deep tech and real-world assets.
               </p>
             </div>
           </div>
+
         </section>
 
         {/* RIGHT — content */}
