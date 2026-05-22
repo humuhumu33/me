@@ -33,7 +33,6 @@ export const person = {
   jobTitle: "Deep Tech Founder & Investor",
   description:
     "Co-founder of Hologram Technologies and founding partner of Arete Capital. Building software-defined compute for local AI and investing across deep tech, AI and real-world assets.",
-  email: "ilya@uor.foundation",
   twitterHandle: "TrinityInvestor",
   sameAs: [
     "https://www.linkedin.com/in/trinityinvestor/",

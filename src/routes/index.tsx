@@ -31,13 +31,6 @@ const personSchema = {
   url: `${SITE_URL}/`,
   mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}/` },
   image: `${SITE_URL}${PORTRAIT_PATH}`,
-  email: `mailto:${person.email}`,
-  contactPoint: {
-    "@type": "ContactPoint",
-    email: person.email,
-    contactType: "Professional Inquiries",
-    availableLanguage: ["English"],
-  },
   seeks: {
     "@type": "Demand",
     description:
@@ -152,7 +145,7 @@ export const Route = createFileRoute("/")({
       { rel: "canonical", href: `${SITE_URL}/` },
       { rel: "me", href: "https://www.linkedin.com/in/trinityinvestor/" },
       { rel: "me", href: "https://x.com/TrinityInvestor" },
-      { rel: "me", href: `mailto:${person.email}` },
+      
       { rel: "alternate", type: "application/feed+json", href: "/feed.json", title: "Writing & talks" },
       { rel: "alternate", type: "application/json", href: "/api/profile.json", title: "Profile data" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -211,6 +204,11 @@ export function Index() {
   const [tab, setTab] = useState<Tab | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dark, setDark] = useState(true);
+  const [contactSent, setContactSent] = useState(false);
+
+  useEffect(() => {
+    if (tab !== "contact") setContactSent(false);
+  }, [tab]);
 
 
   useEffect(() => {
@@ -247,7 +245,7 @@ export function Index() {
         <span itemProp="jobTitle">{person.jobTitle}</span>
         <span itemProp="description">{person.description}</span>
         <a itemProp="image" href={`${SITE_URL}${PORTRAIT_PATH}`}>{PORTRAIT_ALT}</a>
-        <a itemProp="email" rel="me" href={`mailto:${person.email}`}>{person.email}</a>
+        
         <a itemProp="sameAs" rel="me" href="https://www.linkedin.com/in/trinityinvestor/">LinkedIn</a>
         <a itemProp="sameAs" rel="me" href="https://x.com/TrinityInvestor">X</a>
       </div>
@@ -330,8 +328,7 @@ export function Index() {
               </button>
             ))}
           </nav>
-          <div className="border-t border-white/10 px-6 py-5 flex items-center justify-between text-[0.65rem] tracking-[0.28em] uppercase text-white/55">
-            <a href={`mailto:${person.email}`} className="hover:text-white transition-colors">Email</a>
+          <div className="border-t border-white/10 px-6 py-5 flex items-center justify-center gap-8 text-[0.65rem] tracking-[0.28em] uppercase text-white/55">
             <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
             <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X</a>
           </div>
@@ -354,7 +351,6 @@ export function Index() {
 
       {/* Bottom-right meta */}
       <div className="absolute bottom-0 right-0 z-10 hidden md:flex flex-col items-end gap-3 px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)] font-sans text-[clamp(0.85rem,1vw,1.1rem)] font-medium tracking-[0.2em] uppercase text-white/70">
-        <a href={`mailto:${person.email}`} className="hover:text-white transition-colors">{person.email}</a>
         <div className="flex gap-6">
           <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
           <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X</a>
@@ -400,14 +396,7 @@ export function Index() {
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
-                    const f = e.currentTarget as HTMLFormElement;
-                    const data = new FormData(f);
-                    const name = String(data.get("name") || "");
-                    const topic = String(data.get("topic") || "Other");
-                    const message = String(data.get("message") || "");
-                    const subject = encodeURIComponent(`[${topic}] ${name}`);
-                    const body = encodeURIComponent(`${message}\n\n— ${name}`);
-                    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+                    setContactSent(true);
                   }}
                   className="grid h-full grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-[clamp(2rem,4vw,5rem)]"
                 >
@@ -461,12 +450,16 @@ export function Index() {
                     </label>
 
                     <div className="flex items-center justify-end">
-                      <button
-                        type="submit"
-                        className="rounded-full border border-white px-10 py-3.5 font-sans text-[0.85rem] font-semibold tracking-[0.22em] uppercase text-white transition-colors hover:bg-white hover:text-black"
-                      >
-                        Submit
-                      </button>
+                      {contactSent ? (
+                        <span className="font-sans text-[0.85rem] font-semibold tracking-[0.22em] uppercase text-white/70">Thank you — connect on LinkedIn or X</span>
+                      ) : (
+                        <button
+                          type="submit"
+                          className="rounded-full border border-white px-10 py-3.5 font-sans text-[0.85rem] font-semibold tracking-[0.22em] uppercase text-white transition-colors hover:bg-white hover:text-black"
+                        >
+                          Submit
+                        </button>
+                      )}
                     </div>
                   </div>
                 </form>
