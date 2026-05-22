@@ -338,8 +338,8 @@ export function Index() {
 
 
       {/* Bottom-left headline */}
-      <div className="absolute bottom-0 left-0 z-10 max-w-[min(94vw,72rem)] px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)]">
-        <h1 className="font-sans text-[clamp(3.2rem,11vw,9rem)] font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white">
+      <div className="absolute bottom-0 left-0 right-0 md:right-auto z-10 md:max-w-[min(94vw,72rem)] px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(5rem,5.5vh,3.5rem)] md:pb-[clamp(2rem,5.5vh,3.5rem)]">
+        <h1 className="font-sans text-[clamp(2.6rem,11vw,9rem)] font-semibold leading-[0.95] md:leading-[0.92] tracking-[-0.035em] uppercase text-white">
           <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
           BUILDING THE
           <br />
@@ -350,13 +350,20 @@ export function Index() {
         </h1>
       </div>
 
-      {/* Bottom-right meta */}
+      {/* Bottom-right meta (desktop) */}
       <div className="absolute bottom-0 right-0 z-10 hidden md:flex flex-col items-end gap-3 px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)] font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.2em] uppercase text-white/70">
         <div className="flex gap-6">
           <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
           <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X</a>
         </div>
       </div>
+
+      {/* Bottom social links (mobile) */}
+      <div className="absolute bottom-0 inset-x-0 z-10 md:hidden flex items-center justify-between px-[clamp(1.25rem,3vw,3rem)] pb-[1.5rem] font-sans text-[0.7rem] font-medium tracking-[0.28em] uppercase text-white/60">
+        <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+        <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X / Twitter</a>
+      </div>
+
 
       {/* Overlay panel — opens for Experience / Feed / Bio */}
       {tab && (
