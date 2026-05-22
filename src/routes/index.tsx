@@ -527,29 +527,29 @@ export function Index() {
               })()}
 
               {tab === "life" && (
-                <div className="grid h-full grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-[clamp(1.5rem,2.4vw,3rem)]">
+                <div className="grid h-full grid-cols-1 lg:grid-cols-[0.55fr_1.45fr] gap-[clamp(1.5rem,2.8vw,3.25rem)]">
                   {/* Left — portrait + intro */}
-                  <div className="flex h-full flex-col justify-between gap-[clamp(1rem,2vh,1.75rem)]">
-                    <div className="relative w-full overflow-hidden border border-white/15 grow min-h-0">
+                  <div className="flex h-full flex-col gap-[clamp(1rem,2vh,1.75rem)]">
+                    <div className="relative w-full max-w-[18rem] aspect-[4/5] overflow-hidden border border-white/15">
                       <img src={portrait} alt={PORTRAIT_ALT} className="h-full w-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                       <div className="absolute bottom-0 left-0 right-0 p-[clamp(1rem,1.6vw,1.5rem)]">
-                        <p className="text-[0.62rem] tracking-[0.32em] uppercase text-white/60 m-0">{person.jobTitle}</p>
-                        <h3 className="font-sans text-[clamp(1.4rem,2vw,2.2rem)] font-medium tracking-[-0.01em] text-white m-0 leading-tight">
+                        <p className="text-[0.78rem] tracking-[0.28em] uppercase text-white/65 m-0">{person.jobTitle}</p>
+                        <h3 className="font-sans text-[clamp(1.5rem,2vw,2.2rem)] font-medium tracking-[-0.01em] text-white m-0 leading-tight whitespace-nowrap">
                           {person.name}
                         </h3>
                       </div>
                     </div>
-                    <p className="font-sans text-[clamp(0.95rem,1.05vw,1.15rem)] leading-snug text-white/80 m-0">
-                      {person.description}
+                    <p className="font-sans text-[clamp(1.05rem,1.15vw,1.25rem)] leading-snug text-white/85 max-w-[22rem] m-0">
+                      Building sovereign AI infrastructure. Investing in deep tech and real-world assets.
                     </p>
                   </div>
 
                   {/* Right — stats / backstory / beyond */}
-                  <div className="flex h-full flex-col gap-[clamp(1.25rem,2.4vh,2rem)] min-h-0">
+                  <div className="flex h-full flex-col gap-[clamp(1.75rem,3vh,2.75rem)] min-h-0">
                     {/* By the numbers */}
                     <div>
-                      <p className="text-[0.62rem] tracking-[0.32em] uppercase text-white/45 m-0 mb-[clamp(0.5rem,1vh,0.85rem)]">
+                      <p className="text-[0.78rem] tracking-[0.28em] uppercase text-white/50 m-0 mb-[clamp(0.6rem,1.2vh,1rem)]">
                         By the numbers
                       </p>
                       <dl className="grid grid-cols-4 gap-[clamp(0.5rem,1vw,1rem)] m-0">
@@ -559,12 +559,12 @@ export function Index() {
                           { v: "7", l: "Companies & funds" },
                           { v: "10K+", l: "Offshore miles" },
                         ].map((s) => (
-                          <div key={s.l} className="border-t border-white/15 pt-[clamp(0.4rem,0.8vh,0.7rem)]">
+                          <div key={s.l} className="border-t border-white/15 pt-[clamp(0.5rem,1vh,0.85rem)]">
                             <dt className="sr-only">{s.l}</dt>
-                            <dd className="font-sans text-[clamp(1.5rem,2.4vw,2.4rem)] font-medium tracking-[-0.02em] text-white m-0 leading-none">
+                            <dd className="font-sans text-[clamp(1.8rem,2.6vw,2.8rem)] font-medium tracking-[-0.02em] text-white m-0 leading-none">
                               {s.v}
                             </dd>
-                            <p className="text-[0.56rem] tracking-[0.28em] uppercase text-white/50 m-0 mt-[clamp(0.3rem,0.6vh,0.5rem)]">
+                            <p className="text-[0.72rem] tracking-[0.24em] uppercase text-white/55 m-0 mt-[clamp(0.4rem,0.8vh,0.6rem)]">
                               {s.l}
                             </p>
                           </div>
@@ -574,21 +574,21 @@ export function Index() {
 
                     {/* Backstory */}
                     <div className="flex-1 min-h-0 flex flex-col">
-                      <p className="text-[0.62rem] tracking-[0.32em] uppercase text-white/45 m-0 mb-[clamp(0.5rem,1vh,0.85rem)]">
+                      <p className="text-[0.78rem] tracking-[0.28em] uppercase text-white/50 m-0 mb-[clamp(0.6rem,1.2vh,1rem)]">
                         The backstory
                       </p>
                       <ol className="flex-1 min-h-0 list-none p-0 m-0 divide-y divide-white/10">
                         {experience.map((e) => (
-                          <li key={e.org} className="flex items-baseline gap-[clamp(0.75rem,1.2vw,1.25rem)] py-[clamp(0.4rem,0.8vh,0.7rem)]">
-                            <time className="font-sans text-[0.62rem] tracking-[0.28em] uppercase text-white/40 w-[5.5rem] shrink-0">
+                          <li key={e.org} className="flex items-baseline gap-[clamp(0.75rem,1.2vw,1.25rem)] py-[clamp(0.5rem,1vh,0.85rem)]">
+                            <time className="font-sans text-[0.78rem] tracking-[0.24em] uppercase text-white/45 w-[6rem] shrink-0">
                               {e.years}
                             </time>
                             <div className="flex-1 min-w-0 flex items-baseline gap-3">
-                              <span className="font-sans text-[clamp(0.95rem,1.05vw,1.15rem)] font-medium tracking-[-0.01em] text-white truncate">
+                              <span className="font-sans text-[clamp(1.05rem,1.2vw,1.3rem)] font-medium tracking-[-0.01em] text-white truncate">
                                 {e.org}
                               </span>
-                              <span className="font-sans text-[clamp(0.78rem,0.85vw,0.92rem)] text-white/55 truncate hidden md:inline">
-                                {e.role} · {e.note}
+                              <span className="font-sans text-[clamp(0.92rem,1vw,1.1rem)] text-white/60 truncate hidden md:inline">
+                                {e.role}
                               </span>
                             </div>
                           </li>
@@ -598,13 +598,13 @@ export function Index() {
 
                     {/* Beyond */}
                     <div>
-                      <p className="text-[0.62rem] tracking-[0.32em] uppercase text-white/45 m-0 mb-[clamp(0.4rem,0.8vh,0.7rem)]">
+                      <p className="text-[0.78rem] tracking-[0.28em] uppercase text-white/50 m-0 mb-[clamp(0.5rem,1vh,0.85rem)]">
                         Beyond
                       </p>
-                      <ul className="grid grid-cols-2 gap-x-[clamp(1rem,1.6vw,1.75rem)] gap-y-[clamp(0.3rem,0.6vh,0.5rem)] list-none p-0 m-0">
-                        {life.map((l, i) => (
-                          <li key={i} className="flex gap-3 font-sans text-[clamp(0.78rem,0.85vw,0.92rem)] leading-snug text-white/75">
-                            <span aria-hidden="true" className="text-[0.56rem] tracking-[0.28em] uppercase text-white/35 pt-[0.3em]">
+                      <ul className="grid grid-cols-3 gap-x-[clamp(1rem,1.6vw,1.75rem)] gap-y-[clamp(0.4rem,0.8vh,0.6rem)] list-none p-0 m-0">
+                        {life.filter((_, i) => i !== 2).map((l, i) => (
+                          <li key={i} className="flex gap-3 font-sans text-[clamp(0.92rem,1vw,1.1rem)] leading-snug text-white/80">
+                            <span aria-hidden="true" className="text-[0.72rem] tracking-[0.24em] uppercase text-white/40 pt-[0.3em]">
                               {String(i + 1).padStart(2, "0")}
                             </span>
                             <span>{l}</span>
@@ -615,6 +615,7 @@ export function Index() {
                   </div>
                 </div>
               )}
+
             </div>
           </section>
         </div>
