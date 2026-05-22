@@ -172,7 +172,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type Tab = "experience" | "thinking" | "life";
+type Tab = "experience" | "thinking" | "life" | "contact";
 
 function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
   // Leading separator so DOM textContent reads "Hologram Technologies / 2025 —"
@@ -227,9 +227,9 @@ export function Index() {
   }, []);
 
   const navItems: { id: Tab; label: string }[] = [
-    { id: "experience", label: "Experience" },
-    { id: "thinking", label: "Feed" },
-    { id: "life", label: "Bio" },
+    { id: "life", label: "BIO" },
+    { id: "thinking", label: "FEED" },
+    { id: "contact", label: "CONTACT" },
   ];
 
   return (
@@ -375,14 +375,14 @@ export function Index() {
             <header className="flex items-center justify-between border-b border-white/10 px-[clamp(1.5rem,2.6vw,3rem)] py-[clamp(1rem,1.8vh,1.6rem)]">
               <div className="flex items-baseline gap-4">
                 <span className="font-sans text-[0.7rem] tracking-[0.32em] uppercase text-white/50">
-                  {tab === "experience" && "01 / Experience"}
+                  {tab === "life" && "01 / Bio"}
                   {tab === "thinking" && "02 / Feed"}
-                  {tab === "life" && "03 / Bio"}
+                  {tab === "contact" && "03 / Contact"}
                 </span>
                 <h2 className="font-sans text-[clamp(1.1rem,1.4vw,1.6rem)] font-medium tracking-[-0.01em] uppercase text-white">
-                  {tab === "experience" && "Selected work"}
-                  {tab === "thinking" && "Writing & talks"}
                   {tab === "life" && "Beyond the desk"}
+                  {tab === "thinking" && "Writing & talks"}
+                  {tab === "contact" && "Get in touch"}
                 </h2>
               </div>
               <button
