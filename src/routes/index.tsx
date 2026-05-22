@@ -374,7 +374,7 @@ export function Index() {
           aria-label={tab}
           onClick={(e) => { if (e.target === e.currentTarget) setTab(null); }}
         >
-          <section className="relative m-auto flex h-[min(92vh,56rem)] w-[min(94vw,90rem)] flex-col border border-white/10 bg-[#0a0a0a]/95 shadow-2xl">
+          <section className="relative m-auto flex h-[min(94vh,56rem)] w-[min(96vw,90rem)] flex-col border border-white/10 bg-[#0a0a0a]/95 shadow-2xl">
             {/* Panel header */}
             <header className="flex items-center justify-between border-b border-white/10 px-[clamp(1.5rem,2.6vw,3rem)] py-[clamp(1rem,1.8vh,1.6rem)]">
               <div className="flex items-baseline gap-4">
