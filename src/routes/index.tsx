@@ -341,7 +341,7 @@ export function Index() {
 
       {/* Bottom-left headline */}
       <div className="absolute bottom-0 left-0 z-10 max-w-[min(94vw,72rem)] px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)]">
-        <h1 className="font-sans text-[clamp(2.6rem,8.4vw,6rem)] font-semibold leading-[0.95] tracking-[-0.025em] uppercase text-white">
+        <h1 className="font-sans text-[clamp(3.2rem,11vw,9rem)] font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white">
           <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
           Building the future
           <br />
