@@ -206,48 +206,6 @@ function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
   );
 }
 
-function ScrambleText({ text, className }: { text: string; className?: string }) {
-  const [display, setDisplay] = useState(text);
-  const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
-
-  useEffect(() => {
-    let frame: number;
-    let start: number | null = null;
-    const duration = 1600;
-    const out: string[] = text.split("");
-    const isSymbol = (c: string) => /[^A-Z0-9]/i.test(c);
-    const settleAt = text.split("").map((_, i) => {
-      if (isSymbol(text[i])) return 1;
-      return 0.25 + (i / (text.length || 1)) * 1.25;
-    });
-
-    const tick = (ts: number) => {
-      if (start === null) start = ts;
-      const elapsed = ts - start;
-      const progress = Math.min(elapsed / duration, 1);
-      let changed = false;
-      for (let i = 1; i < text.length; i++) {
-        const s = settleAt[i];
-        const p = progress / s;
-        if (p >= 1) {
-          out[i] = text[i];
-        } else {
-          if (Math.random() > 0.25) {
-            out[i] = charset[Math.floor(Math.random() * charset.length)];
-          }
-          changed = true;
-        }
-      }
-      setDisplay(out.join(""));
-      if (changed) frame = requestAnimationFrame(tick);
-    };
-
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [text]);
-
-  return <span className={className}>{display}</span>;
-}
 
 export function Index() {
   const [tab, setTab] = useState<Tab | null>(null);
