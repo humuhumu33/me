@@ -259,30 +259,23 @@ export function Index() {
 
 
       {/* Top nav */}
-      <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-[clamp(1.5rem,3.82vw,4rem)] py-[clamp(1.25rem,2.36vh,2rem)]">
-        <a href="/" className="font-sans text-[clamp(0.95rem,1.1vw,1.15rem)] font-medium tracking-[0.18em] uppercase text-white">
-          Ilya<span className="opacity-50">_</span>Paveliev
+      <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-[clamp(1.25rem,3vw,3rem)] py-[clamp(1rem,2vh,1.75rem)]">
+        <a href="/" className="font-sans text-[clamp(0.78rem,0.92vw,0.98rem)] font-medium tracking-[0.24em] uppercase text-white">
+          Ilya<span className="opacity-60">_</span>Paveliev
         </a>
         {/* Desktop nav */}
-        <nav aria-label="Sections" className="hidden md:flex items-center gap-[clamp(1.5rem,2.8vw,3.2rem)]">
+        <nav aria-label="Sections" className="hidden md:flex items-center gap-[clamp(2rem,3.6vw,4rem)]">
           {navItems.map((n) => (
             <button
               key={n.id}
               onClick={() => setTab(n.id)}
               aria-current={tab === n.id ? "page" : undefined}
-              className="group relative font-sans text-[clamp(0.75rem,0.85vw,0.9rem)] font-medium tracking-[0.22em] uppercase text-white/90 hover:text-white transition-colors"
+              className="group relative font-sans text-[clamp(0.72rem,0.82vw,0.86rem)] font-medium tracking-[0.24em] uppercase text-white/85 hover:text-white transition-colors"
             >
               {n.label}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
             </button>
           ))}
-          <button
-            onClick={() => setDark((d) => !d)}
-            aria-label="Toggle theme"
-            className="ml-2 h-7 w-7 rounded-full border border-white/30 text-white/70 hover:text-white hover:border-white/70 transition-colors flex items-center justify-center"
-          >
-            <span className="text-[0.7rem]" aria-hidden="true">{dark ? "○" : "●"}</span>
-          </button>
         </nav>
 
         {/* Mobile menu trigger */}
@@ -290,7 +283,7 @@ export function Index() {
           onClick={() => setMenuOpen(true)}
           aria-label="Open menu"
           aria-expanded={menuOpen}
-          className="md:hidden flex items-center gap-2.5 font-sans text-[0.72rem] font-medium tracking-[0.28em] uppercase text-white"
+          className="md:hidden flex items-center gap-2.5 font-sans text-[0.7rem] font-medium tracking-[0.28em] uppercase text-white"
         >
           <span className="flex flex-col gap-1.5" aria-hidden="true">
             <span className="block h-px w-5 bg-white" />
@@ -347,26 +340,18 @@ export function Index() {
 
 
       {/* Bottom-left headline */}
-      <div className="absolute bottom-0 left-0 z-10 max-w-[min(92vw,68rem)] px-[clamp(1.5rem,3.82vw,4rem)] pb-[clamp(2rem,6vh,4.5rem)]">
-        <p className="mb-[clamp(1rem,2vh,1.5rem)] flex items-center gap-3 text-[clamp(0.7rem,0.75vw,0.82rem)] font-medium tracking-[0.32em] uppercase text-white/70">
-          <span className="inline-block h-px w-10 bg-white/50" />
-          15+ Years · Deep Tech &amp; AI
-        </p>
-        <h1 className="font-sans text-[clamp(3.4rem,12vw,7.4rem)] md:text-[clamp(3.4rem,7.2vw,7.4rem)] font-semibold leading-[0.92] tracking-[-0.02em] uppercase text-white">
-          <span itemProp="name">Building</span>{" "}
-          <span className="text-white/80">the future</span>
+      <div className="absolute bottom-0 left-0 z-10 max-w-[min(94vw,72rem)] px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)]">
+        <h1 className="font-sans text-[clamp(2.6rem,8.4vw,6rem)] font-semibold leading-[0.95] tracking-[-0.025em] uppercase text-white">
+          <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
+          Building the future
           <br />
-          <span className="text-white/80">of </span>
-          <span>LOCAL AI.</span>
-          <span className="sr-only"> — Ilya Paveliev, Co-founder & Investor in Deep Tech and AI.</span>
+          of local AI.
+          <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
         </h1>
-        <p className="mt-[clamp(1rem,2.2vh,1.6rem)] max-w-[44ch] font-sans text-[clamp(0.9rem,1vw,1.1rem)] leading-[1.55] text-white/75">
-          {person.description}
-        </p>
       </div>
 
       {/* Bottom-right meta */}
-      <div className="absolute bottom-0 right-0 z-10 hidden md:flex flex-col items-end gap-2 px-[clamp(1.5rem,3.82vw,4rem)] pb-[clamp(2rem,6vh,4.5rem)] text-[0.7rem] tracking-[0.28em] uppercase text-white/55">
+      <div className="absolute bottom-0 right-0 z-10 hidden md:flex flex-col items-end gap-2 px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)] text-[0.68rem] tracking-[0.24em] uppercase text-white/55">
         <a href={`mailto:${person.email}`} className="hover:text-white transition-colors">{person.email}</a>
         <div className="flex gap-5">
           <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
