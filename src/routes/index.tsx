@@ -329,9 +329,9 @@ export function Index() {
         </nav>
       </header>
 
-      {/* Bottom-left headline */}
-      <div className="hidden md:block absolute bottom-0 left-0 z-10 max-w-[min(94vw,72rem)] px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)]">
-        <h1 className="font-sans text-[clamp(3.2rem,11vw,9rem)] font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white">
+      {/* Bottom-left headline — 3 rows, golden-ratio scale (φ ≈ 1.618) */}
+      <div className="hidden md:block absolute bottom-0 left-0 z-10 max-w-[min(96vw,84rem)] px-[clamp(1.236rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)]">
+        <h1 className="font-sans text-[clamp(4rem,12vw,11rem)] font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white whitespace-nowrap">
           BUILDING THE
           <br />
           FUTURE OF
