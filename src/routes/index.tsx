@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import banner from "@/assets/banner.jpeg";
 import portrait from "@/assets/portrait.png";
+import monad from "@/assets/monad.png";
 import {
   person,
   experience,
@@ -344,7 +345,7 @@ export function Index() {
           <br />
           FUTURE OF
           <br />
-          SOVEREIGN AI.
+          SOVEREIGN AI<img src={monad} alt="Monad" className="inline-block align-baseline ml-[0.1em] h-[0.8em] w-[0.8em] translate-y-[0.05em]" />
           <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
         </h1>
       </div>
