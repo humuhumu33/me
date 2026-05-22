@@ -301,7 +301,7 @@ export function Index() {
       <div className="relative z-10 md:hidden flex flex-col min-h-svh">
         {/* Mobile header — logo + "+" menu */}
         <header className="flex items-center justify-between px-5 pt-5">
-          <a href="/" className="font-sans text-[1.05rem] font-semibold tracking-[0.18em] uppercase text-white">
+          <a href="/" className="font-sans text-[1.55rem] font-semibold tracking-[0.16em] uppercase text-white leading-none">
             ILYA<span className="opacity-60">_</span>PAVELIEV
           </a>
           <button
@@ -309,7 +309,7 @@ export function Index() {
             aria-label="Open menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(true)}
-            className="flex h-11 w-11 items-center justify-center text-white text-[2rem] leading-none -mr-2 active:opacity-60 transition-opacity"
+            className="flex h-12 w-12 items-center justify-center text-white text-[2.75rem] leading-none -mr-2 active:opacity-60 transition-opacity"
           >
             +
           </button>
