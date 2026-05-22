@@ -357,7 +357,7 @@ export function Index() {
           <span className="text-white/80">the future</span>
           <br />
           <span className="text-white/80">of </span>
-          <ScrambleText text="LOCAL AI." className="text-white" />
+          <span>LOCAL AI.</span>
           <span className="sr-only"> — Ilya Paveliev, Co-founder & Investor in Deep Tech and AI.</span>
         </h1>
         <p className="mt-[clamp(1rem,2.2vh,1.6rem)] max-w-[44ch] font-sans text-[clamp(0.9rem,1vw,1.1rem)] leading-[1.55] text-white/75">
