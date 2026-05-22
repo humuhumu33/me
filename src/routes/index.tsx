@@ -340,22 +340,14 @@ export function Index() {
 
 
       {/* Bottom-left headline */}
-      <div className="absolute bottom-0 left-0 z-10 max-w-[min(92vw,68rem)] px-[clamp(1.5rem,3.82vw,4rem)] pb-[clamp(2rem,6vh,4.5rem)]">
-        <p className="mb-[clamp(1rem,2vh,1.5rem)] flex items-center gap-3 text-[clamp(0.7rem,0.75vw,0.82rem)] font-medium tracking-[0.32em] uppercase text-white/70">
-          <span className="inline-block h-px w-10 bg-white/50" />
-          15+ Years · Deep Tech &amp; AI
-        </p>
-        <h1 className="font-sans text-[clamp(3.4rem,12vw,7.4rem)] md:text-[clamp(3.4rem,7.2vw,7.4rem)] font-semibold leading-[0.92] tracking-[-0.02em] uppercase text-white">
-          <span itemProp="name">Building</span>{" "}
-          <span className="text-white/80">the future</span>
+      <div className="absolute bottom-0 left-0 z-10 max-w-[min(94vw,72rem)] px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)]">
+        <h1 className="font-sans text-[clamp(2.6rem,8.4vw,6rem)] font-semibold leading-[0.95] tracking-[-0.025em] uppercase text-white">
+          <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
+          Building the future
           <br />
-          <span className="text-white/80">of </span>
-          <span>LOCAL AI.</span>
-          <span className="sr-only"> — Ilya Paveliev, Co-founder & Investor in Deep Tech and AI.</span>
+          of local AI.
+          <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
         </h1>
-        <p className="mt-[clamp(1rem,2.2vh,1.6rem)] max-w-[44ch] font-sans text-[clamp(0.9rem,1vw,1.1rem)] leading-[1.55] text-white/75">
-          {person.description}
-        </p>
       </div>
 
       {/* Bottom-right meta */}
