@@ -259,9 +259,8 @@ export function Index() {
 
       {/* Top nav */}
       <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-[clamp(1.25rem,3vw,3rem)] py-[clamp(1rem,2vh,1.75rem)]">
-        <a href="/" className="flex items-center gap-[0.5em] font-sans text-[clamp(1.1rem,1.5vw,1.6rem)] font-semibold tracking-[0.18em] uppercase text-white">
-          <img src={monad} alt="" aria-hidden="true" className="h-[1.2em] w-[1.2em] shrink-0" />
-          <span>Ilya<span className="opacity-60">_</span>Paveliev</span>
+        <a href="/" className="font-sans text-[clamp(1.1rem,1.5vw,1.6rem)] font-semibold tracking-[0.18em] uppercase text-white">
+          Ilya<span className="opacity-60">_</span>Paveliev
         </a>
         {/* Desktop nav */}
         <nav aria-label="Sections" className="hidden md:flex items-center gap-[clamp(2.5rem,4.5vw,5rem)]">
@@ -346,7 +345,7 @@ export function Index() {
           <br />
           FUTURE OF
           <br />
-          SOVEREIGN AI.
+          SOVEREIGN AI<img src={monad} alt="." className="inline-block h-[0.2em] w-[0.2em] align-baseline" />
           <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
         </h1>
       </div>
