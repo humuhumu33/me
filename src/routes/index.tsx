@@ -553,7 +553,7 @@ export function Index() {
                       <p className="text-[0.78rem] tracking-[0.28em] uppercase text-white/50 m-0 mb-[clamp(0.6rem,1.2vh,1rem)]">
                         By the numbers
                       </p>
-                      <dl className="grid grid-cols-4 gap-[clamp(0.5rem,1vw,1rem)] m-0">
+                      <dl className="grid grid-cols-2 sm:grid-cols-4 gap-[clamp(0.5rem,1vw,1rem)] m-0">
                         {[
                           { v: "$20B+", l: "Assets managed" },
                           { v: "15Y", l: "Building & investing" },
