@@ -407,7 +407,7 @@ export function Index() {
                         Get in<br />touch
                       </h3>
                       <p className="mt-[clamp(1.5rem,3vh,2.5rem)] max-w-[36ch] font-sans text-[clamp(1rem,1.15vw,1.25rem)] leading-relaxed text-white/70">
-                        I get a lot of messages and can't reply to all of them, but I truly appreciate the outreach.
+                        If anything here resonates, I'd love to connect.
                       </p>
                     </div>
                   </div>
