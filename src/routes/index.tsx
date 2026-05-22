@@ -602,7 +602,7 @@ export function Index() {
                       <p className="text-[0.78rem] tracking-[0.28em] uppercase text-white/50 m-0 mb-[clamp(0.5rem,1vh,0.85rem)]">
                         Beyond
                       </p>
-                      <ul className="grid grid-cols-3 gap-x-[clamp(1rem,1.6vw,1.75rem)] gap-y-[clamp(0.4rem,0.8vh,0.6rem)] list-none p-0 m-0">
+                      <ul className="grid grid-cols-1 sm:grid-cols-3 gap-x-[clamp(1rem,1.6vw,1.75rem)] gap-y-[clamp(0.4rem,0.8vh,0.6rem)] list-none p-0 m-0">
                         {life.filter((_, i) => i !== 2).map((l, i) => (
                           <li key={i} className="flex gap-3 font-sans text-[clamp(0.92rem,1vw,1.1rem)] leading-snug text-white/80">
                             <span aria-hidden="true" className="text-[0.72rem] tracking-[0.24em] uppercase text-white/40 pt-[0.3em]">
