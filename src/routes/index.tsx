@@ -317,7 +317,7 @@ export function Index() {
 
         {/* Headline — fills entire remaining screen, 3 rows, golden ratio */}
         <div className="flex flex-1 items-end px-4 pb-[6.18vh]">
-          <h1 className="font-sans w-full text-[13.5vw] font-semibold leading-[0.9] tracking-[-0.05em] uppercase text-white">
+          <h1 className="font-sans w-full text-[16.5vw] font-semibold leading-[0.88] tracking-[-0.055em] uppercase text-white">
             <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
             <span className="block whitespace-nowrap">BUILDING THE</span>
             <span className="block whitespace-nowrap">FUTURE OF</span>
