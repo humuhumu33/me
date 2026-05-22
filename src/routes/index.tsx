@@ -16,7 +16,7 @@ import {
 
 const currentRoles = experience.filter((e) => e.current);
 const nowStatement =
-  "Currently building Hologram Technologies (software-defined compute for local AI) and contributing to UOR Foundation (content-addressed open data). Investing thesis: deep tech, AI infrastructure, and real-world assets.";
+  "Currently building Hologram Technologies (software-defined compute for sovereign AI) and contributing to UOR Foundation (content-addressed open data). Investing thesis: deep tech, AI infrastructure, and real-world assets.";
 
 const personSchema = {
   "@context": "https://schema.org",
@@ -120,7 +120,7 @@ export const Route = createFileRoute("/")({
       {
         name: "keywords",
         content:
-          "Ilya Paveliev, Hologram Technologies, Arete Capital, UOR Foundation, deep tech, AI infrastructure, local AI, real-world assets, venture capital",
+          "Ilya Paveliev, Hologram Technologies, Arete Capital, UOR Foundation, deep tech, AI infrastructure, sovereign AI, real-world assets, venture capital",
       },
       // Open Graph
       { property: "og:type", content: "profile" },
@@ -345,7 +345,7 @@ export function Index() {
           <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
           Building the future
           <br />
-          of local AI.
+          of sovereign AI.
           <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
         </h1>
       </div>
