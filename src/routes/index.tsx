@@ -316,8 +316,8 @@ export function Index() {
         </header>
 
         {/* Headline — fills remaining screen, 3 rows, golden-ratio rhythm */}
-        <div className="flex flex-1 items-end px-5 pb-[6.18vh] min-h-0">
-          <h1 className="font-sans w-full font-semibold leading-[0.92] tracking-[-0.055em] uppercase text-white text-[13vw]">
+        <div className="flex flex-1 px-5 pt-[3.82vh] pb-[6.18vh] min-h-0">
+          <h1 className="font-sans w-full h-full flex flex-col justify-between font-semibold leading-[0.85] tracking-[-0.06em] uppercase text-white text-[16vw]">
             <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
             <span className="block whitespace-nowrap">BUILDING</span>
             <span className="block whitespace-nowrap">THE FUTURE OF</span>
@@ -326,6 +326,7 @@ export function Index() {
             <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
           </h1>
         </div>
+
 
 
 
