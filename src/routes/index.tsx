@@ -353,9 +353,9 @@ export function Index() {
       </div>
 
       {/* Bottom-right meta */}
-      <div className="absolute bottom-0 right-0 z-10 hidden md:flex flex-col items-end gap-2 px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)] text-[0.68rem] tracking-[0.24em] uppercase text-white/55">
+      <div className="absolute bottom-0 right-0 z-10 hidden md:flex flex-col items-end gap-3 px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)] font-sans text-[clamp(0.85rem,1vw,1.1rem)] font-medium tracking-[0.2em] uppercase text-white/70">
         <a href={`mailto:${person.email}`} className="hover:text-white transition-colors">{person.email}</a>
-        <div className="flex gap-5">
+        <div className="flex gap-6">
           <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
           <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X</a>
         </div>
