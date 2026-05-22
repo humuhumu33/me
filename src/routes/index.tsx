@@ -299,38 +299,25 @@ export function Index() {
 
       {/* =================== MOBILE LAYOUT =================== */}
       <div className="relative z-10 md:hidden flex flex-col min-h-svh">
-        {/* Mobile header */}
-        <header className="flex items-center justify-between px-5 pt-5 pb-3">
-          <a href="/" className="font-sans text-[0.95rem] font-semibold tracking-[0.18em] uppercase text-white">
-            Ilya<span className="opacity-60">_</span>Paveliev
+        {/* Mobile header — logo + "+" menu */}
+        <header className="flex items-center justify-between px-5 pt-5">
+          <a href="/" className="font-sans text-[1.05rem] font-semibold tracking-[0.18em] uppercase text-white">
+            ILYA<span className="opacity-60">_</span>PAVELIEV
           </a>
-          <span className="font-sans text-[0.6rem] font-medium tracking-[0.32em] uppercase text-white/55">
-            Co-founder · Investor
-          </span>
+          <button
+            type="button"
+            aria-label="Open menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(true)}
+            className="flex h-11 w-11 items-center justify-center text-white text-[2rem] leading-none -mr-2 active:opacity-60 transition-opacity"
+          >
+            +
+          </button>
         </header>
 
-        {/* Big stacked section nav — fills mid screen */}
-        <nav aria-label="Sections" className="flex flex-1 flex-col justify-center border-y border-white/10 divide-y divide-white/10">
-          {navItems.map((n, i) => (
-            <button
-              key={n.id}
-              onClick={() => setTab(n.id)}
-              className="group relative flex items-baseline justify-between gap-4 px-5 py-[clamp(1.25rem,3.2vh,2.25rem)] text-left transition-colors active:bg-white active:text-black"
-            >
-              <span className="font-sans text-[0.6rem] tracking-[0.32em] uppercase text-white/40 group-active:text-black/60">
-                0{i + 1}
-              </span>
-              <span className="flex-1 font-sans text-[clamp(2.6rem,13vw,4.5rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase text-white group-active:text-black">
-                {n.label}
-              </span>
-              <span aria-hidden="true" className="font-sans text-[1.5rem] leading-none text-white/40 group-active:text-black/70">↗</span>
-            </button>
-          ))}
-        </nav>
-
-        {/* Headline — forced 3 rows, golden-ratio scale (φ ≈ 1.618) */}
-        <div className="px-5 pt-[clamp(1.236rem,3.82vh,2rem)]">
-          <h1 className="font-sans text-[clamp(3rem,13.2vw,6rem)] font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white">
+        {/* Headline — fills entire remaining screen, 3 rows, dynamic */}
+        <div className="flex flex-1 items-end px-5 pb-[clamp(1.5rem,3.5vh,2.5rem)]">
+          <h1 className="font-sans text-[clamp(3.25rem,14.8vw,7rem)] font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white">
             <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
             BUILDING THE
             <br />
@@ -340,14 +327,50 @@ export function Index() {
             <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
           </h1>
         </div>
-
-        {/* Social row */}
-        <div className="mt-auto flex items-center justify-between border-t border-white/10 px-5 py-4 font-sans text-[0.65rem] font-medium tracking-[0.32em] uppercase text-white/60">
-          <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-          <span aria-hidden="true" className="text-white/25">/</span>
-          <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X · Twitter</a>
-        </div>
       </div>
+
+      {/* Mobile fullscreen menu */}
+      {menuOpen && (
+        <div className="md:hidden fixed inset-0 z-40 bg-black text-white flex flex-col animate-in fade-in duration-200">
+          <header className="flex items-center justify-between px-5 pt-5">
+            <span className="font-sans text-[1.05rem] font-semibold tracking-[0.18em] uppercase text-white">
+              ILYA<span className="opacity-60">_</span>PAVELIEV
+            </span>
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={() => setMenuOpen(false)}
+              className="flex h-11 w-11 items-center justify-center text-white text-[2rem] leading-none -mr-2 rotate-45 active:opacity-60 transition-opacity"
+            >
+              +
+            </button>
+          </header>
+
+          <nav aria-label="Sections" className="flex flex-1 flex-col justify-center divide-y divide-white/10 border-y border-white/10">
+            {navItems.map((n, i) => (
+              <button
+                key={n.id}
+                onClick={() => { setMenuOpen(false); setTab(n.id); }}
+                className="group relative flex items-baseline justify-between gap-4 px-5 py-[clamp(1.25rem,3.6vh,2.5rem)] text-left transition-colors active:bg-white active:text-black"
+              >
+                <span className="font-sans text-[0.6rem] tracking-[0.32em] uppercase text-white/40 group-active:text-black/60">
+                  0{i + 1}
+                </span>
+                <span className="flex-1 font-sans text-[clamp(2.6rem,13vw,4.5rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase text-white group-active:text-black">
+                  {n.label}
+                </span>
+                <span aria-hidden="true" className="font-sans text-[1.5rem] leading-none text-white/40 group-active:text-black/70">↗</span>
+              </button>
+            ))}
+          </nav>
+
+          <div className="flex items-center justify-between px-5 py-5 font-sans text-[0.65rem] font-medium tracking-[0.32em] uppercase text-white/60">
+            <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+            <span aria-hidden="true" className="text-white/25">/</span>
+            <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X · Twitter</a>
+          </div>
+        </div>
+      )}
 
       {/* =================== DESKTOP LAYOUT =================== */}
       {/* Top nav */}
