@@ -22,7 +22,6 @@ export const Route = createFileRoute("/api/profile")({
             familyName: person.familyName,
             jobTitle: person.jobTitle,
             description: person.description,
-            email: `mailto:${person.email}`,
             url: `${SITE_URL}/`,
             image: `${SITE_URL}${PORTRAIT_PATH}`,
             sameAs: person.sameAs,
