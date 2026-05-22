@@ -259,7 +259,7 @@ export function Index() {
 
       {/* Top nav */}
       <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-[clamp(1.25rem,3vw,3rem)] py-[clamp(1rem,2vh,1.75rem)]">
-        <a href="/" className="font-sans text-[clamp(1.1rem,1.5vw,1.6rem)] font-semibold tracking-[0.18em] uppercase text-white">
+        <a href="/" className="font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.18em] uppercase text-white">
           Ilya<span className="opacity-60">_</span>Paveliev
         </a>
         {/* Desktop nav */}
@@ -269,7 +269,7 @@ export function Index() {
               key={n.id}
               onClick={() => setTab(n.id)}
               aria-current={tab === n.id ? "page" : undefined}
-              className="group relative font-sans text-[clamp(1rem,1.25vw,1.35rem)] font-semibold tracking-[0.2em] uppercase text-white/90 hover:text-white transition-colors"
+              className="group relative font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.2em] uppercase text-white/90 hover:text-white transition-colors"
             >
               {n.label}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
