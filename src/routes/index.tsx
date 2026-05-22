@@ -262,7 +262,8 @@ export function Index() {
         <a href="/" className="font-sans text-[clamp(0.95rem,1.1vw,1.15rem)] font-medium tracking-[0.18em] uppercase text-white">
           Ilya<span className="opacity-50">_</span>Paveliev
         </a>
-        <nav aria-label="Sections" className="flex items-center gap-[clamp(1.5rem,2.8vw,3.2rem)]">
+        {/* Desktop nav */}
+        <nav aria-label="Sections" className="hidden md:flex items-center gap-[clamp(1.5rem,2.8vw,3.2rem)]">
           {navItems.map((n) => (
             <button
               key={n.id}
@@ -282,7 +283,67 @@ export function Index() {
             <span className="text-[0.7rem]" aria-hidden="true">{dark ? "○" : "●"}</span>
           </button>
         </nav>
+
+        {/* Mobile menu trigger */}
+        <button
+          onClick={() => setMenuOpen(true)}
+          aria-label="Open menu"
+          aria-expanded={menuOpen}
+          className="md:hidden flex items-center gap-2.5 font-sans text-[0.72rem] font-medium tracking-[0.28em] uppercase text-white"
+        >
+          <span className="flex flex-col gap-1.5" aria-hidden="true">
+            <span className="block h-px w-5 bg-white" />
+            <span className="block h-px w-5 bg-white" />
+          </span>
+          Menu
+        </button>
       </header>
+
+      {/* Mobile fullscreen menu */}
+      {menuOpen && (
+        <div
+          className="md:hidden fixed inset-0 z-40 flex flex-col bg-black animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+        >
+          <div className="flex items-center justify-between px-6 py-[1.25rem]">
+            <span className="font-sans text-[0.78rem] font-medium tracking-[0.18em] uppercase text-white">
+              Ilya<span className="opacity-50">_</span>Paveliev
+            </span>
+            <button
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+              className="flex items-center gap-2.5 font-sans text-[0.72rem] font-medium tracking-[0.28em] uppercase text-white"
+            >
+              Close
+              <span aria-hidden="true" className="text-lg leading-none">×</span>
+            </button>
+          </div>
+          <nav className="flex flex-1 flex-col justify-center gap-2 px-6" aria-label="Sections">
+            {navItems.map((n, i) => (
+              <button
+                key={n.id}
+                onClick={() => { setMenuOpen(false); setTab(n.id); }}
+                className="group flex items-baseline gap-4 py-3 text-left"
+              >
+                <span className="font-sans text-[0.65rem] tracking-[0.32em] uppercase text-white/40 w-8">
+                  0{i + 1}
+                </span>
+                <span className="font-sans text-[14vw] font-semibold leading-[0.95] tracking-tight uppercase text-white">
+                  {n.label}
+                </span>
+              </button>
+            ))}
+          </nav>
+          <div className="border-t border-white/10 px-6 py-5 flex items-center justify-between text-[0.65rem] tracking-[0.28em] uppercase text-white/55">
+            <a href={`mailto:${person.email}`} className="hover:text-white transition-colors">Email</a>
+            <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+            <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X</a>
+          </div>
+        </div>
+      )}
+
 
       {/* Bottom-left headline */}
       <div className="absolute bottom-0 left-0 z-10 max-w-[min(92vw,68rem)] px-[clamp(1.5rem,3.82vw,4rem)] pb-[clamp(2rem,6vh,4.5rem)]">
