@@ -248,18 +248,11 @@ export function Index() {
         <a itemProp="sameAs" rel="me" href="https://x.com/TrinityInvestor">X</a>
       </div>
 
-      {/* Full-bleed background */}
-      <div className="absolute inset-0">
-        <img
-          src={banner}
-          alt=""
-          role="presentation"
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ filter: "grayscale(0.4) brightness(0.42) contrast(1.05)" }}
-        />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.25)_35%,rgba(0,0,0,0.55)_75%,rgba(0,0,0,0.85)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_30%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.55)_100%)]" />
+      {/* Pure dark background */}
+      <div className="absolute inset-0 bg-black">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(255,255,255,0.04),transparent_55%)]" />
       </div>
+
 
       {/* Top nav */}
       <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-[clamp(1.5rem,3.82vw,4rem)] py-[clamp(1.25rem,2.36vh,2rem)]">
