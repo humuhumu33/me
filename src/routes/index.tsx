@@ -472,36 +472,59 @@ export function Index() {
                 </form>
               )}
 
-              {tab === "thinking" && (
-                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 list-none p-0 m-0">
-                  {thinking.map((p) => (
-                    <li key={p.title} itemScope itemType="https://schema.org/CreativeWork">
-                      <a
-                        href={p.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        itemProp="url"
-                        className="group relative flex flex-col overflow-hidden border border-white/10 bg-white/[0.02] transition-all hover:border-white/40 hover:-translate-y-0.5"
+              {tab === "thinking" && (() => {
+                const [featured, ...rest] = thinking;
+                const FeedCard = ({ p, large }: { p: typeof thinking[number]; large?: boolean }) => (
+                  <li className="contents" itemScope itemType="https://schema.org/CreativeWork">
+                    <a
+                      href={p.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      itemProp="url"
+                      className="group relative flex h-full w-full overflow-hidden border border-white/10 transition-all hover:border-white/40"
+                      style={{ background: p.gradient }}
+                    >
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                      <span
+                        className={`absolute top-[clamp(1rem,2vh,1.75rem)] left-[clamp(1rem,2vw,1.75rem)] tracking-[0.28em] uppercase text-white/85 ${large ? "text-[0.72rem]" : "text-[0.62rem]"}`}
+                        itemProp="genre"
                       >
-                        <div className="relative h-28 w-full overflow-hidden" style={{ background: p.gradient }}>
-                          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]" />
-                          <div className="absolute inset-0 flex items-end justify-between gap-3 p-3 pr-12">
-                            <span className="text-[0.6rem] tracking-[0.28em] uppercase text-white/85" itemProp="genre">{p.kind}</span>
-                            <span className="font-sans text-white/90 text-sm tracking-tight truncate" itemProp="publisher">{p.venue}</span>
-                          </div>
-                          <span aria-hidden="true" className="absolute top-3 right-3 flex h-7 w-7 items-center justify-center rounded-full bg-black/70 text-white text-xs transition-transform group-hover:rotate-[-12deg]">↗</span>
-                        </div>
-                        <div className="flex flex-1 flex-col justify-between p-4">
-                          <h3 className="font-sans text-[0.98rem] font-medium leading-snug text-white line-clamp-2 m-0" itemProp="name">{p.title}</h3>
-                          <p className="mt-2 text-[0.62rem] tracking-[0.28em] uppercase text-white/45">
-                            <time dateTime={p.dateISO} itemProp="datePublished">{p.date}</time>
-                          </p>
-                        </div>
-                      </a>
+                        {p.kind}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className={`absolute top-[clamp(0.75rem,1.6vh,1.25rem)] right-[clamp(0.75rem,1.6vw,1.25rem)] flex items-center justify-center rounded-full border border-white/60 text-white transition-transform group-hover:rotate-[-12deg] ${large ? "h-12 w-12 text-lg" : "h-8 w-8 text-xs"}`}
+                      >
+                        ↗
+                      </span>
+                      <div className={`relative mt-auto flex w-full flex-col gap-2 ${large ? "p-[clamp(1.5rem,2.4vw,2.5rem)]" : "p-[clamp(0.9rem,1.4vw,1.25rem)]"}`}>
+                        <h3
+                          className={`font-sans font-medium leading-[1.05] tracking-[-0.01em] text-white m-0 line-clamp-3 ${large ? "text-[clamp(1.6rem,2.6vw,2.6rem)]" : "text-[clamp(0.95rem,1.05vw,1.15rem)]"}`}
+                          itemProp="name"
+                        >
+                          {p.title}
+                        </h3>
+                        <p className={`tracking-[0.28em] uppercase text-white/55 m-0 ${large ? "text-[0.68rem]" : "text-[0.56rem]"}`}>
+                          <span itemProp="publisher">{p.venue}</span>
+                          <span className="mx-2 opacity-50">·</span>
+                          <time dateTime={p.dateISO} itemProp="datePublished">{p.date}</time>
+                        </p>
+                      </div>
+                    </a>
+                  </li>
+                );
+                return (
+                  <ul className="grid h-full grid-cols-1 lg:grid-cols-2 gap-[clamp(0.75rem,1.2vw,1.25rem)] list-none p-0 m-0">
+                    <FeedCard p={featured} large />
+                    <li className="contents">
+                      <ul className="grid h-full grid-cols-2 grid-rows-2 gap-[clamp(0.75rem,1.2vw,1.25rem)] list-none p-0 m-0">
+                        {rest.map((p) => <FeedCard key={p.title} p={p} />)}
+                      </ul>
                     </li>
-                  ))}
-                </ul>
-              )}
+                  </ul>
+                );
+              })()}
 
               {tab === "life" && (
                 <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-8 lg:gap-12 items-start">
