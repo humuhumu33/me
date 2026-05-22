@@ -397,37 +397,93 @@ export function Index() {
             {/* Panel body */}
             <div className="flex-1 min-h-0 overflow-y-auto px-[clamp(1.5rem,2.6vw,3rem)] py-[clamp(1.25rem,2.4vh,2rem)]">
               {tab === "contact" && (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                  <div className="space-y-8">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    const f = e.currentTarget as HTMLFormElement;
+                    const data = new FormData(f);
+                    const name = String(data.get("name") || "");
+                    const email = String(data.get("email") || "");
+                    const topic = String(data.get("topic") || "Other");
+                    const message = String(data.get("message") || "");
+                    const subject = encodeURIComponent(`[${topic}] ${name}`);
+                    const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
+                    window.location.href = `mailto:${person.email}?subject=${subject}&body=${body}`;
+                  }}
+                  className="grid h-full grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-[clamp(2rem,4vw,5rem)]"
+                >
+                  {/* Left: title + intro */}
+                  <div className="flex flex-col justify-between">
                     <div>
-                      <h3 className="font-sans text-[0.65rem] tracking-[0.28em] uppercase text-white/50 mb-3">Email</h3>
-                      <a href={`mailto:${person.email}`} className="font-sans text-[clamp(1.1rem,1.3vw,1.4rem)] font-medium text-white hover:text-white/70 transition-colors">
-                        {person.email}
-                      </a>
+                      <h3 className="font-sans font-medium uppercase leading-[0.95] tracking-[-0.02em] text-white text-[clamp(3rem,6vw,6.5rem)] m-0">
+                        Get in<br />touch
+                      </h3>
+                      <p className="mt-[clamp(1.5rem,3vh,2.5rem)] max-w-[36ch] font-sans text-[clamp(1rem,1.15vw,1.25rem)] leading-relaxed text-white/70">
+                        I get a lot of messages and can't reply to all of them, but I truly appreciate the outreach.
+                      </p>
                     </div>
-                    <div>
-                      <h3 className="font-sans text-[0.65rem] tracking-[0.28em] uppercase text-white/50 mb-3">Social</h3>
-                      <div className="flex flex-wrap gap-3">
-                        {person.sameAs.map((url) => (
-                          <a
-                            key={url}
-                            href={url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-sans text-[0.82rem] font-medium tracking-[0.12em] uppercase text-white/80 border border-white/15 px-4 py-2 hover:border-white/40 hover:text-white transition-colors"
-                          >
-                            {url.includes("linkedin") ? "LinkedIn" : url.includes("x.com") ? "X" : url.includes("substack") ? "Substack" : url.includes("uor") ? "UOR" : "Link"}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-center border border-white/10 bg-white/[0.02] p-8">
-                    <p className="font-sans text-[clamp(1rem,1.1vw,1.15rem)] leading-relaxed text-white/70 text-center max-w-[32ch]">
-                      Open to advisory roles, investment opportunities, and collaborations in deep tech and AI infrastructure.
+                    <p className="mt-8 font-sans text-[0.7rem] tracking-[0.28em] uppercase text-white/40">
+                      Or email <a href={`mailto:${person.email}`} className="text-white/70 hover:text-white transition-colors">{person.email}</a>
                     </p>
                   </div>
-                </div>
+
+                  {/* Right: form fields */}
+                  <div className="flex flex-col gap-[clamp(1.5rem,3vh,2.5rem)]">
+                    <label className="block">
+                      <span className="sr-only">Full name</span>
+                      <input
+                        name="name"
+                        type="text"
+                        required
+                        placeholder="FULL NAME"
+                        className="w-full bg-transparent border-0 border-b border-white/25 pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] uppercase text-white placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
+                      />
+                    </label>
+                    <label className="block">
+                      <span className="sr-only">Email</span>
+                      <input
+                        name="email"
+                        type="email"
+                        required
+                        placeholder="EMAIL"
+                        className="w-full bg-transparent border-0 border-b border-white/25 pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] uppercase text-white placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
+                      />
+                    </label>
+
+                    <fieldset className="border-0 p-0 m-0">
+                      <legend className="sr-only">Topic</legend>
+                      <div className="flex flex-wrap gap-3">
+                        {["Press inquiry", "Speaking engagement", "Investment opportunity", "Partnership", "Other"].map((t, i) => (
+                          <label key={t} className="cursor-pointer">
+                            <input type="radio" name="topic" value={t} defaultChecked={i === 0} className="peer sr-only" />
+                            <span className="inline-block rounded-full border border-white/25 px-5 py-2.5 font-sans text-[0.8rem] font-medium tracking-[0.18em] uppercase text-white/70 transition-colors hover:border-white/60 hover:text-white peer-checked:border-white peer-checked:bg-white peer-checked:text-black">
+                              {t}
+                            </span>
+                          </label>
+                        ))}
+                      </div>
+                    </fieldset>
+
+                    <label className="flex flex-1 min-h-0 flex-col">
+                      <span className="sr-only">Message</span>
+                      <textarea
+                        name="message"
+                        required
+                        placeholder="MESSAGE"
+                        className="w-full flex-1 min-h-[10rem] resize-none border border-white/20 bg-white/[0.02] p-5 font-sans text-[clamp(0.95rem,1vw,1.05rem)] leading-relaxed text-white placeholder:text-white/45 placeholder:tracking-[0.18em] placeholder:uppercase focus:border-white focus:outline-none transition-colors"
+                      />
+                    </label>
+
+                    <div className="flex items-center justify-end">
+                      <button
+                        type="submit"
+                        className="rounded-full border border-white px-10 py-3.5 font-sans text-[0.85rem] font-semibold tracking-[0.22em] uppercase text-white transition-colors hover:bg-white hover:text-black"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
               )}
 
               {tab === "thinking" && (
