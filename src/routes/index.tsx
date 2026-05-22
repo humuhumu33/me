@@ -172,7 +172,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type Tab = "experience" | "thinking" | "life";
+type Tab = "experience" | "thinking" | "life" | "contact";
 
 function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
   // Leading separator so DOM textContent reads "Hologram Technologies / 2025 —"
@@ -227,9 +227,9 @@ export function Index() {
   }, []);
 
   const navItems: { id: Tab; label: string }[] = [
-    { id: "experience", label: "Experience" },
-    { id: "thinking", label: "Feed" },
-    { id: "life", label: "Bio" },
+    { id: "life", label: "BIO" },
+    { id: "thinking", label: "FEED" },
+    { id: "contact", label: "CONTACT" },
   ];
 
   return (
@@ -375,14 +375,14 @@ export function Index() {
             <header className="flex items-center justify-between border-b border-white/10 px-[clamp(1.5rem,2.6vw,3rem)] py-[clamp(1rem,1.8vh,1.6rem)]">
               <div className="flex items-baseline gap-4">
                 <span className="font-sans text-[0.7rem] tracking-[0.32em] uppercase text-white/50">
-                  {tab === "experience" && "01 / Experience"}
+                  {tab === "life" && "01 / Bio"}
                   {tab === "thinking" && "02 / Feed"}
-                  {tab === "life" && "03 / Bio"}
+                  {tab === "contact" && "03 / Contact"}
                 </span>
                 <h2 className="font-sans text-[clamp(1.1rem,1.4vw,1.6rem)] font-medium tracking-[-0.01em] uppercase text-white">
-                  {tab === "experience" && "Selected work"}
-                  {tab === "thinking" && "Writing & talks"}
                   {tab === "life" && "Beyond the desk"}
+                  {tab === "thinking" && "Writing & talks"}
+                  {tab === "contact" && "Get in touch"}
                 </h2>
               </div>
               <button
@@ -396,43 +396,38 @@ export function Index() {
 
             {/* Panel body */}
             <div className="flex-1 min-h-0 overflow-y-auto px-[clamp(1.5rem,2.6vw,3rem)] py-[clamp(1.25rem,2.4vh,2rem)]">
-              {tab === "experience" && (
-                <ol className="divide-y divide-white/10 list-none p-0 m-0">
-                  {experience.map((e) => (
-                    <li
-                      key={e.org}
-                      className="grid grid-cols-[1fr_auto] gap-6 py-4"
-                      itemScope
-                      itemType="https://schema.org/OrganizationRole"
-                    >
-                      <div className="min-w-0">
-                        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                          <h3
-                            className="font-sans text-[clamp(1rem,1.15vw,1.25rem)] font-medium tracking-tight text-white m-0"
-                            itemScope
-                            itemType="https://schema.org/Organization"
-                            itemProp="worksFor"
+              {tab === "contact" && (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                  <div className="space-y-8">
+                    <div>
+                      <h3 className="font-sans text-[0.65rem] tracking-[0.28em] uppercase text-white/50 mb-3">Email</h3>
+                      <a href={`mailto:${person.email}`} className="font-sans text-[clamp(1.1rem,1.3vw,1.4rem)] font-medium text-white hover:text-white/70 transition-colors">
+                        {person.email}
+                      </a>
+                    </div>
+                    <div>
+                      <h3 className="font-sans text-[0.65rem] tracking-[0.28em] uppercase text-white/50 mb-3">Social</h3>
+                      <div className="flex flex-wrap gap-3">
+                        {person.sameAs.map((url) => (
+                          <a
+                            key={url}
+                            href={url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-sans text-[0.82rem] font-medium tracking-[0.12em] uppercase text-white/80 border border-white/15 px-4 py-2 hover:border-white/40 hover:text-white transition-colors"
                           >
-                            {e.orgUrl ? (
-                              <a href={e.orgUrl} target="_blank" rel="noopener noreferrer" itemProp="url" className="hover:text-white/70 transition-colors">
-                                <span itemProp="name">{e.org}</span>
-                              </a>
-                            ) : (
-                              <span itemProp="name">{e.org}</span>
-                            )}
-                          </h3>
-                          <span className="text-[0.65rem] tracking-[0.28em] uppercase text-white/50" itemProp="roleName">
-                            {e.role}
-                          </span>
-                        </div>
-                        <p className="mt-1 text-[0.88rem] leading-snug text-white/60 truncate">{e.note}</p>
+                            {url.includes("linkedin") ? "LinkedIn" : url.includes("x.com") ? "X" : url.includes("substack") ? "Substack" : url.includes("uor") ? "UOR" : "Link"}
+                          </a>
+                        ))}
                       </div>
-                      <span className="self-center font-sans text-[0.78rem] text-white/55 tabular-nums">
-                        <YearsTime entry={e} />
-                      </span>
-                    </li>
-                  ))}
-                </ol>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center border border-white/10 bg-white/[0.02] p-8">
+                    <p className="font-sans text-[clamp(1rem,1.1vw,1.15rem)] leading-relaxed text-white/70 text-center max-w-[32ch]">
+                      Open to advisory roles, investment opportunities, and collaborations in deep tech and AI infrastructure.
+                    </p>
+                  </div>
+                </div>
               )}
 
               {tab === "thinking" && (
