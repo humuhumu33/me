@@ -218,7 +218,8 @@ export function Index() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setTab(null);
+      if (e.key === "Escape") { setTab(null); setMenuOpen(false); }
+
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
