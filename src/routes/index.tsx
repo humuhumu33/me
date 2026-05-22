@@ -317,12 +317,11 @@ export function Index() {
 
         {/* Headline — fills remaining screen, 3 rows, golden-ratio rhythm */}
         <div className="flex flex-1 items-end px-5 pb-[6.18vh] min-h-0">
-          <h1 className="font-sans w-full font-semibold leading-[0.9] tracking-[-0.06em] uppercase text-white text-[13.8vw]">
+          <h1 className="font-sans w-full font-semibold leading-[0.9] tracking-[-0.06em] uppercase text-white text-[14.8vw]">
             <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
-            <span className="block whitespace-nowrap">BUILDING</span>
-            <span className="block whitespace-nowrap">THE FUTURE OF</span>
-            <span className="block whitespace-nowrap">SOVEREIGN</span>
-            <span className="block whitespace-nowrap">AI</span>
+            <span className="block whitespace-nowrap">BUILDING THE</span>
+            <span className="block whitespace-nowrap">FUTURE OF</span>
+            <span className="block whitespace-nowrap">SOVEREIGN AI</span>
             <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
           </h1>
         </div>
