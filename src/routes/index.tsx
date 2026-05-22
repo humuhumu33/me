@@ -232,7 +232,7 @@ export function Index() {
   ];
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-black text-white">
+    <main className="relative w-screen bg-black text-white min-h-svh md:h-screen md:overflow-hidden">
       <p className="sr-only">
         Updated <time dateTime={CONTENT_UPDATED_AT}>{CONTENT_UPDATED_AT}</time>. Structured data is
         available at <a href="/api/profile.json">/api/profile.json</a> and{" "}
@@ -246,7 +246,7 @@ export function Index() {
         <span itemProp="jobTitle">{person.jobTitle}</span>
         <span itemProp="description">{person.description}</span>
         <a itemProp="image" href={`${SITE_URL}${PORTRAIT_PATH}`}>{PORTRAIT_ALT}</a>
-        
+
         <a itemProp="sameAs" rel="me" href="https://www.linkedin.com/in/trinityinvestor/">LinkedIn</a>
         <a itemProp="sameAs" rel="me" href="https://x.com/TrinityInvestor">X</a>
       </div>
@@ -256,14 +256,61 @@ export function Index() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(255,255,255,0.04),transparent_55%)]" />
       </div>
 
+      {/* =================== MOBILE LAYOUT =================== */}
+      <div className="relative z-10 md:hidden flex flex-col min-h-svh">
+        {/* Mobile header */}
+        <header className="flex items-center justify-between px-5 pt-5 pb-3">
+          <a href="/" className="font-sans text-[0.95rem] font-semibold tracking-[0.18em] uppercase text-white">
+            Ilya<span className="opacity-60">_</span>Paveliev
+          </a>
+          <span className="font-sans text-[0.6rem] font-medium tracking-[0.32em] uppercase text-white/55">
+            Co-founder · Investor
+          </span>
+        </header>
 
+        {/* Big stacked section nav — fills mid screen */}
+        <nav aria-label="Sections" className="flex flex-1 flex-col justify-center border-y border-white/10 divide-y divide-white/10">
+          {navItems.map((n, i) => (
+            <button
+              key={n.id}
+              onClick={() => setTab(n.id)}
+              className="group relative flex items-baseline justify-between gap-4 px-5 py-[clamp(1.25rem,3.2vh,2.25rem)] text-left transition-colors active:bg-white active:text-black"
+            >
+              <span className="font-sans text-[0.6rem] tracking-[0.32em] uppercase text-white/40 group-active:text-black/60">
+                0{i + 1}
+              </span>
+              <span className="flex-1 font-sans text-[clamp(2.6rem,13vw,4.5rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase text-white group-active:text-black">
+                {n.label}
+              </span>
+              <span aria-hidden="true" className="font-sans text-[1.5rem] leading-none text-white/40 group-active:text-black/70">↗</span>
+            </button>
+          ))}
+        </nav>
+
+        {/* Headline */}
+        <div className="px-5 pt-[clamp(1.25rem,3vh,2rem)]">
+          <h1 className="font-sans text-[clamp(2.4rem,10.5vw,5rem)] font-semibold leading-[0.95] tracking-[-0.035em] uppercase text-white">
+            <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
+            Building the future of sovereign AI.
+            <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
+          </h1>
+        </div>
+
+        {/* Social row */}
+        <div className="mt-auto flex items-center justify-between border-t border-white/10 px-5 py-4 font-sans text-[0.65rem] font-medium tracking-[0.32em] uppercase text-white/60">
+          <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+          <span aria-hidden="true" className="text-white/25">/</span>
+          <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X · Twitter</a>
+        </div>
+      </div>
+
+      {/* =================== DESKTOP LAYOUT =================== */}
       {/* Top nav */}
-      <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-[clamp(1.25rem,3vw,3rem)] py-[clamp(1rem,2vh,1.75rem)]">
+      <header className="hidden md:flex absolute inset-x-0 top-0 z-20 items-center justify-between px-[clamp(1.25rem,3vw,3rem)] py-[clamp(1rem,2vh,1.75rem)]">
         <a href="/" className="font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.18em] uppercase text-white">
           Ilya<span className="opacity-60">_</span>Paveliev
         </a>
-        {/* Desktop nav */}
-        <nav aria-label="Sections" className="hidden md:flex items-center gap-[clamp(2.5rem,4.5vw,5rem)]">
+        <nav aria-label="Sections" className="flex items-center gap-[clamp(2.5rem,4.5vw,5rem)]">
           {navItems.map((n) => (
             <button
               key={n.id}
@@ -276,77 +323,16 @@ export function Index() {
             </button>
           ))}
         </nav>
-
-        {/* Mobile menu trigger */}
-        <button
-          onClick={() => setMenuOpen(true)}
-          aria-label="Open menu"
-          aria-expanded={menuOpen}
-          className="md:hidden flex items-center gap-2.5 font-sans text-[0.7rem] font-medium tracking-[0.28em] uppercase text-white"
-        >
-          <span className="flex flex-col gap-1.5" aria-hidden="true">
-            <span className="block h-px w-5 bg-white" />
-            <span className="block h-px w-5 bg-white" />
-          </span>
-          Menu
-        </button>
       </header>
 
-      {/* Mobile fullscreen menu */}
-      {menuOpen && (
-        <div
-          className="md:hidden fixed inset-0 z-40 flex flex-col bg-black animate-in fade-in duration-200"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menu"
-        >
-          <div className="flex items-center justify-between px-6 py-[1.25rem]">
-            <span className="font-sans text-[0.78rem] font-medium tracking-[0.18em] uppercase text-white">
-              Ilya<span className="opacity-50">_</span>Paveliev
-            </span>
-            <button
-              onClick={() => setMenuOpen(false)}
-              aria-label="Close menu"
-              className="flex items-center gap-2.5 font-sans text-[0.72rem] font-medium tracking-[0.28em] uppercase text-white"
-            >
-              Close
-              <span aria-hidden="true" className="text-lg leading-none">×</span>
-            </button>
-          </div>
-          <nav className="flex flex-1 flex-col justify-center gap-2 px-6" aria-label="Sections">
-            {navItems.map((n, i) => (
-              <button
-                key={n.id}
-                onClick={() => { setMenuOpen(false); setTab(n.id); }}
-                className="group flex items-baseline gap-4 py-3 text-left"
-              >
-                <span className="font-sans text-[0.65rem] tracking-[0.32em] uppercase text-white/40 w-8">
-                  0{i + 1}
-                </span>
-                <span className="font-sans text-[14vw] font-semibold leading-[0.95] tracking-tight uppercase text-white">
-                  {n.label}
-                </span>
-              </button>
-            ))}
-          </nav>
-          <div className="border-t border-white/10 px-6 py-5 flex items-center justify-center gap-8 text-[0.65rem] tracking-[0.28em] uppercase text-white/55">
-            <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-            <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X</a>
-          </div>
-        </div>
-      )}
-
-
       {/* Bottom-left headline */}
-      <div className="absolute bottom-0 left-0 right-0 md:right-auto z-10 md:max-w-[min(94vw,72rem)] px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(5rem,5.5vh,3.5rem)] md:pb-[clamp(2rem,5.5vh,3.5rem)]">
-        <h1 className="font-sans text-[clamp(2.6rem,11vw,9rem)] font-semibold leading-[0.95] md:leading-[0.92] tracking-[-0.035em] uppercase text-white">
-          <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
+      <div className="hidden md:block absolute bottom-0 left-0 z-10 max-w-[min(94vw,72rem)] px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)]">
+        <h1 className="font-sans text-[clamp(3.2rem,11vw,9rem)] font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white">
           BUILDING THE
           <br />
           FUTURE OF
           <br />
           SOVEREIGN AI.
-          <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
         </h1>
       </div>
 
@@ -358,11 +344,7 @@ export function Index() {
         </div>
       </div>
 
-      {/* Bottom social links (mobile) */}
-      <div className="absolute bottom-0 inset-x-0 z-10 md:hidden flex items-center justify-between px-[clamp(1.25rem,3vw,3rem)] pb-[1.5rem] font-sans text-[0.7rem] font-medium tracking-[0.28em] uppercase text-white/60">
-        <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-        <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X / Twitter</a>
-      </div>
+
 
 
       {/* Overlay panel — opens for Experience / Feed / Bio */}
