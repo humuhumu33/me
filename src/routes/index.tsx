@@ -298,9 +298,9 @@ export function Index() {
       </div>
 
       {/* =================== MOBILE LAYOUT =================== */}
-      <div className="relative z-10 md:hidden flex flex-col min-h-svh">
+      <div className="relative z-10 md:hidden flex flex-col h-svh overflow-hidden">
         {/* Mobile header — logo + "+" menu */}
-        <header className="flex items-center justify-between px-5 pt-5">
+        <header className="flex items-center justify-between px-5 pt-[3.82vh] shrink-0">
           <a href="/" className="font-sans text-[1.55rem] font-semibold tracking-[0.16em] uppercase text-white leading-none">
             ILYA<span className="opacity-60">_</span>PAVELIEV
           </a>
@@ -315,9 +315,9 @@ export function Index() {
           </button>
         </header>
 
-        {/* Headline — fills entire remaining screen, 3 rows, golden ratio */}
-        <div className="flex flex-1 items-end px-4 pb-[6.18vh]">
-          <h1 className="font-sans w-full text-[16.5vw] font-semibold leading-[0.88] tracking-[-0.055em] uppercase text-white">
+        {/* Headline — fills remaining screen, 3 rows, golden-ratio rhythm */}
+        <div className="flex flex-1 items-end px-4 pb-[6.18vh] min-h-0">
+          <h1 className="font-sans w-full text-[15vw] font-semibold leading-[0.9] tracking-[-0.055em] uppercase text-white">
             <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
             <span className="block whitespace-nowrap">BUILDING THE</span>
             <span className="block whitespace-nowrap">FUTURE OF</span>
@@ -327,6 +327,7 @@ export function Index() {
         </div>
 
       </div>
+
 
       {/* Mobile fullscreen menu */}
       {menuOpen && (
