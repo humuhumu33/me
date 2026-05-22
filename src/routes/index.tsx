@@ -519,7 +519,7 @@ export function Index() {
                   <ul className="grid h-full grid-cols-1 lg:grid-cols-2 gap-[clamp(0.75rem,1.2vw,1.25rem)] list-none p-0 m-0">
                     <FeedCard p={featured} large />
                     <li className="contents">
-                      <ul className="grid h-full grid-cols-2 grid-rows-2 gap-[clamp(0.75rem,1.2vw,1.25rem)] list-none p-0 m-0">
+                      <ul className="grid h-full grid-cols-1 sm:grid-cols-2 sm:grid-rows-2 gap-[clamp(0.75rem,1.2vw,1.25rem)] list-none p-0 m-0">
                         {rest.map((p) => <FeedCard key={p.title} p={p} />)}
                       </ul>
                     </li>
