@@ -287,11 +287,15 @@ export function Index() {
           ))}
         </nav>
 
-        {/* Headline */}
-        <div className="px-5 pt-[clamp(1.25rem,3vh,2rem)]">
-          <h1 className="font-sans text-[clamp(2.4rem,10.5vw,5rem)] font-semibold leading-[0.95] tracking-[-0.035em] uppercase text-white">
+        {/* Headline — forced 3 rows, golden-ratio scale (φ ≈ 1.618) */}
+        <div className="px-5 pt-[clamp(1.236rem,3.82vh,2rem)]">
+          <h1 className="font-sans text-[clamp(3rem,13.2vw,6rem)] font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white">
             <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
-            Building the future of sovereign AI.
+            BUILDING THE
+            <br />
+            FUTURE OF
+            <br />
+            SOVEREIGN AI.
             <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
           </h1>
         </div>
