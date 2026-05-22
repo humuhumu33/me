@@ -259,30 +259,23 @@ export function Index() {
 
 
       {/* Top nav */}
-      <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-[clamp(1.5rem,3.82vw,4rem)] py-[clamp(1.25rem,2.36vh,2rem)]">
-        <a href="/" className="font-sans text-[clamp(0.95rem,1.1vw,1.15rem)] font-medium tracking-[0.18em] uppercase text-white">
-          Ilya<span className="opacity-50">_</span>Paveliev
+      <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-[clamp(1.25rem,3vw,3rem)] py-[clamp(1rem,2vh,1.75rem)]">
+        <a href="/" className="font-sans text-[clamp(0.78rem,0.92vw,0.98rem)] font-medium tracking-[0.24em] uppercase text-white">
+          Ilya<span className="opacity-60">_</span>Paveliev
         </a>
         {/* Desktop nav */}
-        <nav aria-label="Sections" className="hidden md:flex items-center gap-[clamp(1.5rem,2.8vw,3.2rem)]">
+        <nav aria-label="Sections" className="hidden md:flex items-center gap-[clamp(2rem,3.6vw,4rem)]">
           {navItems.map((n) => (
             <button
               key={n.id}
               onClick={() => setTab(n.id)}
               aria-current={tab === n.id ? "page" : undefined}
-              className="group relative font-sans text-[clamp(0.75rem,0.85vw,0.9rem)] font-medium tracking-[0.22em] uppercase text-white/90 hover:text-white transition-colors"
+              className="group relative font-sans text-[clamp(0.72rem,0.82vw,0.86rem)] font-medium tracking-[0.24em] uppercase text-white/85 hover:text-white transition-colors"
             >
               {n.label}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
             </button>
           ))}
-          <button
-            onClick={() => setDark((d) => !d)}
-            aria-label="Toggle theme"
-            className="ml-2 h-7 w-7 rounded-full border border-white/30 text-white/70 hover:text-white hover:border-white/70 transition-colors flex items-center justify-center"
-          >
-            <span className="text-[0.7rem]" aria-hidden="true">{dark ? "○" : "●"}</span>
-          </button>
         </nav>
 
         {/* Mobile menu trigger */}
@@ -290,7 +283,7 @@ export function Index() {
           onClick={() => setMenuOpen(true)}
           aria-label="Open menu"
           aria-expanded={menuOpen}
-          className="md:hidden flex items-center gap-2.5 font-sans text-[0.72rem] font-medium tracking-[0.28em] uppercase text-white"
+          className="md:hidden flex items-center gap-2.5 font-sans text-[0.7rem] font-medium tracking-[0.28em] uppercase text-white"
         >
           <span className="flex flex-col gap-1.5" aria-hidden="true">
             <span className="block h-px w-5 bg-white" />
