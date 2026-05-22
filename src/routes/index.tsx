@@ -422,9 +422,6 @@ export function Index() {
                         I get a lot of messages and can't reply to all of them, but I truly appreciate the outreach.
                       </p>
                     </div>
-                    <p className="mt-8 font-sans text-[0.7rem] tracking-[0.28em] uppercase text-white/40">
-                      Or email <a href={`mailto:${person.email}`} className="text-white/70 hover:text-white transition-colors">{person.email}</a>
-                    </p>
                   </div>
 
                   {/* Right: form fields */}
@@ -436,16 +433,6 @@ export function Index() {
                         type="text"
                         required
                         placeholder="FULL NAME"
-                        className="w-full bg-transparent border-0 border-b border-white/25 pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] uppercase text-white placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
-                      />
-                    </label>
-                    <label className="block">
-                      <span className="sr-only">Email</span>
-                      <input
-                        name="email"
-                        type="email"
-                        required
-                        placeholder="EMAIL"
                         className="w-full bg-transparent border-0 border-b border-white/25 pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] uppercase text-white placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
                       />
                     </label>
