@@ -315,18 +315,17 @@ export function Index() {
           </button>
         </header>
 
-        {/* Headline — fills entire remaining screen, 3 rows, dynamic */}
-        <div className="flex flex-1 items-end px-5 pb-[clamp(1.5rem,3.5vh,2.5rem)]">
-          <h1 className="font-sans text-[clamp(3.25rem,14.8vw,7rem)] font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white">
+        {/* Headline — fills entire remaining screen, 3 rows, golden ratio */}
+        <div className="flex flex-1 items-end px-4 pb-[6.18vh]">
+          <h1 className="font-sans w-full text-[13.5vw] font-semibold leading-[0.9] tracking-[-0.05em] uppercase text-white">
             <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
-            BUILDING THE
-            <br />
-            FUTURE OF
-            <br />
-            SOVEREIGN AI.
+            <span className="block whitespace-nowrap">BUILDING THE</span>
+            <span className="block whitespace-nowrap">FUTURE OF</span>
+            <span className="block whitespace-nowrap">SOVEREIGN AI.</span>
             <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
           </h1>
         </div>
+
       </div>
 
       {/* Mobile fullscreen menu */}
