@@ -338,8 +338,8 @@ export function Index() {
 
 
       {/* Bottom-left headline */}
-      <div className="absolute bottom-0 left-0 z-10 max-w-[min(94vw,72rem)] px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)]">
-        <h1 className="font-sans text-[clamp(3.2rem,11vw,9rem)] font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white">
+      <div className="absolute bottom-0 left-0 right-0 md:right-auto z-10 md:max-w-[min(94vw,72rem)] px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(5rem,5.5vh,3.5rem)] md:pb-[clamp(2rem,5.5vh,3.5rem)]">
+        <h1 className="font-sans text-[clamp(2.6rem,11vw,9rem)] font-semibold leading-[0.95] md:leading-[0.92] tracking-[-0.035em] uppercase text-white">
           <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
           BUILDING THE
           <br />
@@ -350,13 +350,20 @@ export function Index() {
         </h1>
       </div>
 
-      {/* Bottom-right meta */}
+      {/* Bottom-right meta (desktop) */}
       <div className="absolute bottom-0 right-0 z-10 hidden md:flex flex-col items-end gap-3 px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)] font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.2em] uppercase text-white/70">
         <div className="flex gap-6">
           <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
           <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X</a>
         </div>
       </div>
+
+      {/* Bottom social links (mobile) */}
+      <div className="absolute bottom-0 inset-x-0 z-10 md:hidden flex items-center justify-between px-[clamp(1.25rem,3vw,3rem)] pb-[1.5rem] font-sans text-[0.7rem] font-medium tracking-[0.28em] uppercase text-white/60">
+        <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
+        <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X / Twitter</a>
+      </div>
+
 
       {/* Overlay panel — opens for Experience / Feed / Bio */}
       {tab && (
@@ -367,7 +374,7 @@ export function Index() {
           aria-label={tab}
           onClick={(e) => { if (e.target === e.currentTarget) setTab(null); }}
         >
-          <section className="relative m-auto flex h-[min(92vh,56rem)] w-[min(94vw,90rem)] flex-col border border-white/10 bg-[#0a0a0a]/95 shadow-2xl">
+          <section className="relative m-auto flex h-[min(94vh,56rem)] w-[min(96vw,90rem)] flex-col border border-white/10 bg-[#0a0a0a]/95 shadow-2xl">
             {/* Panel header */}
             <header className="flex items-center justify-between border-b border-white/10 px-[clamp(1.5rem,2.6vw,3rem)] py-[clamp(1rem,1.8vh,1.6rem)]">
               <div className="flex items-baseline gap-4">
@@ -512,7 +519,7 @@ export function Index() {
                   <ul className="grid h-full grid-cols-1 lg:grid-cols-2 gap-[clamp(0.75rem,1.2vw,1.25rem)] list-none p-0 m-0">
                     <FeedCard p={featured} large />
                     <li className="contents">
-                      <ul className="grid h-full grid-cols-2 grid-rows-2 gap-[clamp(0.75rem,1.2vw,1.25rem)] list-none p-0 m-0">
+                      <ul className="grid h-full grid-cols-1 sm:grid-cols-2 sm:grid-rows-2 gap-[clamp(0.75rem,1.2vw,1.25rem)] list-none p-0 m-0">
                         {rest.map((p) => <FeedCard key={p.title} p={p} />)}
                       </ul>
                     </li>
@@ -546,7 +553,7 @@ export function Index() {
                       <p className="text-[0.78rem] tracking-[0.28em] uppercase text-white/50 m-0 mb-[clamp(0.6rem,1.2vh,1rem)]">
                         By the numbers
                       </p>
-                      <dl className="grid grid-cols-4 gap-[clamp(0.5rem,1vw,1rem)] m-0">
+                      <dl className="grid grid-cols-2 sm:grid-cols-4 gap-[clamp(0.5rem,1vw,1rem)] m-0">
                         {[
                           { v: "$20B+", l: "Assets managed" },
                           { v: "15Y", l: "Building & investing" },
@@ -595,7 +602,7 @@ export function Index() {
                       <p className="text-[0.78rem] tracking-[0.28em] uppercase text-white/50 m-0 mb-[clamp(0.5rem,1vh,0.85rem)]">
                         Beyond
                       </p>
-                      <ul className="grid grid-cols-3 gap-x-[clamp(1rem,1.6vw,1.75rem)] gap-y-[clamp(0.4rem,0.8vh,0.6rem)] list-none p-0 m-0">
+                      <ul className="grid grid-cols-1 sm:grid-cols-3 gap-x-[clamp(1rem,1.6vw,1.75rem)] gap-y-[clamp(0.4rem,0.8vh,0.6rem)] list-none p-0 m-0">
                         {life.filter((_, i) => i !== 2).map((l, i) => (
                           <li key={i} className="flex gap-3 font-sans text-[clamp(0.92rem,1vw,1.1rem)] leading-snug text-white/80">
                             <span aria-hidden="true" className="text-[0.72rem] tracking-[0.24em] uppercase text-white/40 pt-[0.3em]">
