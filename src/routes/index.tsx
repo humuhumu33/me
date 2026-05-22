@@ -260,17 +260,17 @@ export function Index() {
 
       {/* Top nav */}
       <header className="absolute inset-x-0 top-0 z-20 flex items-center justify-between px-[clamp(1.25rem,3vw,3rem)] py-[clamp(1rem,2vh,1.75rem)]">
-        <a href="/" className="font-sans text-[clamp(0.78rem,0.92vw,0.98rem)] font-medium tracking-[0.24em] uppercase text-white">
+        <a href="/" className="font-sans text-[clamp(1.1rem,1.5vw,1.6rem)] font-semibold tracking-[0.18em] uppercase text-white">
           Ilya<span className="opacity-60">_</span>Paveliev
         </a>
         {/* Desktop nav */}
-        <nav aria-label="Sections" className="hidden md:flex items-center gap-[clamp(2rem,3.6vw,4rem)]">
+        <nav aria-label="Sections" className="hidden md:flex items-center gap-[clamp(2.5rem,4.5vw,5rem)]">
           {navItems.map((n) => (
             <button
               key={n.id}
               onClick={() => setTab(n.id)}
               aria-current={tab === n.id ? "page" : undefined}
-              className="group relative font-sans text-[clamp(0.72rem,0.82vw,0.86rem)] font-medium tracking-[0.24em] uppercase text-white/85 hover:text-white transition-colors"
+              className="group relative font-sans text-[clamp(1rem,1.25vw,1.35rem)] font-semibold tracking-[0.2em] uppercase text-white/90 hover:text-white transition-colors"
             >
               {n.label}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
@@ -353,9 +353,9 @@ export function Index() {
       </div>
 
       {/* Bottom-right meta */}
-      <div className="absolute bottom-0 right-0 z-10 hidden md:flex flex-col items-end gap-2 px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)] text-[0.68rem] tracking-[0.24em] uppercase text-white/55">
+      <div className="absolute bottom-0 right-0 z-10 hidden md:flex flex-col items-end gap-3 px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)] font-sans text-[clamp(0.85rem,1vw,1.1rem)] font-medium tracking-[0.2em] uppercase text-white/70">
         <a href={`mailto:${person.email}`} className="hover:text-white transition-colors">{person.email}</a>
-        <div className="flex gap-5">
+        <div className="flex gap-6">
           <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
           <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X</a>
         </div>
