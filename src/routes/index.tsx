@@ -345,7 +345,7 @@ export function Index() {
           <br />
           FUTURE OF
           <br />
-          SOVEREIGN AI<img src={monad} alt="." className="inline-block h-[0.2em] w-[0.2em] align-baseline" />
+          SOVEREIGN AI<img src={monad} alt="." className="inline-block h-[0.35em] w-[0.35em] align-baseline translate-y-[0.12em]" />
           <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
         </h1>
       </div>
