@@ -208,7 +208,9 @@ function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
 
 export function Index() {
   const [tab, setTab] = useState<Tab | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [dark, setDark] = useState(true);
+
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", dark);
