@@ -343,11 +343,11 @@ export function Index() {
       <div className="absolute bottom-0 left-0 z-10 max-w-[min(94vw,72rem)] px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)]">
         <h1 className="font-sans text-[clamp(3.2rem,11vw,9rem)] font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white">
           <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
-          Building the
+          BUILDING THE
           <br />
-          future of
+          FUTURE OF
           <br />
-          sovereign AI,
+          SOVEREIGN AI.
           <span className="sr-only"> Co-founder & Investor in Deep Tech and AI.</span>
         </h1>
       </div>
