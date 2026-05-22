@@ -377,7 +377,7 @@ export function Index() {
                   {tab === "contact" && "03 / Contact"}
                 </span>
                 <h2 className="font-sans text-[clamp(1.1rem,1.4vw,1.6rem)] font-medium tracking-[-0.01em] uppercase text-white">
-                  {tab === "life" && "Beyond the desk"}
+                  {tab === "life" && "MY STORY"}
                   {tab === "thinking" && "Writing & talks"}
                   {tab === "contact" && "Get in touch"}
                 </h2>
