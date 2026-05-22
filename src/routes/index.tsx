@@ -403,12 +403,11 @@ export function Index() {
                     const f = e.currentTarget as HTMLFormElement;
                     const data = new FormData(f);
                     const name = String(data.get("name") || "");
-                    const email = String(data.get("email") || "");
                     const topic = String(data.get("topic") || "Other");
                     const message = String(data.get("message") || "");
                     const subject = encodeURIComponent(`[${topic}] ${name}`);
-                    const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
-                    window.location.href = `mailto:${person.email}?subject=${subject}&body=${body}`;
+                    const body = encodeURIComponent(`${message}\n\n— ${name}`);
+                    window.location.href = `mailto:?subject=${subject}&body=${body}`;
                   }}
                   className="grid h-full grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-[clamp(2rem,4vw,5rem)]"
                 >
