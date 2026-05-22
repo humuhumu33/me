@@ -351,7 +351,7 @@ export function Index() {
           <span className="inline-block h-px w-10 bg-white/50" />
           15+ Years · Deep Tech &amp; AI
         </p>
-        <h1 className="font-sans text-[clamp(2.6rem,7.2vw,7.4rem)] font-semibold leading-[0.92] tracking-[-0.02em] uppercase text-white">
+        <h1 className="font-sans text-[clamp(3.4rem,12vw,7.4rem)] md:text-[clamp(3.4rem,7.2vw,7.4rem)] font-semibold leading-[0.92] tracking-[-0.02em] uppercase text-white">
           <span itemProp="name">Building</span>{" "}
           <span className="text-white/80">the future</span>
           <br />
