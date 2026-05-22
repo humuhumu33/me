@@ -227,7 +227,7 @@ export function Index() {
 
   const navItems: { id: Tab; label: string }[] = [
     { id: "life", label: "BIO" },
-    { id: "thinking", label: "FEED" },
+    { id: "thinking", label: "THOUGHTS" },
     { id: "contact", label: "CONTACT" },
   ];
 
@@ -347,7 +347,7 @@ export function Index() {
 
 
 
-      {/* Overlay panel — opens for Experience / Feed / Bio */}
+      {/* Overlay panel — opens for Experience / Thoughts / Bio */}
       {tab && (
         <div
           className="absolute inset-0 z-30 flex bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
@@ -362,7 +362,7 @@ export function Index() {
               <div className="flex items-baseline gap-4">
                 <span className="font-sans text-[0.7rem] tracking-[0.32em] uppercase text-white/50">
                   {tab === "life" && "01 / Bio"}
-                  {tab === "thinking" && "02 / Feed"}
+                  {tab === "thinking" && "02 / Thoughts"}
                   {tab === "contact" && "03 / Contact"}
                 </span>
                 <h2 className="font-sans text-[clamp(1.1rem,1.4vw,1.6rem)] font-medium tracking-[-0.01em] uppercase text-white">
@@ -457,7 +457,7 @@ export function Index() {
 
               {tab === "thinking" && (() => {
                 const [featured, ...rest] = thinking;
-                const FeedCard = ({ p, large }: { p: typeof thinking[number]; large?: boolean }) => (
+                const ThoughtCard = ({ p, large }: { p: typeof thinking[number]; large?: boolean }) => (
                   <li className="contents" itemScope itemType="https://schema.org/CreativeWork">
                     <a
                       href={p.url}
@@ -499,10 +499,10 @@ export function Index() {
                 );
                 return (
                   <ul className="grid h-full grid-cols-1 lg:grid-cols-2 gap-[clamp(0.75rem,1.2vw,1.25rem)] list-none p-0 m-0">
-                    <FeedCard p={featured} large />
+                    <ThoughtCard p={featured} large />
                     <li className="contents">
                       <ul className="grid h-full grid-cols-1 sm:grid-cols-2 sm:grid-rows-2 gap-[clamp(0.75rem,1.2vw,1.25rem)] list-none p-0 m-0">
-                        {rest.map((p) => <FeedCard key={p.title} p={p} />)}
+                        {rest.map((p) => <ThoughtCard key={p.title} p={p} />)}</
                       </ul>
                     </li>
                   </ul>
