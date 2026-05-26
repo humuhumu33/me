@@ -369,11 +369,6 @@ export function Index() {
             ))}
           </nav>
 
-          <div className="flex items-center justify-between px-5 py-5 font-sans text-[0.65rem] font-medium tracking-[0.32em] uppercase text-white/60">
-            <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-            <span aria-hidden="true" className="text-white/25">/</span>
-            <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X · Twitter</a>
-          </div>
         </div>
       )}
 
