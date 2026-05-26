@@ -369,11 +369,6 @@ export function Index() {
             ))}
           </nav>
 
-          <div className="flex items-center justify-between px-5 py-5 font-sans text-[0.65rem] font-medium tracking-[0.32em] uppercase text-white/60">
-            <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-            <span aria-hidden="true" className="text-white/25">/</span>
-            <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X · Twitter</a>
-          </div>
         </div>
       )}
 
@@ -409,13 +404,6 @@ export function Index() {
         </h1>
       </div>
 
-      {/* Bottom-right meta (desktop) */}
-      <div className="absolute bottom-0 right-0 z-10 hidden md:flex flex-col items-end gap-3 px-[clamp(1.25rem,3vw,3rem)] pb-[clamp(2rem,5.5vh,3.5rem)] font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.2em] uppercase text-white/70">
-        <div className="flex gap-6">
-          <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-          <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" className="hover:text-white transition-colors">X</a>
-        </div>
-      </div>
 
 
 
@@ -472,6 +460,18 @@ export function Index() {
                       <p className="mt-[clamp(1.5rem,3vh,2.5rem)] max-w-[36ch] font-sans text-[clamp(1rem,1.15vw,1.25rem)] leading-relaxed text-white/70">
                         If anything here resonates, I'd love to connect.
                       </p>
+                      <div className="flex items-center gap-4 mt-[clamp(1.5rem,3vh,2.5rem)]">
+                        <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn" className="text-white/50 hover:text-white transition-colors">
+                          <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                          </svg>
+                        </a>
+                        <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" aria-label="X" className="text-white/50 hover:text-white transition-colors">
+                          <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                          </svg>
+                        </a>
+                      </div>
                     </div>
                   </div>
 
