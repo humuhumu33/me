@@ -374,7 +374,7 @@ export function Index() {
 
       {/* =================== DESKTOP LAYOUT =================== */}
       {/* Top nav */}
-      <header className="hidden md:flex absolute inset-x-0 top-0 z-20 items-center justify-between px-[clamp(1.25rem,3vw,3rem)] py-[clamp(1rem,2vh,1.75rem)]">
+      <header className="hidden md:flex fixed inset-x-0 top-0 z-40 items-center justify-between px-[clamp(1.25rem,3vw,3rem)] py-[clamp(1rem,2vh,1.75rem)]">
         <a href="/" className="font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.18em] uppercase text-white">
           Ilya<span className="opacity-60">_</span>Paveliev
         </a>
