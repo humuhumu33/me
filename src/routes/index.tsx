@@ -417,10 +417,10 @@ export function Index() {
             >
               <kbd
                 aria-hidden="true"
-                className={`inline-flex h-[1.15rem] w-[1.15rem] items-center justify-center border font-mono text-[0.62rem] leading-none tracking-normal transition-colors ${
+                className={`inline-flex h-[1.35rem] w-[1.35rem] items-center justify-center border font-mono text-[0.72rem] font-medium leading-none tracking-normal antialiased transition-colors ${
                   tab === n.id
                     ? "border-white bg-white text-black"
-                    : "border-white/25 text-white/55 group-hover:border-white/60 group-hover:text-white group-focus-visible:border-white/60 group-focus-visible:text-white"
+                    : "border-white/30 text-white/60 group-hover:border-white/70 group-hover:text-white group-focus-visible:border-white/70 group-focus-visible:text-white"
                 }`}
               >
                 {i + 1}
