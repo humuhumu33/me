@@ -358,15 +358,24 @@ export function Index() {
               <button
                 key={n.id}
                 onClick={() => { setMenuOpen(false); setTab(n.id); }}
-                className="group relative flex items-baseline justify-between gap-4 px-5 py-[clamp(1.25rem,3.6vh,2.5rem)] text-left transition-colors active:bg-white active:text-black"
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+                    e.preventDefault();
+                    const dir = e.key === "ArrowDown" ? 1 : -1;
+                    const next = (i + dir + navItems.length) % navItems.length;
+                    const btns = e.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>("button");
+                    btns?.[next]?.focus();
+                  }
+                }}
+                className="group relative flex items-baseline justify-between gap-4 px-5 py-[clamp(1.25rem,3.6vh,2.5rem)] text-left transition-colors active:bg-white active:text-black focus:outline-none focus-visible:bg-white focus-visible:text-black"
               >
-                <span className="font-sans text-[0.6rem] tracking-[0.32em] uppercase text-white/40 group-active:text-black/60">
+                <span className="font-sans text-[0.6rem] tracking-[0.32em] uppercase text-white/40 group-active:text-black/60 group-focus-visible:text-black/60">
                   0{i + 1}
                 </span>
-                <span className="flex-1 font-sans text-[clamp(1.82rem,9.1vw,3.15rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase text-white group-active:text-black">
+                <span className="flex-1 font-sans text-[clamp(1.82rem,9.1vw,3.15rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase text-white group-active:text-black group-focus-visible:text-black">
                   {n.label}
                 </span>
-                <span aria-hidden="true" className="font-sans text-[1.5rem] leading-none text-white/40 group-active:text-black/70">↗</span>
+                <span aria-hidden="true" className="font-sans text-[1.5rem] leading-none text-white/40 group-active:text-black/70 group-focus-visible:text-black/70">↗</span>
               </button>
             ))}
           </nav>
