@@ -361,7 +361,7 @@ export function Index() {
                 <span className="font-sans text-[0.6rem] tracking-[0.32em] uppercase text-white/40 group-active:text-black/60">
                   0{i + 1}
                 </span>
-                <span className="flex-1 font-sans text-[clamp(2.6rem,13vw,4.5rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase text-white group-active:text-black">
+                <span className="flex-1 font-sans text-[clamp(1.82rem,9.1vw,3.15rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase text-white group-active:text-black">
                   {n.label}
                 </span>
                 <span aria-hidden="true" className="font-sans text-[1.5rem] leading-none text-white/40 group-active:text-black/70">↗</span>
@@ -395,7 +395,7 @@ export function Index() {
 
       {/* Bottom-left headline — 3 rows, scales to fit longest line on any screen */}
       <div className="hidden md:block absolute bottom-[clamp(4.5rem,9vh,6.5rem)] left-0 z-10 px-[clamp(1.236rem,3vw,3rem)] right-[clamp(1.25rem,3vw,3rem)]">
-        <h1 className="font-sans font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white whitespace-nowrap text-[min(12vw,calc((100vw-6rem)/7.2))]">
+        <h1 className="font-sans font-semibold leading-[0.92] tracking-[-0.035em] uppercase text-white whitespace-nowrap text-[min(8.4vw,calc((100vw-6rem)/10.29))]">
           BUILDING THE
           <br />
           FUTURE OF
