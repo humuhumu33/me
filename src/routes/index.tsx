@@ -261,8 +261,14 @@ export function Index() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") { setTab(null); setMenuOpen(false); }
-
+      const target = e.target as HTMLElement | null;
+      const typing = !!target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable);
+      if (e.key === "Escape") { setTab(null); setMenuOpen(false); return; }
+      if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === "1") { e.preventDefault(); setTab("life"); }
+      else if (e.key === "2") { e.preventDefault(); setTab("thinking"); }
+      else if (e.key === "3") { e.preventDefault(); setTab("contact"); }
+      else if (e.key === "h" || e.key === "H") { e.preventDefault(); setTab(null); }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
