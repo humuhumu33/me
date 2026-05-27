@@ -598,46 +598,46 @@ export function Index() {
               )}
 
               {tab === "life" && (
-                <div className="h-full overflow-y-auto -mx-[clamp(1.5rem,3vw,3.5rem)] px-[clamp(1.5rem,3vw,3.5rem)]">
-                  <article className="mx-auto w-full max-w-[68rem] pb-[clamp(3rem,8vh,6rem)]">
-                    {/* Opening / thesis */}
-                    <section className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] gap-[clamp(1.75rem,3.5vw,3.5rem)] items-end pt-[clamp(0.5rem,1.5vh,1.5rem)]">
-                      <div>
-                        <p className={`text-[0.78rem] tracking-[0.28em] uppercase m-0 mb-[clamp(0.8rem,1.6vh,1.25rem)] ${lightMode ? "text-black/50" : "text-white/50"}`}>
+                <div className="h-full overflow-y-auto -mx-[clamp(1.5rem,3vw,3.5rem)] -my-[clamp(1.25rem,2.4vh,2.25rem)]">
+                  <article className="w-full pb-[clamp(4rem,10vh,8rem)]">
+                    {/* Hero — full-bleed portrait with thesis overlay */}
+                    <section className="relative w-full h-[clamp(28rem,82vh,56rem)] overflow-hidden">
+                      <img
+                        src={portrait}
+                        alt={PORTRAIT_ALT}
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10" />
+                      <div className="absolute inset-x-0 bottom-0 px-[clamp(1.5rem,5vw,6rem)] pb-[clamp(2rem,5vh,4rem)]">
+                        <p className="text-[clamp(0.72rem,0.85vw,0.9rem)] tracking-[0.32em] uppercase text-white/70 m-0 mb-[clamp(0.8rem,1.6vh,1.4rem)]">
                           Why me
                         </p>
-                        <h2 className={`font-sans font-semibold uppercase leading-[0.92] tracking-[-0.035em] m-0 text-[clamp(2.5rem,5.6vw,5.5rem)] ${lightMode ? "text-black" : "text-white"}`}>
+                        <h2 className="font-sans font-semibold uppercase leading-[0.9] tracking-[-0.035em] m-0 text-white text-[clamp(3rem,8vw,8.5rem)]">
                           Building the<br />future of<br />sovereign AI.
                         </h2>
-                        <p className={`font-sans mt-[clamp(1.25rem,2.4vh,2rem)] max-w-[34rem] text-[clamp(1.05rem,1.2vw,1.3rem)] leading-relaxed ${lightMode ? "text-black/75" : "text-white/75"}`}>
-                          One thread runs through three decades of work — from Vladivostok to global capital markets, from venture to deep tech. Each chapter taught me something about sovereignty: of capital, of counterparties, of compute. This is the story of how I got here, and why I am building what I am building now.
-                        </p>
-                      </div>
-                      <div className={`relative w-full max-w-[22rem] justify-self-start md:justify-self-end aspect-[4/5] overflow-hidden border ${lightMode ? "border-black/15" : "border-white/15"}`}>
-                        <img src={portrait} alt={PORTRAIT_ALT} className="h-full w-full object-cover" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-                        <div className="absolute bottom-0 left-0 right-0 p-[clamp(1rem,1.6vw,1.5rem)]">
-                          <p className="text-[0.72rem] tracking-[0.28em] uppercase text-white/65 m-0">{person.jobTitle}</p>
-                          <h3 className="font-sans text-[clamp(1.35rem,1.8vw,2rem)] font-medium tracking-[-0.01em] text-white m-0 leading-tight whitespace-nowrap">
-                            {person.name}
-                          </h3>
-                        </div>
                       </div>
                     </section>
 
-                    {/* By the numbers */}
-                    <section className="mt-[clamp(2.5rem,5vh,4rem)]">
-                      <p className={`text-[0.78rem] tracking-[0.28em] uppercase m-0 mb-[clamp(0.75rem,1.4vh,1.1rem)] ${lightMode ? "text-black/50" : "text-white/50"}`}>
-                        By the numbers
+                    {/* Lede */}
+                    <section className="px-[clamp(1.5rem,5vw,6rem)] pt-[clamp(3rem,6vh,5rem)]">
+                      <p className={`font-sans max-w-[52rem] text-[clamp(1.2rem,1.5vw,1.65rem)] leading-[1.5] ${lightMode ? "text-black/80" : "text-white/80"}`}>
+                        One thread runs through three decades of work — from Vladivostok to global capital markets, from venture to deep tech. Each chapter taught me something about sovereignty: of capital, of counterparties, of compute. This is the story of how I got here, and why I am building what I am building now.
                       </p>
-                      <dl className="grid grid-cols-2 sm:grid-cols-4 gap-[clamp(0.75rem,1.4vw,1.5rem)] m-0">
+                    </section>
+
+                    {/* By the numbers */}
+                    <section className="px-[clamp(1.5rem,5vw,6rem)] mt-[clamp(4rem,8vh,7rem)]">
+                      <h3 className={`font-sans font-semibold uppercase tracking-[0.24em] m-0 mb-[clamp(2rem,4vh,3rem)] text-[clamp(0.95rem,1.1vw,1.15rem)] ${lightMode ? "text-black/55" : "text-white/55"}`}>
+                        By the numbers
+                      </h3>
+                      <dl className={`grid grid-cols-2 md:grid-cols-4 gap-y-[clamp(2rem,4vh,3rem)] gap-x-[clamp(1.5rem,3vw,3rem)] m-0 border-t pt-[clamp(2rem,4vh,3rem)] ${lightMode ? "border-black/15" : "border-white/15"}`}>
                         {storyStats.map((s) => (
-                          <div key={s.label} className={`border-t pt-[clamp(0.6rem,1.2vh,1rem)] ${lightMode ? "border-black/15" : "border-white/15"}`}>
+                          <div key={s.label}>
                             <dt className="sr-only">{s.label}</dt>
-                            <dd className={`font-sans text-[clamp(1.8rem,2.8vw,3rem)] font-medium tracking-[-0.02em] m-0 leading-none ${lightMode ? "text-black" : "text-white"}`}>
+                            <dd className={`font-sans text-[clamp(3rem,5.5vw,5.5rem)] font-semibold tracking-[-0.03em] m-0 leading-none ${lightMode ? "text-black" : "text-white"}`}>
                               {s.value}
                             </dd>
-                            <p className={`text-[0.72rem] tracking-[0.24em] uppercase m-0 mt-[clamp(0.4rem,0.8vh,0.6rem)] ${lightMode ? "text-black/55" : "text-white/55"}`}>
+                            <p className={`text-[clamp(0.7rem,0.8vw,0.85rem)] tracking-[0.28em] uppercase m-0 mt-[clamp(0.75rem,1.2vh,1rem)] ${lightMode ? "text-black/55" : "text-white/55"}`}>
                               {s.label}
                             </p>
                           </div>
@@ -645,47 +645,38 @@ export function Index() {
                       </dl>
                     </section>
 
-                    {/* The backstory — chronological chapters */}
-                    <section className="mt-[clamp(3rem,6vh,5rem)]">
-                      <p className={`text-[0.78rem] tracking-[0.28em] uppercase m-0 mb-[clamp(1rem,2vh,1.75rem)] ${lightMode ? "text-black/50" : "text-white/50"}`}>
+                    {/* The backstory */}
+                    <section className="px-[clamp(1.5rem,5vw,6rem)] mt-[clamp(5rem,10vh,9rem)]">
+                      <h3 className={`font-sans font-semibold uppercase tracking-[0.24em] m-0 mb-[clamp(2.5rem,5vh,4rem)] text-[clamp(0.95rem,1.1vw,1.15rem)] ${lightMode ? "text-black/55" : "text-white/55"}`}>
                         The backstory
-                      </p>
-                      <ol className={`list-none p-0 m-0 divide-y ${lightMode ? "divide-black/10" : "divide-white/10"}`}>
+                      </h3>
+                      <ol className="list-none p-0 m-0">
                         {storyChapters.map((c, i) => (
-                          <li key={c.org} className="grid grid-cols-1 md:grid-cols-[10rem_1fr] gap-[clamp(0.75rem,2vw,2.25rem)] py-[clamp(1.5rem,3vh,2.5rem)]">
-                            <div className="flex md:flex-col md:gap-2 items-baseline md:items-start gap-3">
-                              <span className={`font-mono text-[0.72rem] tracking-[0.24em] uppercase ${lightMode ? "text-black/40" : "text-white/40"}`}>
-                                {String(i + 1).padStart(2, "0")}
-                              </span>
-                              <time className={`font-sans text-[0.82rem] tracking-[0.24em] uppercase ${lightMode ? "text-black/55" : "text-white/55"}`}>
-                                {c.years}
-                              </time>
-                            </div>
-                            <div className="min-w-0">
-                              <h3 className={`font-sans font-medium tracking-[-0.015em] m-0 text-[clamp(1.5rem,2.2vw,2.25rem)] leading-[1.05] ${lightMode ? "text-black" : "text-white"}`}>
-                                {c.org}
-                              </h3>
-                              <p className={`font-sans text-[0.78rem] tracking-[0.22em] uppercase m-0 mt-[clamp(0.35rem,0.7vh,0.6rem)] ${lightMode ? "text-black/55" : "text-white/55"}`}>
-                                {c.subtitle}
-                              </p>
-                              <p className={`font-sans m-0 mt-[clamp(0.8rem,1.6vh,1.25rem)] max-w-[44rem] text-[clamp(1.02rem,1.15vw,1.2rem)] leading-relaxed ${lightMode ? "text-black/80" : "text-white/80"}`}>
-                                {c.body}
-                              </p>
-                            </div>
+                          <li
+                            key={c.org}
+                            className={`border-t py-[clamp(3rem,6vh,5rem)] ${lightMode ? "border-black/15" : "border-white/15"} ${i === storyChapters.length - 1 ? `border-b ${lightMode ? "border-black/15" : "border-white/15"}` : ""}`}
+                          >
+                            <p className={`font-sans text-[clamp(0.85rem,1vw,1rem)] tracking-[0.28em] uppercase m-0 mb-[clamp(1.25rem,2.4vh,2rem)] ${lightMode ? "text-black/55" : "text-white/55"}`}>
+                              {c.years}
+                            </p>
+                            <h4 className={`font-sans font-semibold uppercase leading-[0.95] tracking-[-0.03em] m-0 text-[clamp(2.5rem,5.5vw,5.5rem)] ${lightMode ? "text-black" : "text-white"}`}>
+                              {c.org}
+                            </h4>
+                            <p className={`font-sans text-[clamp(0.95rem,1.1vw,1.15rem)] tracking-[0.18em] uppercase m-0 mt-[clamp(0.75rem,1.4vh,1.1rem)] ${lightMode ? "text-black/60" : "text-white/60"}`}>
+                              {c.subtitle}
+                            </p>
+                            <p className={`font-sans m-0 mt-[clamp(1.5rem,3vh,2.25rem)] max-w-[52rem] text-[clamp(1.15rem,1.35vw,1.5rem)] leading-[1.55] ${lightMode ? "text-black/80" : "text-white/85"}`}>
+                              {c.body}
+                            </p>
                           </li>
                         ))}
                       </ol>
                     </section>
 
                     {/* Closing */}
-                    <section className="mt-[clamp(3rem,6vh,5rem)] border-t pt-[clamp(1.5rem,3vh,2.5rem)]"
-                      style={undefined}
-                    >
-                      <p className={`text-[0.78rem] tracking-[0.28em] uppercase m-0 mb-[clamp(0.75rem,1.4vh,1.1rem)] ${lightMode ? "text-black/50" : "text-white/50"}`}>
-                        And so
-                      </p>
-                      <p className={`font-sans font-semibold uppercase leading-[0.95] tracking-[-0.03em] m-0 text-[clamp(1.75rem,3.4vw,3.25rem)] ${lightMode ? "text-black" : "text-white"}`}>
-                        This is why I am building the future of sovereign AI.
+                    <section className="px-[clamp(1.5rem,5vw,6rem)] mt-[clamp(5rem,10vh,9rem)]">
+                      <p className={`font-sans font-semibold uppercase leading-[0.92] tracking-[-0.035em] m-0 text-[clamp(2.5rem,6.5vw,6.5rem)] ${lightMode ? "text-black" : "text-white"}`}>
+                        This is why I am<br />building the future<br />of sovereign AI.
                       </p>
                     </section>
                   </article>
