@@ -267,7 +267,7 @@ export function Index() {
   }, []);
 
   const navItems: { id: Tab; label: string }[] = [
-    { id: "life", label: "BIO" },
+    { id: "life", label: "STORY" },
     { id: "thinking", label: "THOUGHTS" },
     { id: "contact", label: "CONTACT" },
   ];
