@@ -1,31 +1,43 @@
-## Goal
-Make the BIO overlay panel feel sharper and more confident — less density, no tiny labels, smaller portrait so type can breathe.
+# Crisp keyboard shortcuts + hint overlay
 
-## Changes in `src/routes/index.tsx` (life tab only)
+Add global keyboard shortcuts to navigate the site, plus a tiny, monospace shortcut-hint chip whose position depends on where the user is.
 
-### 1. Portrait — reduce footprint
-- Change grid columns from `0.85fr_1.15fr` → `0.55fr_1.45fr` (portrait column ~38% of panel instead of ~42%, then shrunk further inside).
-- Cap portrait width: wrap image in container `max-w-[18rem]` and `aspect-[4/5]` instead of `grow min-h-0` filling the column.
-- Keep portrait left-aligned at top; intro paragraph sits directly under it (no `justify-between` stretch).
+## Shortcuts (global)
 
-### 2. Typography — kill small fonts, raise hierarchy
-- Eyebrow labels ("By the numbers", "The backstory", "Beyond", job title above name): bump from `0.62rem` → `0.78rem`, tracking `0.28em`.
-- Stat labels: `0.56rem` → `0.72rem`.
-- Stat values: keep ~`clamp(1.8rem, 2.6vw, 2.8rem)` — already strong.
-- Timeline date: `0.62rem` → `0.78rem`.
-- Timeline org name: `clamp(1.05rem, 1.2vw, 1.3rem)`, weight 500.
-- Intro paragraph: bump to `clamp(1.05rem, 1.15vw, 1.25rem)`.
-- "Beyond" items: bump to `clamp(0.92rem, 1vw, 1.1rem)`; numeric markers to `0.72rem`.
-- Name overlay on portrait: keep size, ensure single line.
+- `1` → open STORY
+- `2` → open THOUGHTS
+- `3` → open CONTACT
+- `H` → return to homepage (close panel)
+- `Esc` → close panel / close mobile menu (already wired)
 
-### 3. Reduce text density
-- **Backstory**: drop the trailing `· {note}` (descriptions like "Software-defined compute for local AI inference."). Show only `{org}` + light `{role}`. Keeps timeline scannable.
-- **Beyond**: trim from 4 items → 3 (drop one redundant entry, e.g. keep Trinity gold medal, offshore sailing, daughters; drop "builds drones/robots/wearables" which overlaps with the Hologram line).
-- **Intro paragraph**: shorten to one sharp sentence — "Building sovereign AI infrastructure. Investing in deep tech and real-world assets." (replace current two-sentence version locally; do not mutate `person.description` used elsewhere).
-- **By the numbers**: keep 4 stats (already tight).
+Rules:
+- Ignored while typing in inputs/textareas/contentEditable
+- Ignored when `⌘`/`Ctrl`/`Alt` are held (so browser shortcuts still work)
+- Implemented in the existing global `keydown` effect in `src/routes/index.tsx`
 
-### 4. Spacing
-- Increase vertical gaps between the three right-column sections to `clamp(1.75rem, 3vh, 2.75rem)` so sections breathe instead of stacking densely.
+## Hint overlay (desktop only)
+
+A small, crisp monospace card listing the shortcuts. Very low-key — hairline border, semi-transparent black, ~11px uppercase mono, tight spacing. Each row: a boxed key glyph + label.
+
+Contents:
+- `1  STORY`
+- `2  THOUGHTS`
+- `3  CONTACT`
+- `H  HOME` (only shown when a panel is open)
+- `ESC  CLOSE` (only shown when a panel is open)
+
+Positioning:
+- Homepage (`tab === null`): **bottom-right**, fixed, ~24px inset
+- Any other page (`tab !== null`): **bottom-left**, fixed, ~24px inset, sits above panel content (z above the overlay)
+
+Hidden on mobile (`md:` only). No animation needed beyond a 150ms fade when the panel opens/closes and the chip swaps sides.
 
 ## Out of scope
-No changes to FEED, CONTACT, header, mobile view, or shared data in `profile-data.ts`.
+
+- No new routes, no data changes
+- No command palette / ⌘K (can be a follow-up)
+- No changes to mobile layout
+
+## Files
+
+- `src/routes/index.tsx` — extend the keydown effect, add a `<ShortcutHints />` block rendered once at the root of the desktop layout, switching position based on `tab`
