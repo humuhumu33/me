@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import banner from "@/assets/banner.jpeg";
 import portrait from "@/assets/portrait.png";
 import { ScrambleText } from "@/components/ScrambleText";
-import type { Tab } from "@/lib/profile-data";
 
 import {
   person,
