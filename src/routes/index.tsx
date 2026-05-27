@@ -411,15 +411,14 @@ export function Index() {
       {/* Overlay panel — opens for Experience / Thoughts / Bio */}
       {tab && (
         <div
-          className="absolute inset-0 z-30 flex bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
+          className="fixed inset-0 z-30 flex bg-black animate-in fade-in duration-200"
           role="dialog"
           aria-modal="true"
           aria-label={tab}
-          onClick={(e) => { if (e.target === e.currentTarget) setTab(null); }}
         >
-          <section className="relative m-auto flex h-[min(94vh,56rem)] w-[min(96vw,90rem)] flex-col border border-white/10 bg-[#0a0a0a]/95 shadow-2xl">
+          <section className="relative flex h-screen w-screen flex-col bg-[#0a0a0a]">
             {/* Panel header */}
-            <header className="flex items-center justify-between border-b border-white/10 px-[clamp(1.5rem,2.6vw,3rem)] py-[clamp(1rem,1.8vh,1.6rem)]">
+            <header className="flex items-center justify-between border-b border-white/10 px-[clamp(1.5rem,3vw,3.5rem)] py-[clamp(1rem,2vh,1.75rem)] shrink-0">
               <div className="flex items-baseline gap-4">
                 <span className="font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.32em] uppercase text-white/50">
                   {tab === "life" && "01 / Bio"}
@@ -442,7 +441,8 @@ export function Index() {
             </header>
 
             {/* Panel body */}
-            <div className="flex-1 min-h-0 overflow-y-auto px-[clamp(1.5rem,2.6vw,3rem)] py-[clamp(1.25rem,2.4vh,2rem)]">
+            <div className="flex-1 min-h-0 overflow-hidden px-[clamp(1.5rem,3vw,3.5rem)] py-[clamp(1.25rem,2.4vh,2.25rem)]">
+
               {tab === "contact" && (
                 <form
                   onSubmit={(e) => {
