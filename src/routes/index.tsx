@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import banner from "@/assets/banner.jpeg";
 import portrait from "@/assets/portrait.png";
-import { ScrambleText } from "@/components/ScrambleText";
+
 
 import {
   person,
@@ -245,7 +245,7 @@ function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
 
 export function Index() {
   const [tab, setTab] = useState<Tab | null>(null);
-  const [hoveredTab, setHoveredTab] = useState<Tab | null>(null);
+  
   const [menuOpen, setMenuOpen] = useState(false);
   const [dark, setDark] = useState(true);
   const [contactSent, setContactSent] = useState(false);
