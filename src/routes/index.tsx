@@ -10,6 +10,8 @@ import {
   experience,
   thinking,
   life,
+  storyChapters,
+  storyStats,
   SITE_URL,
   PORTRAIT_PATH,
   PORTRAIT_ALT,
