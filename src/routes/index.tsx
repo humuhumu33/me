@@ -460,7 +460,7 @@ export function Index() {
             <header className="flex items-center justify-between border-b border-white/10 px-[clamp(1.5rem,3vw,3.5rem)] py-[clamp(0.75rem,1.5vh,1.25rem)] shrink-0">
               <div className="flex items-baseline gap-4">
                 <span className="font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.32em] uppercase text-white/50">
-                  {tab === "life" && "01 / Bio"}
+                  {tab === "life" && "01 / Story"}
                   {tab === "thinking" && "02 / Thoughts"}
                   {tab === "contact" && "03 / Contact"}
                 </span>
