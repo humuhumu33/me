@@ -242,15 +242,6 @@ function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
   );
 }
 
-const Hint = ({ k, label, active }: { k: string; label: string; active?: boolean }) => (
-  <span className={`flex items-center gap-[0.4rem] ${active ? "text-white" : ""}`}>
-    <kbd className={`inline-flex h-[1.05rem] min-w-[1.05rem] items-center justify-center border px-[0.3rem] font-mono text-[0.6rem] leading-none ${active ? "border-white bg-white text-black" : "border-white/25 bg-white/[0.04] text-white/80"}`}>
-      {k}
-    </kbd>
-    <span>{label}</span>
-  </span>
-);
-
 export function Index() {
   const [tab, setTab] = useState<Tab | null>(null);
   
@@ -421,10 +412,21 @@ export function Index() {
                 }
               }}
               aria-current={tab === n.id ? "page" : undefined}
-              className="group relative font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.2em] uppercase text-white/90 hover:text-white transition-colors outline-none focus:outline-none focus-visible:text-white"
+              aria-keyshortcuts={String(i + 1)}
+              className="group relative inline-flex items-center gap-[0.5rem] font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.2em] uppercase text-white/90 hover:text-white transition-colors outline-none focus:outline-none focus-visible:text-white"
             >
+              <kbd
+                aria-hidden="true"
+                className={`inline-flex h-[1.15rem] w-[1.15rem] items-center justify-center border font-mono text-[0.62rem] leading-none tracking-normal transition-colors ${
+                  tab === n.id
+                    ? "border-white bg-white text-black"
+                    : "border-white/25 text-white/55 group-hover:border-white/60 group-hover:text-white group-focus-visible:border-white/60 group-focus-visible:text-white"
+                }`}
+              >
+                {i + 1}
+              </kbd>
               {n.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full group-focus-visible:w-full" />
+              <span className="absolute -bottom-1 left-[1.65rem] h-px w-0 bg-white transition-all duration-300 group-hover:w-[calc(100%-1.65rem)] group-focus-visible:w-[calc(100%-1.65rem)]" />
             </button>
           ))}
         </nav>
@@ -443,29 +445,6 @@ export function Index() {
         </h1>
       </div>
 
-      {/* Keyboard shortcut hints — bottom-right on home, bottom-left when a panel is open */}
-      <div
-        aria-hidden="true"
-        className={`hidden md:block fixed z-50 bottom-[clamp(1rem,2.2vh,1.75rem)] transition-[left,right] duration-200 ${
-          tab ? "left-[clamp(1rem,2vw,1.75rem)] right-auto" : "right-[clamp(1rem,2vw,1.75rem)] left-auto"
-        }`}
-      >
-        <div className="flex items-center gap-[0.6rem] border border-white/15 bg-black/60 px-[0.7rem] py-[0.45rem] font-mono text-[0.62rem] uppercase tracking-[0.18em] text-white/55 backdrop-blur-sm">
-          <Hint k="1" label="Story" active={tab === "life"} />
-          <span className="h-3 w-px bg-white/10" />
-          <Hint k="2" label="Thoughts" active={tab === "thinking"} />
-          <span className="h-3 w-px bg-white/10" />
-          <Hint k="3" label="Contact" active={tab === "contact"} />
-          {tab && (
-            <>
-              <span className="h-3 w-px bg-white/10" />
-              <Hint k="H" label="Home" />
-              <span className="h-3 w-px bg-white/10" />
-              <Hint k="Esc" label="Close" />
-            </>
-          )}
-        </div>
-      </div>
 
 
       {/* Overlay panel — opens for Experience / Thoughts / Bio */}
