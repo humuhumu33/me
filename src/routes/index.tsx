@@ -474,30 +474,27 @@ export function Index() {
       {/* Overlay panel — opens for Experience / Thoughts / Bio */}
       {tab && (
         <div
-          className="fixed inset-0 z-30 flex bg-black animate-in fade-in duration-200"
+          className={`fixed inset-0 z-30 flex animate-in fade-in duration-200 transition-colors ${lightMode ? "bg-white" : "bg-black"}`}
           role="dialog"
           aria-modal="true"
           aria-label={tab}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
         >
-          <section className="relative flex h-screen w-screen flex-col bg-[#0a0a0a] pt-[clamp(3.5rem,7vh,5.25rem)]">
+          <section className={`relative flex h-screen w-screen flex-col pt-[clamp(3.5rem,7vh,5.25rem)] transition-colors ${lightMode ? "bg-white" : "bg-[#0a0a0a]"}`}>
             {/* Panel header */}
-            <header className="flex items-center justify-between border-b border-white/10 px-[clamp(1.5rem,3vw,3.5rem)] py-[clamp(0.75rem,1.5vh,1.25rem)] shrink-0">
+            <header className={`flex items-center justify-between border-b px-[clamp(1.5rem,3vw,3.5rem)] py-[clamp(0.75rem,1.5vh,1.25rem)] shrink-0 ${lightMode ? "border-black/10" : "border-white/10"}`}>
               <div className="flex items-baseline gap-4">
-                <span className="font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.32em] uppercase text-white/50">
+                <span className={`font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.32em] uppercase ${lightMode ? "text-black/50" : "text-white/50"}`}>
                   {tab === "life" && "01 / Story"}
                   {tab === "thinking" && "02 / Thoughts"}
                   {tab === "contact" && "03 / Contact"}
                 </span>
-                <h2 className="font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] font-medium tracking-[0.02em] uppercase text-white">
-                  
-                  
-                  
-                </h2>
               </div>
               <button
                 onClick={() => setTab(null)}
                 aria-label="Close"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white/70 hover:text-white hover:border-white transition-colors"
+                className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${lightMode ? "border-black/20 text-black/70 hover:text-black hover:border-black" : "border-white/20 text-white/70 hover:text-white hover:border-white"}`}
               >
                 <span className="text-base" aria-hidden="true">×</span>
               </button>
@@ -517,16 +514,16 @@ export function Index() {
                   {/* Left: title + intro */}
                   <div className="flex flex-col justify-between">
                     <div>
-                      <h3 className="font-sans font-medium uppercase leading-[0.95] tracking-[-0.02em] text-white text-[clamp(3rem,6vw,6.5rem)] m-0">
+                      <h3 className={`font-sans font-medium uppercase leading-[0.95] tracking-[-0.02em] text-[clamp(3rem,6vw,6.5rem)] m-0 ${lightMode ? "text-black" : "text-white"}`}>
                         Get in<br />touch
                       </h3>
                       <div className="flex items-center gap-3 mt-[clamp(1.5rem,3vh,2.5rem)]">
-                        <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn" className="inline-flex items-center justify-center w-7 h-7 text-white/50 hover:text-white transition-colors">
+                        <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn" className={`inline-flex items-center justify-center w-7 h-7 transition-colors ${lightMode ? "text-black/50 hover:text-black" : "text-white/50 hover:text-white"}`}>
                           <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 block">
                             <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                           </svg>
                         </a>
-                        <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" aria-label="X" className="inline-flex items-center justify-center w-7 h-7 text-white/50 hover:text-white transition-colors">
+                        <a href="https://x.com/TrinityInvestor" target="_blank" rel="me noopener noreferrer" aria-label="X" className={`inline-flex items-center justify-center w-7 h-7 transition-colors ${lightMode ? "text-black/50 hover:text-black" : "text-white/50 hover:text-white"}`}>
                           <svg viewBox="0 0 24 24" fill="currentColor" className="w-[1.15rem] h-[1.15rem] block">
                             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                           </svg>
@@ -544,7 +541,7 @@ export function Index() {
                         type="text"
                         required
                         placeholder="FULL NAME"
-                        className="w-full bg-transparent border-0 border-b border-white/25 pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] text-white placeholder:uppercase placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
+                        className={`w-full bg-transparent border-0 border-b pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] placeholder:uppercase focus:outline-none transition-colors ${lightMode ? "border-black/25 text-black placeholder:text-black/55 focus:border-black" : "border-white/25 text-white placeholder:text-white/55 focus:border-white"}`}
                       />
                     </label>
 
@@ -557,12 +554,9 @@ export function Index() {
                         maxLength={255}
                         autoComplete="email"
                         placeholder="EMAIL"
-                        className="w-full bg-transparent border-0 border-b border-white/25 pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] text-white placeholder:uppercase placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
+                        className={`w-full bg-transparent border-0 border-b pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] placeholder:uppercase focus:outline-none transition-colors ${lightMode ? "border-black/25 text-black placeholder:text-black/55 focus:border-black" : "border-white/25 text-white placeholder:text-white/55 focus:border-white"}`}
                       />
                     </label>
-
-
-
 
                     <label className="flex flex-1 min-h-0 flex-col">
                       <span className="sr-only">Message</span>
@@ -570,17 +564,17 @@ export function Index() {
                         name="message"
                         required
                         placeholder="MESSAGE"
-                        className="w-full flex-1 min-h-[10rem] resize-none border border-white/20 bg-white/[0.02] p-5 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] text-white placeholder:uppercase placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
+                        className={`w-full flex-1 min-h-[10rem] resize-none border p-5 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] placeholder:uppercase focus:outline-none transition-colors ${lightMode ? "border-black/20 bg-black/[0.02] text-black placeholder:text-black/55 focus:border-black" : "border-white/20 bg-white/[0.02] text-white placeholder:text-white/55 focus:border-white"}`}
                       />
                     </label>
 
                     <div className="flex items-center justify-end">
                       {contactSent ? (
-                        <span className="font-sans text-[0.85rem] font-semibold tracking-[0.22em] uppercase text-white/70">Thank you — connect on LinkedIn or X</span>
+                        <span className={`font-sans text-[0.85rem] font-semibold tracking-[0.22em] uppercase ${lightMode ? "text-black/70" : "text-white/70"}`}>Thank you — connect on LinkedIn or X</span>
                       ) : (
                         <button
                           type="submit"
-                          className="rounded-full border border-white px-10 py-3.5 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] uppercase text-white transition-colors hover:bg-white hover:text-black"
+                          className={`rounded-full border px-10 py-3.5 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] uppercase transition-colors ${lightMode ? "border-black text-black hover:bg-black hover:text-white" : "border-white text-white hover:bg-white hover:text-black"}`}
                         >
                           Submit
                         </button>
@@ -605,7 +599,7 @@ export function Index() {
                 <div className="grid h-full grid-cols-1 lg:grid-cols-[0.55fr_1.45fr] gap-[clamp(1.5rem,2.8vw,3.25rem)]">
                   {/* Left — portrait + intro */}
                   <div className="flex h-full flex-col gap-[clamp(1rem,2vh,1.75rem)]">
-                    <div className="relative w-full max-w-[18rem] aspect-[4/5] overflow-hidden border border-white/15">
+                    <div className={`relative w-full max-w-[18rem] aspect-[4/5] overflow-hidden border ${lightMode ? "border-black/15" : "border-white/15"}`}>
                       <img src={portrait} alt={PORTRAIT_ALT} className="h-full w-full object-cover" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                       <div className="absolute bottom-0 left-0 right-0 p-[clamp(1rem,1.6vw,1.5rem)]">
@@ -615,7 +609,7 @@ export function Index() {
                         </h3>
                       </div>
                     </div>
-                    <p className="font-sans text-[clamp(1.05rem,1.15vw,1.25rem)] leading-snug text-white/85 max-w-[22rem] m-0">
+                    <p className={`font-sans text-[clamp(1.05rem,1.15vw,1.25rem)] leading-snug max-w-[22rem] m-0 ${lightMode ? "text-black/85" : "text-white/85"}`}>
                       Building sovereign AI infrastructure. Investing in deep tech and real-world assets.
                     </p>
                   </div>
@@ -624,7 +618,7 @@ export function Index() {
                   <div className="flex h-full flex-col gap-[clamp(1.75rem,3vh,2.75rem)] min-h-0">
                     {/* By the numbers */}
                     <div>
-                      <p className="text-[0.78rem] tracking-[0.28em] uppercase text-white/50 m-0 mb-[clamp(0.6rem,1.2vh,1rem)]">
+                      <p className={`text-[0.78rem] tracking-[0.28em] uppercase m-0 mb-[clamp(0.6rem,1.2vh,1rem)] ${lightMode ? "text-black/50" : "text-white/50"}`}>
                         By the numbers
                       </p>
                       <dl className="grid grid-cols-2 sm:grid-cols-4 gap-[clamp(0.5rem,1vw,1rem)] m-0">
@@ -634,12 +628,12 @@ export function Index() {
                           { v: "7", l: "Companies & funds" },
                           { v: "10K+", l: "Offshore miles" },
                         ].map((s) => (
-                          <div key={s.l} className="border-t border-white/15 pt-[clamp(0.5rem,1vh,0.85rem)]">
+                          <div key={s.l} className={`border-t pt-[clamp(0.5rem,1vh,0.85rem)] ${lightMode ? "border-black/15" : "border-white/15"}`}>
                             <dt className="sr-only">{s.l}</dt>
-                            <dd className="font-sans text-[clamp(1.8rem,2.6vw,2.8rem)] font-medium tracking-[-0.02em] text-white m-0 leading-none">
+                            <dd className={`font-sans text-[clamp(1.8rem,2.6vw,2.8rem)] font-medium tracking-[-0.02em] m-0 leading-none ${lightMode ? "text-black" : "text-white"}`}>
                               {s.v}
                             </dd>
-                            <p className="text-[0.72rem] tracking-[0.24em] uppercase text-white/55 m-0 mt-[clamp(0.4rem,0.8vh,0.6rem)]">
+                            <p className={`text-[0.72rem] tracking-[0.24em] uppercase m-0 mt-[clamp(0.4rem,0.8vh,0.6rem)] ${lightMode ? "text-black/55" : "text-white/55"}`}>
                               {s.l}
                             </p>
                           </div>
@@ -649,20 +643,20 @@ export function Index() {
 
                     {/* Backstory */}
                     <div className="flex-1 min-h-0 flex flex-col">
-                      <p className="text-[0.78rem] tracking-[0.28em] uppercase text-white/50 m-0 mb-[clamp(0.6rem,1.2vh,1rem)]">
+                      <p className={`text-[0.78rem] tracking-[0.28em] uppercase m-0 mb-[clamp(0.6rem,1.2vh,1rem)] ${lightMode ? "text-black/50" : "text-white/50"}`}>
                         The backstory
                       </p>
-                      <ol className="flex-1 min-h-0 list-none p-0 m-0 divide-y divide-white/10">
+                      <ol className={`flex-1 min-h-0 list-none p-0 m-0 divide-y ${lightMode ? "divide-black/10" : "divide-white/10"}`}>
                         {experience.map((e) => (
                           <li key={e.org} className="flex items-baseline gap-[clamp(0.75rem,1.2vw,1.25rem)] py-[clamp(0.5rem,1vh,0.85rem)]">
-                            <time className="font-sans text-[0.78rem] tracking-[0.24em] uppercase text-white/45 w-[6rem] shrink-0">
+                            <time className={`font-sans text-[0.78rem] tracking-[0.24em] uppercase w-[6rem] shrink-0 ${lightMode ? "text-black/45" : "text-white/45"}`}>
                               {e.years}
                             </time>
                             <div className="flex-1 min-w-0 flex items-baseline gap-3">
-                              <span className="font-sans text-[clamp(1.05rem,1.2vw,1.3rem)] font-medium tracking-[-0.01em] text-white truncate">
+                              <span className={`font-sans text-[clamp(1.05rem,1.2vw,1.3rem)] font-medium tracking-[-0.01em] truncate ${lightMode ? "text-black" : "text-white"}`}>
                                 {e.org}
                               </span>
-                              <span className="font-sans text-[clamp(0.92rem,1vw,1.1rem)] text-white/60 truncate hidden md:inline">
+                              <span className={`font-sans text-[clamp(0.92rem,1vw,1.1rem)] truncate hidden md:inline ${lightMode ? "text-black/60" : "text-white/60"}`}>
                                 {e.role}
                               </span>
                             </div>
@@ -673,13 +667,13 @@ export function Index() {
 
                     {/* Beyond */}
                     <div>
-                      <p className="text-[0.78rem] tracking-[0.28em] uppercase text-white/50 m-0 mb-[clamp(0.5rem,1vh,0.85rem)]">
+                      <p className={`text-[0.78rem] tracking-[0.28em] uppercase m-0 mb-[clamp(0.5rem,1vh,0.85rem)] ${lightMode ? "text-black/50" : "text-white/50"}`}>
                         Beyond
                       </p>
                       <ul className="grid grid-cols-1 sm:grid-cols-3 gap-x-[clamp(1rem,1.6vw,1.75rem)] gap-y-[clamp(0.4rem,0.8vh,0.6rem)] list-none p-0 m-0">
                         {life.filter((_, i) => i !== 2).map((l, i) => (
-                          <li key={i} className="flex gap-3 font-sans text-[clamp(0.92rem,1vw,1.1rem)] leading-snug text-white/80">
-                            <span aria-hidden="true" className="text-[0.72rem] tracking-[0.24em] uppercase text-white/40 pt-[0.3em]">
+                          <li key={i} className={`flex gap-3 font-sans text-[clamp(0.92rem,1vw,1.1rem)] leading-snug ${lightMode ? "text-black/80" : "text-white/80"}`}>
+                            <span aria-hidden="true" className={`text-[0.72rem] tracking-[0.24em] uppercase pt-[0.3em] ${lightMode ? "text-black/40" : "text-white/40"}`}>
                               {String(i + 1).padStart(2, "0")}
                             </span>
                             <span>{l}</span>
