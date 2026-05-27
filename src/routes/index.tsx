@@ -358,15 +358,24 @@ export function Index() {
               <button
                 key={n.id}
                 onClick={() => { setMenuOpen(false); setTab(n.id); }}
-                className="group relative flex items-baseline justify-between gap-4 px-5 py-[clamp(1.25rem,3.6vh,2.5rem)] text-left transition-colors active:bg-white active:text-black"
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+                    e.preventDefault();
+                    const dir = e.key === "ArrowDown" ? 1 : -1;
+                    const next = (i + dir + navItems.length) % navItems.length;
+                    const btns = e.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>("button");
+                    btns?.[next]?.focus();
+                  }
+                }}
+                className="group relative flex items-baseline justify-between gap-4 px-5 py-[clamp(1.25rem,3.6vh,2.5rem)] text-left transition-colors active:bg-white active:text-black focus:outline-none focus-visible:bg-white focus-visible:text-black"
               >
-                <span className="font-sans text-[0.6rem] tracking-[0.32em] uppercase text-white/40 group-active:text-black/60">
+                <span className="font-sans text-[0.6rem] tracking-[0.32em] uppercase text-white/40 group-active:text-black/60 group-focus-visible:text-black/60">
                   0{i + 1}
                 </span>
-                <span className="flex-1 font-sans text-[clamp(1.82rem,9.1vw,3.15rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase text-white group-active:text-black">
+                <span className="flex-1 font-sans text-[clamp(1.82rem,9.1vw,3.15rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase text-white group-active:text-black group-focus-visible:text-black">
                   {n.label}
                 </span>
-                <span aria-hidden="true" className="font-sans text-[1.5rem] leading-none text-white/40 group-active:text-black/70">↗</span>
+                <span aria-hidden="true" className="font-sans text-[1.5rem] leading-none text-white/40 group-active:text-black/70 group-focus-visible:text-black/70">↗</span>
               </button>
             ))}
           </nav>
@@ -381,17 +390,31 @@ export function Index() {
           Ilya<span className="opacity-60">_</span>Paveliev
         </a>
         <nav aria-label="Sections" className="flex items-center gap-[clamp(2.5rem,4.5vw,5rem)]">
-          {navItems.map((n) => (
+          {navItems.map((n, i) => (
             <button
               key={n.id}
               onClick={() => setTab(n.id)}
               onMouseEnter={() => setHoveredTab(n.id)}
               onMouseLeave={() => setHoveredTab((cur) => (cur === n.id ? null : cur))}
+              onFocus={() => setHoveredTab(n.id)}
+              onBlur={() => setHoveredTab((cur) => (cur === n.id ? null : cur))}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setTab(n.id);
+                } else if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+                  e.preventDefault();
+                  const dir = e.key === "ArrowRight" ? 1 : -1;
+                  const next = (i + dir + navItems.length) % navItems.length;
+                  const btns = e.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>("button");
+                  btns?.[next]?.focus();
+                }
+              }}
               aria-current={tab === n.id ? "page" : undefined}
-              className="group relative font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.2em] uppercase text-white/90 hover:text-white transition-colors"
+              className="group relative font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.2em] uppercase text-white/90 hover:text-white transition-colors outline-none focus:outline-none focus-visible:text-white"
             >
               <ScrambleText text={n.label} trigger={hoveredTab === n.id} duration={420} />
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full group-focus-visible:w-full" />
             </button>
           ))}
         </nav>
