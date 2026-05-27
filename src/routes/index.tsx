@@ -421,10 +421,21 @@ export function Index() {
                 }
               }}
               aria-current={tab === n.id ? "page" : undefined}
-              className="group relative font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.2em] uppercase text-white/90 hover:text-white transition-colors outline-none focus:outline-none focus-visible:text-white"
+              aria-keyshortcuts={String(i + 1)}
+              className="group relative inline-flex items-center gap-[0.5rem] font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.2em] uppercase text-white/90 hover:text-white transition-colors outline-none focus:outline-none focus-visible:text-white"
             >
+              <kbd
+                aria-hidden="true"
+                className={`inline-flex h-[1.15rem] w-[1.15rem] items-center justify-center border font-mono text-[0.62rem] leading-none tracking-normal transition-colors ${
+                  tab === n.id
+                    ? "border-white bg-white text-black"
+                    : "border-white/25 text-white/55 group-hover:border-white/60 group-hover:text-white group-focus-visible:border-white/60 group-focus-visible:text-white"
+                }`}
+              >
+                {i + 1}
+              </kbd>
               {n.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full group-focus-visible:w-full" />
+              <span className="absolute -bottom-1 left-[1.65rem] h-px w-0 bg-white transition-all duration-300 group-hover:w-[calc(100%-1.65rem)] group-focus-visible:w-[calc(100%-1.65rem)]" />
             </button>
           ))}
         </nav>
