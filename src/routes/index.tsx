@@ -488,19 +488,6 @@ export function Index() {
                       />
                     </label>
 
-                    <fieldset className="border-0 p-0 m-0">
-                      <legend className="sr-only">Topic</legend>
-                      <div className="flex flex-wrap gap-3">
-                        {["Press inquiry", "Speaking engagement", "Investment opportunity", "Partnership", "Other"].map((t, i) => (
-                          <label key={t} className="cursor-pointer">
-                            <input type="radio" name="topic" value={t} defaultChecked={i === 0} className="peer sr-only" />
-                            <span className="inline-block rounded-full border border-white/25 px-5 py-2.5 font-sans text-[0.8rem] font-medium tracking-[0.18em] uppercase text-white/70 transition-colors hover:border-white/60 hover:text-white peer-checked:border-white peer-checked:bg-white peer-checked:text-black">
-                              {t}
-                            </span>
-                          </label>
-                        ))}
-                      </div>
-                    </fieldset>
 
                     <label className="flex flex-1 min-h-0 flex-col">
                       <span className="sr-only">Message</span>
