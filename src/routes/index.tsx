@@ -457,9 +457,6 @@ export function Index() {
                       <h3 className="font-sans font-medium uppercase leading-[0.95] tracking-[-0.02em] text-white text-[clamp(3rem,6vw,6.5rem)] m-0">
                         Get in<br />touch
                       </h3>
-                      <p className="mt-[clamp(1.5rem,3vh,2.5rem)] max-w-[36ch] font-sans text-[clamp(1rem,1.15vw,1.25rem)] leading-relaxed text-white/70">
-                        If anything here resonates, I'd love to connect.
-                      </p>
                       <div className="flex items-center gap-4 mt-[clamp(1.5rem,3vh,2.5rem)]">
                         <a href="https://www.linkedin.com/in/trinityinvestor/" target="_blank" rel="me noopener noreferrer" aria-label="LinkedIn" className="text-white/50 hover:text-white transition-colors">
                           <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
