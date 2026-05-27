@@ -326,10 +326,14 @@ export function Index() {
       </div>
 
       {/* =================== MOBILE LAYOUT =================== */}
-      <div className="relative z-10 md:hidden flex flex-col h-svh overflow-hidden">
+      <div
+        className={`relative z-10 md:hidden flex flex-col h-svh overflow-hidden transition-colors duration-300 ${lightMode ? "bg-white text-black" : ""}`}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         {/* Mobile header — logo + "+" menu */}
         <header className="flex items-center justify-between px-5 pt-[3.82vh] shrink-0">
-          <a href="/" className="font-sans text-[1.55rem] font-semibold tracking-[0.16em] uppercase text-white leading-none flex items-center">
+          <a href="/" className={`font-sans text-[1.55rem] font-semibold tracking-[0.16em] uppercase leading-none flex items-center antialiased ${lightMode ? "text-black" : "text-white"}`}>
             ILYA<span className="opacity-60">_</span>PAVELIEV
           </a>
           <button
@@ -337,7 +341,7 @@ export function Index() {
             aria-label="Open menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(true)}
-            className="flex items-center justify-center text-white text-[2rem] leading-none h-[1.55rem] w-11 -mr-2 active:opacity-60 transition-opacity"
+            className={`flex items-center justify-center text-[2rem] leading-none h-[1.55rem] w-11 -mr-2 active:opacity-60 transition-opacity ${lightMode ? "text-black" : "text-white"}`}
           >
             +
           </button>
@@ -345,7 +349,7 @@ export function Index() {
 
         {/* Headline — fills remaining screen, 3 rows, golden-ratio rhythm */}
         <div className="flex flex-1 items-end px-5 pb-[6.18vh] min-h-0">
-          <h1 className="font-sans w-full font-semibold leading-[0.9] tracking-[-0.06em] uppercase text-white text-[13.4vw]">
+          <h1 className={`font-sans w-full font-semibold leading-[0.9] tracking-[-0.06em] uppercase text-[13.4vw] antialiased ${lightMode ? "text-black" : "text-white"}`}>
             <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
             <span className="block whitespace-nowrap">BUILDING THE</span>
             <span className="block whitespace-nowrap">FUTURE OF</span>
@@ -354,11 +358,10 @@ export function Index() {
           </h1>
         </div>
 
-
-
-
-
-
+        {/* Swipe hint */}
+        <div className={`absolute bottom-[1.25rem] left-0 right-0 flex justify-center pointer-events-none font-mono text-[0.62rem] tracking-[0.28em] uppercase antialiased ${lightMode ? "text-black/45" : "text-white/35"}`}>
+          {lightMode ? "swipe right →  dark" : "← swipe left   light"}
+        </div>
       </div>
 
 
