@@ -394,10 +394,6 @@ export function Index() {
             <button
               key={n.id}
               onClick={() => setTab(n.id)}
-              onMouseEnter={() => setHoveredTab(n.id)}
-              onMouseLeave={() => setHoveredTab((cur) => (cur === n.id ? null : cur))}
-              onFocus={() => setHoveredTab(n.id)}
-              onBlur={() => setHoveredTab((cur) => (cur === n.id ? null : cur))}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") {
                   e.preventDefault();
@@ -413,7 +409,7 @@ export function Index() {
               aria-current={tab === n.id ? "page" : undefined}
               className="group relative font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.2em] uppercase text-white/90 hover:text-white transition-colors outline-none focus:outline-none focus-visible:text-white"
             >
-              <ScrambleText text={n.label} trigger={hoveredTab === n.id} duration={420} />
+              {n.label}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full group-focus-visible:w-full" />
             </button>
           ))}
