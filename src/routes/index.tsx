@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import banner from "@/assets/banner.jpeg";
 import portrait from "@/assets/portrait.png";
+import { ScrambleText } from "@/components/ScrambleText";
 
 import {
   person,
@@ -244,6 +245,7 @@ function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
 
 export function Index() {
   const [tab, setTab] = useState<Tab | null>(null);
+  const [hoveredTab, setHoveredTab] = useState<Tab | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dark, setDark] = useState(true);
   const [contactSent, setContactSent] = useState(false);
@@ -383,14 +385,18 @@ export function Index() {
             <button
               key={n.id}
               onClick={() => setTab(n.id)}
+              onMouseEnter={() => setHoveredTab(n.id)}
+              onMouseLeave={() => setHoveredTab((cur) => (cur === n.id ? null : cur))}
               aria-current={tab === n.id ? "page" : undefined}
               className="group relative font-sans text-[clamp(1.35rem,1.9vw,2rem)] font-semibold tracking-[0.2em] uppercase text-white/90 hover:text-white transition-colors"
             >
-              {n.label}
+              <ScrambleText text={n.label} trigger={hoveredTab === n.id} duration={420} />
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
             </button>
           ))}
         </nav>
+
+
       </header>
 
       {/* Bottom-left headline — 3 rows, scales to fit longest line on any screen */}
