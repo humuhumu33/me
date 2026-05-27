@@ -421,12 +421,12 @@ export function Index() {
             {/* Panel header */}
             <header className="flex items-center justify-between border-b border-white/10 px-[clamp(1.5rem,2.6vw,3rem)] py-[clamp(1rem,1.8vh,1.6rem)]">
               <div className="flex items-baseline gap-4">
-                <span className="font-sans text-[0.7rem] tracking-[0.32em] uppercase text-white/50">
+                <span className="font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.32em] uppercase text-white/50">
                   {tab === "life" && "01 / Bio"}
                   {tab === "thinking" && "02 / Thoughts"}
                   {tab === "contact" && "03 / Contact"}
                 </span>
-                <h2 className="font-sans text-[clamp(1.1rem,1.4vw,1.6rem)] font-medium tracking-[-0.01em] uppercase text-white">
+                <h2 className="font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] font-medium tracking-[0.02em] uppercase text-white">
                   {tab === "life" && "MY STORY"}
                   {tab === "thinking" && "Writing & talks"}
                   
