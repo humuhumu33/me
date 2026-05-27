@@ -416,9 +416,9 @@ export function Index() {
           aria-modal="true"
           aria-label={tab}
         >
-          <section className="relative flex h-screen w-screen flex-col bg-[#0a0a0a]">
+          <section className="relative flex h-screen w-screen flex-col bg-[#0a0a0a] pt-[clamp(3.5rem,7vh,5.25rem)]">
             {/* Panel header */}
-            <header className="flex items-center justify-between border-b border-white/10 px-[clamp(1.5rem,3vw,3.5rem)] py-[clamp(1rem,2vh,1.75rem)] shrink-0">
+            <header className="flex items-center justify-between border-b border-white/10 px-[clamp(1.5rem,3vw,3.5rem)] py-[clamp(0.75rem,1.5vh,1.25rem)] shrink-0">
               <div className="flex items-baseline gap-4">
                 <span className="font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.32em] uppercase text-white/50">
                   {tab === "life" && "01 / Bio"}
