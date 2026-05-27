@@ -242,15 +242,6 @@ function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
   );
 }
 
-const Hint = ({ k, label, active }: { k: string; label: string; active?: boolean }) => (
-  <span className={`flex items-center gap-[0.4rem] ${active ? "text-white" : ""}`}>
-    <kbd className={`inline-flex h-[1.05rem] min-w-[1.05rem] items-center justify-center border px-[0.3rem] font-mono text-[0.6rem] leading-none ${active ? "border-white bg-white text-black" : "border-white/25 bg-white/[0.04] text-white/80"}`}>
-      {k}
-    </kbd>
-    <span>{label}</span>
-  </span>
-);
-
 export function Index() {
   const [tab, setTab] = useState<Tab | null>(null);
   
