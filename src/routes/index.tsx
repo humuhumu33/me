@@ -245,6 +245,7 @@ function YearsTime({ entry }: { entry: (typeof experience)[number] }) {
 
 export function Index() {
   const [tab, setTab] = useState<Tab | null>(null);
+  const [hoveredTab, setHoveredTab] = useState<Tab | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dark, setDark] = useState(true);
   const [contactSent, setContactSent] = useState(false);
