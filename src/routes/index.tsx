@@ -556,7 +556,7 @@ export function Index() {
                       ) : (
                         <button
                           type="submit"
-                          className="rounded-full border border-white px-10 py-3.5 font-sans text-[0.85rem] font-semibold tracking-[0.22em] uppercase text-white transition-colors hover:bg-white hover:text-black"
+                          className="rounded-full border border-white px-10 py-3.5 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] uppercase text-white transition-colors hover:bg-white hover:text-black"
                         >
                           Submit
                         </button>
