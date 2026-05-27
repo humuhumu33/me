@@ -367,22 +367,22 @@ export function Index() {
 
       {/* Mobile fullscreen menu */}
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black text-white flex flex-col animate-in fade-in duration-200">
+        <div className={`md:hidden fixed inset-0 z-40 flex flex-col animate-in fade-in duration-200 ${lightMode ? "bg-white text-black" : "bg-black text-white"}`}>
           <header className="flex items-center justify-between px-5 pt-5">
-            <span className="font-sans text-[1.05rem] font-semibold tracking-[0.18em] uppercase text-white">
+            <span className={`font-sans text-[1.05rem] font-semibold tracking-[0.18em] uppercase antialiased ${lightMode ? "text-black" : "text-white"}`}>
               ILYA<span className="opacity-60">_</span>PAVELIEV
             </span>
             <button
               type="button"
               aria-label="Close menu"
               onClick={() => setMenuOpen(false)}
-              className="flex h-11 w-11 items-center justify-center text-white text-[2rem] leading-none -mr-2 rotate-45 active:opacity-60 transition-opacity"
+              className={`flex h-11 w-11 items-center justify-center text-[2rem] leading-none -mr-2 rotate-45 active:opacity-60 transition-opacity ${lightMode ? "text-black" : "text-white"}`}
             >
               +
             </button>
           </header>
 
-          <nav aria-label="Sections" className="flex flex-1 flex-col justify-center divide-y divide-white/10 border-y border-white/10">
+          <nav aria-label="Sections" className={`flex flex-1 flex-col justify-center divide-y border-y ${lightMode ? "divide-black/10 border-black/10" : "divide-white/10 border-white/10"}`}>
             {navItems.map((n, i) => (
               <button
                 key={n.id}
@@ -396,15 +396,15 @@ export function Index() {
                     btns?.[next]?.focus();
                   }
                 }}
-                className="group relative flex items-baseline justify-between gap-4 px-5 py-[clamp(1.25rem,3.6vh,2.5rem)] text-left transition-colors active:bg-white active:text-black focus:outline-none focus-visible:bg-white focus-visible:text-black"
+                className={`group relative flex items-baseline justify-between gap-4 px-5 py-[clamp(1.25rem,3.6vh,2.5rem)] text-left transition-colors focus:outline-none ${lightMode ? "active:bg-black active:text-white focus-visible:bg-black focus-visible:text-white" : "active:bg-white active:text-black focus-visible:bg-white focus-visible:text-black"}`}
               >
-                <span className="font-sans text-[0.6rem] tracking-[0.32em] uppercase text-white/40 group-active:text-black/60 group-focus-visible:text-black/60">
+                <span className={`font-sans text-[0.6rem] tracking-[0.32em] uppercase antialiased ${lightMode ? "text-black/40 group-active:text-white/60 group-focus-visible:text-white/60" : "text-white/40 group-active:text-black/60 group-focus-visible:text-black/60"}`}>
                   0{i + 1}
                 </span>
-                <span className="flex-1 font-sans text-[clamp(1.82rem,9.1vw,3.15rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase text-white group-active:text-black group-focus-visible:text-black">
+                <span className={`flex-1 font-sans text-[clamp(1.82rem,9.1vw,3.15rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase antialiased ${lightMode ? "text-black group-active:text-white group-focus-visible:text-white" : "text-white group-active:text-black group-focus-visible:text-black"}`}>
                   {n.label}
                 </span>
-                <span aria-hidden="true" className="font-sans text-[1.5rem] leading-none text-white/40 group-active:text-black/70 group-focus-visible:text-black/70">↗</span>
+                <span aria-hidden="true" className={`font-sans text-[1.5rem] leading-none ${lightMode ? "text-black/40 group-active:text-white/70 group-focus-visible:text-white/70" : "text-white/40 group-active:text-black/70 group-focus-visible:text-black/70"}`}>↗</span>
               </button>
             ))}
           </nav>
