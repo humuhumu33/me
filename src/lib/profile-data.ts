@@ -183,6 +183,65 @@ export const life: readonly string[] = [
   "Father to two wonderful daughters.",
 ];
 
+export interface StoryChapter {
+  years: string;
+  org: string;
+  subtitle: string;
+  body: string;
+}
+
+export const storyStats: { value: string; label: string }[] = [
+  { value: "4", label: "Companies & protocols" },
+  { value: "$20bn+", label: "Assets & flows managed" },
+  { value: "$20m", label: "Raised" },
+  { value: "10,000+", label: "Offshore miles sailed" },
+];
+
+export const storyChapters: StoryChapter[] = [
+  {
+    years: "Beginnings",
+    org: "Vladivostok, Russia",
+    subtitle: "Origins",
+    body: "I was born in Vladivostok during Perestroika. My mother was a lawyer and my father was an engineer. I taught myself to build drones, computers, and wearable devices, studied economics at Trinity College Dublin, graduated with a gold medal, and later sailed over 10,000 offshore miles.",
+  },
+  {
+    years: "2010 — 2013",
+    org: "Perella Weinberg Partners",
+    subtitle: "Investment Banking — M&A",
+    body: "I joined the London team early, focusing on energy sector transactions. Learned institutional discipline and how capital moves at scale.",
+  },
+  {
+    years: "2013 — 2021",
+    org: "Adrian Lee & Partners",
+    subtitle: "Active Asset Management",
+    body: "I managed a $20 billion active currency overlay for US pension funds and endowments. Eight years inside the orchestration layer of global institutional capital.",
+  },
+  {
+    years: "2022",
+    org: "OX1",
+    subtitle: "Market-Neutral Digital Assets",
+    body: "I launched and managed a $30 million market-neutral crypto fund through the FTX crisis, returning all LP capital. Counterparty risk is sovereignty risk.",
+  },
+  {
+    years: "2023 — 2025",
+    org: "Arete Capital",
+    subtitle: "Venture Capital",
+    body: "I raised a $20 million hybrid venture fund, oversubscribed and backed by Marc Andreessen and Chris Dixon at a16z. Invested across deep tech, AI, and real-world assets, backing founders building physical infrastructure.",
+  },
+  {
+    years: "2025 — Present",
+    org: "UOR Foundation",
+    subtitle: "Open Protocol Foundation",
+    body: "I am a Founding Member of the UOR Foundation, stewarding an open standard for content-addressed storage, compute, and networking. 150+ contributors building the substrate for verified, self-owned systems.",
+  },
+  {
+    years: "2025 — Present",
+    org: "Hologram Technologies",
+    subtitle: "Deep Tech — Local AI Compute",
+    body: "I co-founded Hologram to build software-defined high-performance compute for local AI inference. Edge-first, offline-capable, and private — running on the hardware people already own. I have two daughters, and I am building the compute environment I want them to inherit.",
+  },
+];
+
 export const SITE_URL = "https://ilyapaveliev.com";
 export const PORTRAIT_PATH = "/og-portrait.jpg";
 export const PORTRAIT_ALT =
