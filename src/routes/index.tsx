@@ -248,6 +248,27 @@ export function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dark, setDark] = useState(true);
   const [contactSent, setContactSent] = useState(false);
+  const [lightMode, setLightMode] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touchStartX.current = t.clientX;
+    touchStartY.current = t.clientY;
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current == null || touchStartY.current == null) return;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touchStartX.current;
+    const dy = t.clientY - touchStartY.current;
+    touchStartX.current = null;
+    touchStartY.current = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      if (dx < 0) setLightMode(true);
+      else setLightMode(false);
+    }
+  };
 
   useEffect(() => {
     if (tab !== "contact") setContactSent(false);
@@ -305,10 +326,14 @@ export function Index() {
       </div>
 
       {/* =================== MOBILE LAYOUT =================== */}
-      <div className="relative z-10 md:hidden flex flex-col h-svh overflow-hidden">
+      <div
+        className={`relative z-10 md:hidden flex flex-col h-svh overflow-hidden transition-colors duration-300 ${lightMode ? "bg-white text-black" : ""}`}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         {/* Mobile header — logo + "+" menu */}
         <header className="flex items-center justify-between px-5 pt-[3.82vh] shrink-0">
-          <a href="/" className="font-sans text-[1.55rem] font-semibold tracking-[0.16em] uppercase text-white leading-none flex items-center">
+          <a href="/" className={`font-sans text-[1.55rem] font-semibold tracking-[0.16em] uppercase leading-none flex items-center antialiased ${lightMode ? "text-black" : "text-white"}`}>
             ILYA<span className="opacity-60">_</span>PAVELIEV
           </a>
           <button
@@ -316,7 +341,7 @@ export function Index() {
             aria-label="Open menu"
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(true)}
-            className="flex items-center justify-center text-white text-[2rem] leading-none h-[1.55rem] w-11 -mr-2 active:opacity-60 transition-opacity"
+            className={`flex items-center justify-center text-[2rem] leading-none h-[1.55rem] w-11 -mr-2 active:opacity-60 transition-opacity ${lightMode ? "text-black" : "text-white"}`}
           >
             +
           </button>
@@ -324,7 +349,7 @@ export function Index() {
 
         {/* Headline — fills remaining screen, 3 rows, golden-ratio rhythm */}
         <div className="flex flex-1 items-end px-5 pb-[6.18vh] min-h-0">
-          <h1 className="font-sans w-full font-semibold leading-[0.9] tracking-[-0.06em] uppercase text-white text-[13.4vw]">
+          <h1 className={`font-sans w-full font-semibold leading-[0.9] tracking-[-0.06em] uppercase text-[13.4vw] antialiased ${lightMode ? "text-black" : "text-white"}`}>
             <span itemProp="name" className="sr-only">Ilya Paveliev — </span>
             <span className="block whitespace-nowrap">BUILDING THE</span>
             <span className="block whitespace-nowrap">FUTURE OF</span>
@@ -333,32 +358,31 @@ export function Index() {
           </h1>
         </div>
 
-
-
-
-
-
+        {/* Swipe hint */}
+        <div className={`absolute bottom-[1.25rem] left-0 right-0 flex justify-center pointer-events-none font-mono text-[0.62rem] tracking-[0.28em] uppercase antialiased ${lightMode ? "text-black/45" : "text-white/35"}`}>
+          {lightMode ? "swipe right →  dark" : "← swipe left   light"}
+        </div>
       </div>
 
 
       {/* Mobile fullscreen menu */}
       {menuOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black text-white flex flex-col animate-in fade-in duration-200">
+        <div className={`md:hidden fixed inset-0 z-40 flex flex-col animate-in fade-in duration-200 ${lightMode ? "bg-white text-black" : "bg-black text-white"}`}>
           <header className="flex items-center justify-between px-5 pt-5">
-            <span className="font-sans text-[1.05rem] font-semibold tracking-[0.18em] uppercase text-white">
+            <span className={`font-sans text-[1.05rem] font-semibold tracking-[0.18em] uppercase antialiased ${lightMode ? "text-black" : "text-white"}`}>
               ILYA<span className="opacity-60">_</span>PAVELIEV
             </span>
             <button
               type="button"
               aria-label="Close menu"
               onClick={() => setMenuOpen(false)}
-              className="flex h-11 w-11 items-center justify-center text-white text-[2rem] leading-none -mr-2 rotate-45 active:opacity-60 transition-opacity"
+              className={`flex h-11 w-11 items-center justify-center text-[2rem] leading-none -mr-2 rotate-45 active:opacity-60 transition-opacity ${lightMode ? "text-black" : "text-white"}`}
             >
               +
             </button>
           </header>
 
-          <nav aria-label="Sections" className="flex flex-1 flex-col justify-center divide-y divide-white/10 border-y border-white/10">
+          <nav aria-label="Sections" className={`flex flex-1 flex-col justify-center divide-y border-y ${lightMode ? "divide-black/10 border-black/10" : "divide-white/10 border-white/10"}`}>
             {navItems.map((n, i) => (
               <button
                 key={n.id}
@@ -372,15 +396,15 @@ export function Index() {
                     btns?.[next]?.focus();
                   }
                 }}
-                className="group relative flex items-baseline justify-between gap-4 px-5 py-[clamp(1.25rem,3.6vh,2.5rem)] text-left transition-colors active:bg-white active:text-black focus:outline-none focus-visible:bg-white focus-visible:text-black"
+                className={`group relative flex items-baseline justify-between gap-4 px-5 py-[clamp(1.25rem,3.6vh,2.5rem)] text-left transition-colors focus:outline-none ${lightMode ? "active:bg-black active:text-white focus-visible:bg-black focus-visible:text-white" : "active:bg-white active:text-black focus-visible:bg-white focus-visible:text-black"}`}
               >
-                <span className="font-sans text-[0.6rem] tracking-[0.32em] uppercase text-white/40 group-active:text-black/60 group-focus-visible:text-black/60">
+                <span className={`font-sans text-[0.6rem] tracking-[0.32em] uppercase antialiased ${lightMode ? "text-black/40 group-active:text-white/60 group-focus-visible:text-white/60" : "text-white/40 group-active:text-black/60 group-focus-visible:text-black/60"}`}>
                   0{i + 1}
                 </span>
-                <span className="flex-1 font-sans text-[clamp(1.82rem,9.1vw,3.15rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase text-white group-active:text-black group-focus-visible:text-black">
+                <span className={`flex-1 font-sans text-[clamp(1.82rem,9.1vw,3.15rem)] font-semibold leading-[0.95] tracking-[-0.02em] uppercase antialiased ${lightMode ? "text-black group-active:text-white group-focus-visible:text-white" : "text-white group-active:text-black group-focus-visible:text-black"}`}>
                   {n.label}
                 </span>
-                <span aria-hidden="true" className="font-sans text-[1.5rem] leading-none text-white/40 group-active:text-black/70 group-focus-visible:text-black/70">↗</span>
+                <span aria-hidden="true" className={`font-sans text-[1.5rem] leading-none ${lightMode ? "text-black/40 group-active:text-white/70 group-focus-visible:text-white/70" : "text-white/40 group-active:text-black/70 group-focus-visible:text-black/70"}`}>↗</span>
               </button>
             ))}
           </nav>
