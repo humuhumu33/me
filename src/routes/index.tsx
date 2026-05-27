@@ -524,6 +524,21 @@ export function Index() {
                       />
                     </label>
 
+                    <label className="block">
+                      <span className="sr-only">Email</span>
+                      <input
+                        name="email"
+                        type="email"
+                        required
+                        maxLength={255}
+                        autoComplete="email"
+                        placeholder="EMAIL"
+                        className="w-full bg-transparent border-0 border-b border-white/25 pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] uppercase text-white placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
+                      />
+                    </label>
+
+
+
 
                     <label className="flex flex-1 min-h-0 flex-col">
                       <span className="sr-only">Message</span>
