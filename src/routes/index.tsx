@@ -520,7 +520,7 @@ export function Index() {
                         type="text"
                         required
                         placeholder="FULL NAME"
-                        className="w-full bg-transparent border-0 border-b border-white/25 pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] uppercase text-white placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
+                        className="w-full bg-transparent border-0 border-b border-white/25 pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] text-white placeholder:uppercase placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
                       />
                     </label>
 
@@ -533,7 +533,7 @@ export function Index() {
                         maxLength={255}
                         autoComplete="email"
                         placeholder="EMAIL"
-                        className="w-full bg-transparent border-0 border-b border-white/25 pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] uppercase text-white placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
+                        className="w-full bg-transparent border-0 border-b border-white/25 pb-3 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] text-white placeholder:uppercase placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
                       />
                     </label>
 
@@ -546,7 +546,7 @@ export function Index() {
                         name="message"
                         required
                         placeholder="MESSAGE"
-                        className="w-full flex-1 min-h-[10rem] resize-none border border-white/20 bg-white/[0.02] p-5 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] uppercase text-white placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
+                        className="w-full flex-1 min-h-[10rem] resize-none border border-white/20 bg-white/[0.02] p-5 font-sans text-[clamp(1.25rem,1.6vw,1.75rem)] tracking-[0.02em] text-white placeholder:uppercase placeholder:text-white/55 focus:border-white focus:outline-none transition-colors"
                       />
                     </label>
 
