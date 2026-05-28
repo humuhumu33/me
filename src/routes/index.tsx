@@ -600,9 +600,9 @@ export function Index() {
               {tab === "life" && (
                 <div className="h-full overflow-y-auto -mx-[clamp(1.5rem,3vw,3.5rem)] -my-[clamp(1.25rem,2.4vh,2.25rem)] bg-white text-black">
                   <article className="w-full pb-[clamp(4rem,10vh,8rem)]">
-                    {/* Hero — compact portrait beside thesis on white */}
-                    <section className="px-[clamp(1.5rem,5vw,6rem)] pt-[clamp(2.5rem,6vh,5rem)]">
-                      <p className="text-[clamp(0.72rem,0.85vw,0.9rem)] tracking-[0.32em] uppercase text-black/50 m-0 mb-[clamp(2rem,4vh,3rem)]">
+                    {/* Hero — black band, portrait beside thesis */}
+                    <section className="bg-black text-white px-[clamp(1.5rem,5vw,6rem)] pt-[clamp(2.5rem,6vh,5rem)] pb-[clamp(3rem,7vh,6rem)]">
+                      <p className="text-[clamp(0.72rem,0.85vw,0.9rem)] tracking-[0.32em] uppercase text-white/50 m-0 mb-[clamp(2rem,4vh,3rem)]">
                         Why me
                       </p>
                       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-[clamp(1.5rem,3vw,3rem)] items-end">
@@ -611,7 +611,7 @@ export function Index() {
                           alt={PORTRAIT_ALT}
                           className="block w-[clamp(9rem,18vw,16rem)] h-[clamp(11rem,22vw,20rem)] object-cover grayscale"
                         />
-                        <h2 className="font-sans font-bold uppercase leading-[0.85] tracking-[-0.045em] m-0 text-black text-[clamp(2.5rem,7.5vw,8rem)]">
+                        <h2 className="font-sans font-bold uppercase leading-[0.85] tracking-[-0.045em] m-0 text-white text-[clamp(2.5rem,7.5vw,8rem)]">
                           Building the<br />future of<br />sovereign AI.
                         </h2>
                       </div>
