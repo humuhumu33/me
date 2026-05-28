@@ -616,7 +616,7 @@ export function Index() {
                             Ilya Paveliev.
                           </h2>
                           <p className="font-sans m-0 max-w-[44rem] text-[clamp(1rem,1.2vw,1.25rem)] leading-[1.65] text-white/80">
-                            I have spent fifteen years moving between institutional capital and frontier technology — investment banking, currency overlay, digital assets, venture, and now building. Today I co-found Hologram Technologies and serve as a founding member of the UOR Foundation. I live in Dubai with my wife and two daughters.
+                            I have spent fifteen years at the intersection of institutional capital and frontier technology, building and backing the infrastructure that moves both. Today I co-found Hologram Technologies and serve as a founding member of the UOR Foundation. I live in Dubai with my wife and two daughters.
                           </p>
                         </div>
                       </div>
