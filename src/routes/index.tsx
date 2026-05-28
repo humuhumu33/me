@@ -602,9 +602,6 @@ export function Index() {
                   <article className="w-full pb-[clamp(4rem,10vh,8rem)]">
                     {/* Hero — black band, portrait beside thesis */}
                     <section className="bg-black text-white px-[clamp(1.5rem,5vw,6rem)] pt-[clamp(2.5rem,6vh,5rem)] pb-[clamp(3rem,7vh,6rem)]">
-                      <p className="text-[clamp(0.72rem,0.85vw,0.9rem)] tracking-[0.32em] uppercase text-white/50 m-0 mb-[clamp(2rem,4vh,3rem)]">
-                        Why me
-                      </p>
                       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-[clamp(1.5rem,3vw,3rem)] items-end">
                         <img
                           src={portrait}
