@@ -605,27 +605,25 @@ export function Index() {
                       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-[clamp(1.5rem,3vw,3rem)] items-end">
                         <div className="group relative w-[clamp(9rem,18vw,16rem)] h-[clamp(11rem,22vw,20rem)] overflow-hidden bg-black">
                           <style>{`
-                            @keyframes netRotate {
-                              0% { transform: rotate(0deg); }
-                              100% { transform: rotate(360deg); }
+                            @keyframes veNodeIn {
+                              0% { opacity: 0; transform: scale(0); }
+                              60% { opacity: 1; transform: scale(1.4); }
+                              100% { opacity: 0.95; transform: scale(1); }
                             }
-                            @keyframes netPulse {
-                              0%, 100% { opacity: 0.35; }
-                              50% { opacity: 1; }
+                            @keyframes veEdgeDraw {
+                              0% { stroke-dashoffset: var(--len, 200); opacity: 0; }
+                              10% { opacity: 0.9; }
+                              60%, 100% { stroke-dashoffset: 0; opacity: 0.85; }
                             }
-                            @keyframes nodePulse {
-                              0%, 100% { r: 2; opacity: 0.7; }
-                              50% { r: 3.4; opacity: 1; }
+                            @keyframes veCenterPulse {
+                              0%, 100% { opacity: 0.6; r: 2.4; }
+                              50% { opacity: 1; r: 3.6; }
                             }
-                            @keyframes edgeDraw {
-                              0% { stroke-dashoffset: 120; opacity: 0.15; }
-                              50% { opacity: 0.95; }
-                              100% { stroke-dashoffset: 0; opacity: 0.15; }
-                            }
-                            @keyframes shapeFade {
-                              0%, 100% { opacity: 0; }
-                              50% { opacity: 0.18; }
-                            }
+                            .ve-node { transform-box: fill-box; transform-origin: center; opacity: 0; }
+                            .group:hover .ve-node { animation: veNodeIn 0.5s ease-out forwards; }
+                            .ve-edge { stroke-dasharray: var(--len, 200); stroke-dashoffset: var(--len, 200); opacity: 0; }
+                            .group:hover .ve-edge { animation: veEdgeDraw 1.4s ease-out forwards; }
+                            .group:hover .ve-center { animation: veCenterPulse 2.4s ease-in-out 2.4s infinite; }
                           `}</style>
                           <img
                             src={portrait}
@@ -634,111 +632,74 @@ export function Index() {
                           />
                           <div
                             aria-hidden="true"
-                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                           >
                             <svg
                               viewBox="0 0 200 200"
                               preserveAspectRatio="xMidYMid slice"
                               className="absolute inset-0 w-full h-full"
                             >
-                              {/* Rotating geometric scaffolding */}
-                              <g
-                                style={{
-                                  transformOrigin: "100px 100px",
-                                  animation: "netRotate 28s linear infinite",
-                                }}
-                              >
-                                {/* Hexagon */}
-                                <polygon
-                                  points="100,30 161,65 161,135 100,170 39,135 39,65"
-                                  fill="none"
-                                  stroke="rgb(180,200,255)"
-                                  strokeWidth="0.5"
-                                  style={{ animation: "shapeFade 6s ease-in-out infinite" }}
-                                />
-                                {/* Inner triangle */}
-                                <polygon
-                                  points="100,55 140,125 60,125"
-                                  fill="none"
-                                  stroke="rgb(140,220,200)"
-                                  strokeWidth="0.5"
-                                  style={{ animation: "shapeFade 5s ease-in-out infinite", animationDelay: "1.2s" }}
-                                />
-                                {/* Inverted triangle */}
-                                <polygon
-                                  points="100,145 60,75 140,75"
-                                  fill="none"
-                                  stroke="rgb(220,180,140)"
-                                  strokeWidth="0.5"
-                                  style={{ animation: "shapeFade 5s ease-in-out infinite", animationDelay: "2.5s" }}
-                                />
-                                {/* Outer circle */}
-                                <circle
-                                  cx="100"
-                                  cy="100"
-                                  r="78"
-                                  fill="none"
-                                  stroke="rgb(200,200,220)"
-                                  strokeWidth="0.3"
-                                  strokeDasharray="2 4"
-                                />
-                              </g>
-
-                              {/* Edges — connecting nodes into shapes */}
-                              <g stroke="rgb(170,210,255)" strokeWidth="0.6" fill="none">
-                                {[
-                                  // Hexagon outer
-                                  "M100,30 L161,65", "M161,65 L161,135", "M161,135 L100,170",
-                                  "M100,170 L39,135", "M39,135 L39,65", "M39,65 L100,30",
-                                  // Spokes to center
-                                  "M100,30 L100,100", "M161,65 L100,100", "M161,135 L100,100",
-                                  "M100,170 L100,100", "M39,135 L100,100", "M39,65 L100,100",
-                                  // Inner cross-links
-                                  "M70,80 L130,80", "M70,120 L130,120", "M70,80 L130,120", "M130,80 L70,120",
-                                ].map((d, i) => (
-                                  <path
-                                    key={i}
-                                    d={d}
-                                    strokeDasharray="120"
-                                    style={{
-                                      animation: `edgeDraw ${3 + (i % 4) * 0.6}s ease-in-out infinite`,
-                                      animationDelay: `${(i * 0.18) % 2.5}s`,
-                                    }}
-                                  />
-                                ))}
-                              </g>
-
-                              {/* Nodes */}
-                              <g fill="rgb(220,240,255)">
-                                {[
-                                  [100, 30], [161, 65], [161, 135], [100, 170], [39, 135], [39, 65],
-                                  [100, 100], [70, 80], [130, 80], [70, 120], [130, 120],
-                                  [100, 55], [100, 145], [60, 100], [140, 100],
-                                ].map(([cx, cy], i) => (
-                                  <circle
-                                    key={i}
-                                    cx={cx}
-                                    cy={cy}
-                                    r="2.4"
-                                    style={{
-                                      animation: `nodePulse ${2 + (i % 5) * 0.35}s ease-in-out infinite`,
-                                      animationDelay: `${(i * 0.17) % 2}s`,
-                                    }}
-                                  />
-                                ))}
-                              </g>
-
-                              {/* Center accent */}
-                              <circle
-                                cx="100"
-                                cy="100"
-                                r="4"
-                                fill="rgb(140,220,200)"
-                                style={{ animation: "netPulse 2.4s ease-in-out infinite" }}
-                              />
+                              {(() => {
+                                const cx = 100, cy = 100;
+                                const R = 70;
+                                // 6 outer vertices of pointy-top hexagon
+                                const outer = Array.from({ length: 6 }, (_, i) => {
+                                  const a = (-Math.PI / 2) + i * (Math.PI / 3);
+                                  return [cx + R * Math.cos(a), cy + R * Math.sin(a)] as [number, number];
+                                });
+                                // Vector equilibrium edges from 6 outer vertices + center:
+                                // hex perimeter, spokes to center, all chords (skip-1 forms star, diameters)
+                                const edges: Array<[[number, number], [number, number]]> = [];
+                                for (let i = 0; i < 6; i++) {
+                                  for (let j = i + 1; j < 6; j++) {
+                                    edges.push([outer[i], outer[j]]);
+                                  }
+                                  edges.push([outer[i], [cx, cy]]);
+                                }
+                                const allNodes: Array<[number, number]> = [...outer, [cx, cy]];
+                                // Node reveal duration before edges start
+                                const nodeDuration = 0.6;
+                                const edgeStagger = 0.06;
+                                return (
+                                  <>
+                                    {/* Edges */}
+                                    <g stroke="rgb(220,235,255)" strokeWidth="0.7" fill="none" strokeLinecap="round">
+                                      {edges.map(([p1, p2], i) => {
+                                        const len = Math.hypot(p2[0] - p1[0], p2[1] - p1[1]);
+                                        return (
+                                          <line
+                                            key={i}
+                                            className="ve-edge"
+                                            x1={p1[0]} y1={p1[1]} x2={p2[0]} y2={p2[1]}
+                                            style={{
+                                              ['--len' as never]: len.toFixed(2),
+                                              animationDelay: `${nodeDuration + i * edgeStagger}s`,
+                                            }}
+                                          />
+                                        );
+                                      })}
+                                    </g>
+                                    {/* Nodes appear first */}
+                                    <g fill="rgb(235,245,255)">
+                                      {allNodes.map(([x, y], i) => (
+                                        <circle
+                                          key={i}
+                                          className={i === allNodes.length - 1 ? "ve-node ve-center" : "ve-node"}
+                                          cx={x}
+                                          cy={y}
+                                          r="2.4"
+                                          style={{ animationDelay: `${i * 0.05}s` }}
+                                        />
+                                      ))}
+                                    </g>
+                                  </>
+                                );
+                              })()}
                             </svg>
                           </div>
                         </div>
+
+
 
 
                         <div className="flex flex-col gap-[clamp(1.25rem,2.4vh,2rem)]">
