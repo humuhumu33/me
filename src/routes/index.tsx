@@ -651,15 +651,21 @@ export function Index() {
                                 const centerDelay = 0;       // 0.0–0.4 : center node appears
                                 const spokeDelay = 0.35;     // 0.35–1.05 : spokes extend from centre to outer points
                                 const outerNodeDelay = 0.95; // outer nodes pop at spoke tips
-                                const chordStart = 1.25;     // chord edges (perimeter + skip-1 + diameters) draw in
-                                const chordStagger = 0.07;
-                                // Chords: every outer pair except the spokes (which are outer-to-center)
-                                const chords: Array<[[number, number], [number, number]]> = [];
-                                for (let i = 0; i < 6; i++) {
-                                  for (let j = i + 1; j < 6; j++) {
-                                    chords.push([outer[i], outer[j]]);
-                                  }
-                                }
+                                // Chords classified for a coordinated reveal:
+                                //   wave 0: hexagon perimeter (adjacent)         — sweeps around in 6 steps
+                                //   wave 1: triangle A (0-2, 2-4, 4-0)            — three edges in unison
+                                //   wave 2: triangle B (1-3, 3-5, 5-1)            — three edges in unison
+                                //   wave 3: three diameters (0-3, 1-4, 2-5)       — cross through centre in unison
+                                const chordWaves: Array<{
+                                  base: number;
+                                  step: number;
+                                  pairs: Array<[number, number]>;
+                                }> = [
+                                  { base: 1.20, step: 0.06, pairs: [[0,1],[1,2],[2,3],[3,4],[4,5],[5,0]] },
+                                  { base: 1.70, step: 0,    pairs: [[0,2],[2,4],[4,0]] },
+                                  { base: 1.95, step: 0,    pairs: [[1,3],[3,5],[5,1]] },
+                                  { base: 2.25, step: 0,    pairs: [[0,3],[1,4],[2,5]] },
+                                ];
                                 return (
                                   <>
                                     {/* Spokes — extend from the central point outward */}
@@ -679,23 +685,28 @@ export function Index() {
                                         );
                                       })}
                                     </g>
-                                    {/* Chords between outer vertices */}
+                                    {/* Chords between outer vertices — drawn in coordinated waves */}
                                     <g stroke="rgb(220,235,255)" strokeWidth="0.6" fill="none" strokeLinecap="round">
-                                      {chords.map(([p1, p2], i) => {
-                                        const len = Math.hypot(p2[0] - p1[0], p2[1] - p1[1]);
-                                        return (
-                                          <line
-                                            key={`c${i}`}
-                                            className="ve-edge"
-                                            x1={p1[0]} y1={p1[1]} x2={p2[0]} y2={p2[1]}
-                                            style={{
-                                              ['--len' as never]: len.toFixed(2),
-                                              animationDelay: `${chordStart + i * chordStagger}s`,
-                                            }}
-                                          />
-                                        );
-                                      })}
+                                      {chordWaves.flatMap((wave, w) =>
+                                        wave.pairs.map(([a, b], i) => {
+                                          const p1 = outer[a];
+                                          const p2 = outer[b];
+                                          const len = Math.hypot(p2[0] - p1[0], p2[1] - p1[1]);
+                                          return (
+                                            <line
+                                              key={`c${w}-${i}`}
+                                              className="ve-edge"
+                                              x1={p1[0]} y1={p1[1]} x2={p2[0]} y2={p2[1]}
+                                              style={{
+                                                ['--len' as never]: len.toFixed(2),
+                                                animationDelay: `${wave.base + i * wave.step}s`,
+                                              }}
+                                            />
+                                          );
+                                        }),
+                                      )}
                                     </g>
+
                                     {/* Outer nodes — pop in at the spoke tips */}
                                     <g fill="rgb(235,245,255)">
                                       {outer.map(([x, y], i) => (
