@@ -323,15 +323,13 @@ export function Index() {
         <a itemProp="sameAs" rel="me" href="https://x.com/TrinityInvestor">X</a>
       </div>
 
-      {/* Pure dark background with subtle dot grid that responds to cursor */}
+      {/* Pure dark background with subtle dot grid */}
       <div className="absolute inset-0 bg-black">
         <div className="absolute inset-0">
           <GravityDots
             spacing={26}
-            radius={1.1}
-            color="rgba(255,255,255,0.35)"
-            pullRadius={180}
-            pullStrength={14}
+            radius={1.4}
+            color="rgba(255,255,255,0.50)"
           />
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(255,255,255,0.04),transparent_55%)]" />
