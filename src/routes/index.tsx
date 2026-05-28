@@ -600,44 +600,34 @@ export function Index() {
               {tab === "life" && (
                 <div className="h-full overflow-y-auto -mx-[clamp(1.5rem,3vw,3.5rem)] -my-[clamp(1.25rem,2.4vh,2.25rem)]">
                   <article className="w-full pb-[clamp(4rem,10vh,8rem)]">
-                    {/* Hero — full-bleed portrait with thesis overlay */}
+                    {/* Hero — full-bleed portrait with thesis overlay (only place the thesis appears) */}
                     <section className="relative w-full h-[clamp(28rem,82vh,56rem)] overflow-hidden">
                       <img
                         src={portrait}
                         alt={PORTRAIT_ALT}
                         className="absolute inset-0 h-full w-full object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/10" />
                       <div className="absolute inset-x-0 bottom-0 px-[clamp(1.5rem,5vw,6rem)] pb-[clamp(2rem,5vh,4rem)]">
                         <p className="text-[clamp(0.72rem,0.85vw,0.9rem)] tracking-[0.32em] uppercase text-white/70 m-0 mb-[clamp(0.8rem,1.6vh,1.4rem)]">
                           Why me
                         </p>
-                        <h2 className="font-sans font-semibold uppercase leading-[0.9] tracking-[-0.035em] m-0 text-white text-[clamp(3rem,8vw,8.5rem)]">
+                        <h2 className="font-sans font-bold uppercase leading-[0.85] tracking-[-0.045em] m-0 text-white text-[clamp(3rem,9vw,9.5rem)]">
                           Building the<br />future of<br />sovereign AI.
                         </h2>
                       </div>
                     </section>
 
-                    {/* Lede */}
-                    <section className="px-[clamp(1.5rem,5vw,6rem)] pt-[clamp(3rem,6vh,5rem)]">
-                      <p className={`font-sans max-w-[52rem] text-[clamp(1.2rem,1.5vw,1.65rem)] leading-[1.5] ${lightMode ? "text-black/80" : "text-white/80"}`}>
-                        One thread runs through three decades of work — from Vladivostok to global capital markets, from venture to deep tech. Each chapter taught me something about sovereignty: of capital, of counterparties, of compute. This is the story of how I got here, and why I am building what I am building now.
-                      </p>
-                    </section>
-
-                    {/* By the numbers */}
+                    {/* By the numbers — no heading, just hard contrast slab */}
                     <section className="px-[clamp(1.5rem,5vw,6rem)] mt-[clamp(4rem,8vh,7rem)]">
-                      <h3 className={`font-sans font-semibold uppercase tracking-[0.24em] m-0 mb-[clamp(2rem,4vh,3rem)] text-[clamp(0.95rem,1.1vw,1.15rem)] ${lightMode ? "text-black/55" : "text-white/55"}`}>
-                        By the numbers
-                      </h3>
-                      <dl className={`grid grid-cols-2 md:grid-cols-4 gap-y-[clamp(2rem,4vh,3rem)] gap-x-[clamp(1.5rem,3vw,3rem)] m-0 border-t pt-[clamp(2rem,4vh,3rem)] ${lightMode ? "border-black/15" : "border-white/15"}`}>
+                      <dl className={`grid grid-cols-2 md:grid-cols-4 gap-y-[clamp(2rem,4vh,3rem)] gap-x-[clamp(1.5rem,3vw,3rem)] m-0 border-t-2 pt-[clamp(2rem,4vh,3rem)] ${lightMode ? "border-black" : "border-white"}`}>
                         {storyStats.map((s) => (
                           <div key={s.label}>
                             <dt className="sr-only">{s.label}</dt>
-                            <dd className={`font-sans text-[clamp(3rem,5.5vw,5.5rem)] font-semibold tracking-[-0.03em] m-0 leading-none ${lightMode ? "text-black" : "text-white"}`}>
+                            <dd className={`font-sans text-[clamp(3rem,6vw,6rem)] font-bold tracking-[-0.04em] m-0 leading-none ${lightMode ? "text-black" : "text-white"}`}>
                               {s.value}
                             </dd>
-                            <p className={`text-[clamp(0.7rem,0.8vw,0.85rem)] tracking-[0.28em] uppercase m-0 mt-[clamp(0.75rem,1.2vh,1rem)] ${lightMode ? "text-black/55" : "text-white/55"}`}>
+                            <p className={`text-[clamp(0.7rem,0.8vw,0.85rem)] tracking-[0.28em] uppercase m-0 mt-[clamp(0.75rem,1.2vh,1rem)] ${lightMode ? "text-black/60" : "text-white/60"}`}>
                               {s.label}
                             </p>
                           </div>
@@ -645,39 +635,26 @@ export function Index() {
                       </dl>
                     </section>
 
-                    {/* The backstory */}
+                    {/* Chapters */}
                     <section className="px-[clamp(1.5rem,5vw,6rem)] mt-[clamp(5rem,10vh,9rem)]">
-                      <h3 className={`font-sans font-semibold uppercase tracking-[0.24em] m-0 mb-[clamp(2.5rem,5vh,4rem)] text-[clamp(0.95rem,1.1vw,1.15rem)] ${lightMode ? "text-black/55" : "text-white/55"}`}>
-                        The backstory
-                      </h3>
                       <ol className="list-none p-0 m-0">
                         {storyChapters.map((c, i) => (
                           <li
                             key={c.org}
-                            className={`border-t py-[clamp(3rem,6vh,5rem)] ${lightMode ? "border-black/15" : "border-white/15"} ${i === storyChapters.length - 1 ? `border-b ${lightMode ? "border-black/15" : "border-white/15"}` : ""}`}
+                            className={`border-t-2 py-[clamp(3rem,6vh,5rem)] ${lightMode ? "border-black" : "border-white"} ${i === storyChapters.length - 1 ? `border-b-2 ${lightMode ? "border-black" : "border-white"}` : ""}`}
                           >
-                            <p className={`font-sans text-[clamp(0.85rem,1vw,1rem)] tracking-[0.28em] uppercase m-0 mb-[clamp(1.25rem,2.4vh,2rem)] ${lightMode ? "text-black/55" : "text-white/55"}`}>
-                              {c.years}
+                            <p className={`font-sans text-[clamp(0.85rem,1vw,1rem)] tracking-[0.28em] uppercase m-0 mb-[clamp(1.25rem,2.4vh,2rem)] ${lightMode ? "text-black/60" : "text-white/60"}`}>
+                              {c.years} · {c.subtitle}
                             </p>
-                            <h4 className={`font-sans font-semibold uppercase leading-[0.95] tracking-[-0.03em] m-0 text-[clamp(2.5rem,5.5vw,5.5rem)] ${lightMode ? "text-black" : "text-white"}`}>
+                            <h4 className={`font-sans font-bold uppercase leading-[0.88] tracking-[-0.04em] m-0 text-[clamp(2.75rem,6.5vw,6.5rem)] ${lightMode ? "text-black" : "text-white"}`}>
                               {c.org}
                             </h4>
-                            <p className={`font-sans text-[clamp(0.95rem,1.1vw,1.15rem)] tracking-[0.18em] uppercase m-0 mt-[clamp(0.75rem,1.4vh,1.1rem)] ${lightMode ? "text-black/60" : "text-white/60"}`}>
-                              {c.subtitle}
-                            </p>
-                            <p className={`font-sans m-0 mt-[clamp(1.5rem,3vh,2.25rem)] max-w-[52rem] text-[clamp(1.15rem,1.35vw,1.5rem)] leading-[1.55] ${lightMode ? "text-black/80" : "text-white/85"}`}>
+                            <p className={`font-sans m-0 mt-[clamp(1.5rem,3vh,2.25rem)] max-w-[52rem] text-[clamp(1.15rem,1.35vw,1.5rem)] leading-[1.55] ${lightMode ? "text-black/85" : "text-white/85"}`}>
                               {c.body}
                             </p>
                           </li>
                         ))}
                       </ol>
-                    </section>
-
-                    {/* Closing */}
-                    <section className="px-[clamp(1.5rem,5vw,6rem)] mt-[clamp(5rem,10vh,9rem)]">
-                      <p className={`font-sans font-semibold uppercase leading-[0.92] tracking-[-0.035em] m-0 text-[clamp(2.5rem,6.5vw,6.5rem)] ${lightMode ? "text-black" : "text-white"}`}>
-                        This is why I am<br />building the future<br />of sovereign AI.
-                      </p>
                     </section>
                   </article>
                 </div>
