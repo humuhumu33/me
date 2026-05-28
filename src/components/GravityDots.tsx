@@ -77,15 +77,17 @@ export function GravityDots({
       ctx.clearRect(0, 0, width, height);
       ctx.fillStyle = color;
 
-      const cols = Math.ceil(width / spacing) + 2;
-      const rows = Math.ceil(height / spacing) + 2;
+      const rowH = spacing * 0.8660254; // sqrt(3)/2 → equilateral triangular grid
+      const cols = Math.ceil(width / spacing) + 3;
+      const rows = Math.ceil(height / rowH) + 3;
       const offX = ((width % spacing) / 2) - spacing;
-      const offY = ((height % spacing) / 2) - spacing;
+      const offY = ((height % rowH) / 2) - rowH;
 
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          const bx = offX + i * spacing;
-          const by = offY + j * spacing;
+      for (let j = 0; j < rows; j++) {
+        for (let i = 0; i < cols; i++) {
+          const bx = offX + i * spacing + (j % 2 ? spacing / 2 : 0);
+          const by = offY + j * rowH;
+
 
           let x = bx;
           let y = by;
