@@ -598,36 +598,35 @@ export function Index() {
               )}
 
               {tab === "life" && (
-                <div className="h-full overflow-y-auto -mx-[clamp(1.5rem,3vw,3.5rem)] -my-[clamp(1.25rem,2.4vh,2.25rem)]">
+                <div className="h-full overflow-y-auto -mx-[clamp(1.5rem,3vw,3.5rem)] -my-[clamp(1.25rem,2.4vh,2.25rem)] bg-white text-black">
                   <article className="w-full pb-[clamp(4rem,10vh,8rem)]">
-                    {/* Hero — full-bleed portrait with thesis overlay (only place the thesis appears) */}
-                    <section className="relative w-full h-[clamp(28rem,82vh,56rem)] overflow-hidden">
-                      <img
-                        src={portrait}
-                        alt={PORTRAIT_ALT}
-                        className="absolute inset-0 h-full w-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/10" />
-                      <div className="absolute inset-x-0 bottom-0 px-[clamp(1.5rem,5vw,6rem)] pb-[clamp(2rem,5vh,4rem)]">
-                        <p className="text-[clamp(0.72rem,0.85vw,0.9rem)] tracking-[0.32em] uppercase text-white/70 m-0 mb-[clamp(0.8rem,1.6vh,1.4rem)]">
-                          Why me
-                        </p>
-                        <h2 className="font-sans font-bold uppercase leading-[0.85] tracking-[-0.045em] m-0 text-white text-[clamp(3rem,9vw,9.5rem)]">
+                    {/* Hero — compact portrait beside thesis on white */}
+                    <section className="px-[clamp(1.5rem,5vw,6rem)] pt-[clamp(2.5rem,6vh,5rem)]">
+                      <p className="text-[clamp(0.72rem,0.85vw,0.9rem)] tracking-[0.32em] uppercase text-black/50 m-0 mb-[clamp(2rem,4vh,3rem)]">
+                        Why me
+                      </p>
+                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-[clamp(1.5rem,3vw,3rem)] items-end">
+                        <img
+                          src={portrait}
+                          alt={PORTRAIT_ALT}
+                          className="block w-[clamp(9rem,18vw,16rem)] h-[clamp(11rem,22vw,20rem)] object-cover grayscale"
+                        />
+                        <h2 className="font-sans font-bold uppercase leading-[0.85] tracking-[-0.045em] m-0 text-black text-[clamp(2.5rem,7.5vw,8rem)]">
                           Building the<br />future of<br />sovereign AI.
                         </h2>
                       </div>
                     </section>
 
-                    {/* By the numbers — no heading, just hard contrast slab */}
+                    {/* By the numbers */}
                     <section className="px-[clamp(1.5rem,5vw,6rem)] mt-[clamp(4rem,8vh,7rem)]">
-                      <dl className={`grid grid-cols-2 md:grid-cols-4 gap-y-[clamp(2rem,4vh,3rem)] gap-x-[clamp(1.5rem,3vw,3rem)] m-0 border-t-2 pt-[clamp(2rem,4vh,3rem)] ${lightMode ? "border-black" : "border-white"}`}>
+                      <dl className="grid grid-cols-2 md:grid-cols-4 gap-y-[clamp(2rem,4vh,3rem)] gap-x-[clamp(1.5rem,3vw,3rem)] m-0 border-t-2 border-black pt-[clamp(2rem,4vh,3rem)]">
                         {storyStats.map((s) => (
                           <div key={s.label}>
                             <dt className="sr-only">{s.label}</dt>
-                            <dd className={`font-sans text-[clamp(3rem,6vw,6rem)] font-bold tracking-[-0.04em] m-0 leading-none ${lightMode ? "text-black" : "text-white"}`}>
+                            <dd className="font-sans text-[clamp(2.5rem,5vw,5rem)] font-bold tracking-[-0.04em] m-0 leading-none text-black">
                               {s.value}
                             </dd>
-                            <p className={`text-[clamp(0.7rem,0.8vw,0.85rem)] tracking-[0.28em] uppercase m-0 mt-[clamp(0.75rem,1.2vh,1rem)] ${lightMode ? "text-black/60" : "text-white/60"}`}>
+                            <p className="text-[clamp(0.7rem,0.8vw,0.85rem)] tracking-[0.28em] uppercase m-0 mt-[clamp(0.75rem,1.2vh,1rem)] text-black/60">
                               {s.label}
                             </p>
                           </div>
@@ -636,22 +635,27 @@ export function Index() {
                     </section>
 
                     {/* Chapters */}
-                    <section className="px-[clamp(1.5rem,5vw,6rem)] mt-[clamp(5rem,10vh,9rem)]">
+                    <section className="px-[clamp(1.5rem,5vw,6rem)] mt-[clamp(4rem,8vh,7rem)]">
                       <ol className="list-none p-0 m-0">
                         {storyChapters.map((c, i) => (
                           <li
                             key={c.org}
-                            className={`border-t-2 py-[clamp(3rem,6vh,5rem)] ${lightMode ? "border-black" : "border-white"} ${i === storyChapters.length - 1 ? `border-b-2 ${lightMode ? "border-black" : "border-white"}` : ""}`}
+                            className={`border-t border-black/20 py-[clamp(2.5rem,5vh,4rem)] grid grid-cols-1 md:grid-cols-[10rem_1fr] gap-[clamp(1rem,2vw,2.5rem)] ${i === storyChapters.length - 1 ? "border-b border-black/20" : ""}`}
                           >
-                            <p className={`font-sans text-[clamp(0.85rem,1vw,1rem)] tracking-[0.28em] uppercase m-0 mb-[clamp(1.25rem,2.4vh,2rem)] ${lightMode ? "text-black/60" : "text-white/60"}`}>
-                              {c.years} · {c.subtitle}
+                            <p className="font-mono text-[clamp(0.75rem,0.85vw,0.9rem)] tracking-[0.18em] uppercase m-0 text-black/50 pt-[clamp(0.5rem,1vh,0.75rem)]">
+                              {c.years}
                             </p>
-                            <h4 className={`font-sans font-bold uppercase leading-[0.88] tracking-[-0.04em] m-0 text-[clamp(2.75rem,6.5vw,6.5rem)] ${lightMode ? "text-black" : "text-white"}`}>
-                              {c.org}
-                            </h4>
-                            <p className={`font-sans m-0 mt-[clamp(1.5rem,3vh,2.25rem)] max-w-[52rem] text-[clamp(1.15rem,1.35vw,1.5rem)] leading-[1.55] ${lightMode ? "text-black/85" : "text-white/85"}`}>
-                              {c.body}
-                            </p>
+                            <div>
+                              <h4 className="font-sans font-bold uppercase leading-[0.95] tracking-[-0.03em] m-0 text-black text-[clamp(1.75rem,3.2vw,3rem)]">
+                                {c.org}
+                              </h4>
+                              <p className="font-sans text-[clamp(0.72rem,0.82vw,0.88rem)] tracking-[0.22em] uppercase m-0 mt-[clamp(0.6rem,1vh,0.9rem)] text-black/55">
+                                {c.subtitle}
+                              </p>
+                              <p className="font-sans m-0 mt-[clamp(1rem,2vh,1.5rem)] max-w-[52rem] text-[clamp(1rem,1.15vw,1.25rem)] leading-[1.6] text-black/85">
+                                {c.body}
+                              </p>
+                            </div>
                           </li>
                         ))}
                       </ol>
