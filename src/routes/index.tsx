@@ -607,23 +607,24 @@ export function Index() {
                           <style>{`
                             @keyframes veNodeIn {
                               0% { opacity: 0; transform: scale(0); }
-                              60% { opacity: 1; transform: scale(1.4); }
+                              60% { opacity: 1; transform: scale(1.6); }
                               100% { opacity: 0.95; transform: scale(1); }
                             }
                             @keyframes veEdgeDraw {
                               0% { stroke-dashoffset: var(--len, 200); opacity: 0; }
-                              10% { opacity: 0.9; }
-                              60%, 100% { stroke-dashoffset: 0; opacity: 0.85; }
+                              10% { opacity: 0.95; }
+                              100% { stroke-dashoffset: 0; opacity: 0.85; }
                             }
                             @keyframes veCenterPulse {
-                              0%, 100% { opacity: 0.6; r: 2.4; }
-                              50% { opacity: 1; r: 3.6; }
+                              0%, 100% { opacity: 0.7; transform: scale(1); }
+                              50% { opacity: 1; transform: scale(1.4); }
                             }
                             .ve-node { transform-box: fill-box; transform-origin: center; opacity: 0; }
-                            .group:hover .ve-node { animation: veNodeIn 0.5s ease-out forwards; }
+                            .group:hover .ve-node { animation: veNodeIn 0.45s ease-out forwards; }
                             .ve-edge { stroke-dasharray: var(--len, 200); stroke-dashoffset: var(--len, 200); opacity: 0; }
-                            .group:hover .ve-edge { animation: veEdgeDraw 1.4s ease-out forwards; }
-                            .group:hover .ve-center { animation: veCenterPulse 2.4s ease-in-out 2.4s infinite; }
+                            .group:hover .ve-edge { animation: veEdgeDraw 0.7s ease-out forwards; }
+                            .ve-center { transform-box: fill-box; transform-origin: center; opacity: 0; }
+                            .group:hover .ve-center { animation: veNodeIn 0.4s ease-out forwards, veCenterPulse 2.6s ease-in-out 3.2s infinite; }
                           `}</style>
                           <img
                             src={portrait}
@@ -632,7 +633,7 @@ export function Index() {
                           />
                           <div
                             aria-hidden="true"
-                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                           >
                             <svg
                               viewBox="0 0 200 200"
@@ -642,56 +643,81 @@ export function Index() {
                               {(() => {
                                 const cx = 100, cy = 100;
                                 const R = 70;
-                                // 6 outer vertices of pointy-top hexagon
                                 const outer = Array.from({ length: 6 }, (_, i) => {
                                   const a = (-Math.PI / 2) + i * (Math.PI / 3);
                                   return [cx + R * Math.cos(a), cy + R * Math.sin(a)] as [number, number];
                                 });
-                                // Vector equilibrium edges from 6 outer vertices + center:
-                                // hex perimeter, spokes to center, all chords (skip-1 forms star, diameters)
-                                const edges: Array<[[number, number], [number, number]]> = [];
+                                // Stage timing
+                                const centerDelay = 0;       // 0.0–0.4 : center node appears
+                                const spokeDelay = 0.35;     // 0.35–1.05 : spokes extend from centre to outer points
+                                const outerNodeDelay = 0.95; // outer nodes pop at spoke tips
+                                const chordStart = 1.25;     // chord edges (perimeter + skip-1 + diameters) draw in
+                                const chordStagger = 0.07;
+                                // Chords: every outer pair except the spokes (which are outer-to-center)
+                                const chords: Array<[[number, number], [number, number]]> = [];
                                 for (let i = 0; i < 6; i++) {
                                   for (let j = i + 1; j < 6; j++) {
-                                    edges.push([outer[i], outer[j]]);
+                                    chords.push([outer[i], outer[j]]);
                                   }
-                                  edges.push([outer[i], [cx, cy]]);
                                 }
-                                const allNodes: Array<[number, number]> = [...outer, [cx, cy]];
-                                // Node reveal duration before edges start
-                                const nodeDuration = 0.6;
-                                const edgeStagger = 0.06;
                                 return (
                                   <>
-                                    {/* Edges */}
+                                    {/* Spokes — extend from the central point outward */}
                                     <g stroke="rgb(220,235,255)" strokeWidth="0.7" fill="none" strokeLinecap="round">
-                                      {edges.map(([p1, p2], i) => {
-                                        const len = Math.hypot(p2[0] - p1[0], p2[1] - p1[1]);
+                                      {outer.map(([x, y], i) => {
+                                        const len = Math.hypot(x - cx, y - cy);
                                         return (
                                           <line
-                                            key={i}
+                                            key={`s${i}`}
                                             className="ve-edge"
-                                            x1={p1[0]} y1={p1[1]} x2={p2[0]} y2={p2[1]}
+                                            x1={cx} y1={cy} x2={x} y2={y}
                                             style={{
                                               ['--len' as never]: len.toFixed(2),
-                                              animationDelay: `${nodeDuration + i * edgeStagger}s`,
+                                              animationDelay: `${spokeDelay + i * 0.05}s`,
                                             }}
                                           />
                                         );
                                       })}
                                     </g>
-                                    {/* Nodes appear first */}
+                                    {/* Chords between outer vertices */}
+                                    <g stroke="rgb(220,235,255)" strokeWidth="0.6" fill="none" strokeLinecap="round">
+                                      {chords.map(([p1, p2], i) => {
+                                        const len = Math.hypot(p2[0] - p1[0], p2[1] - p1[1]);
+                                        return (
+                                          <line
+                                            key={`c${i}`}
+                                            className="ve-edge"
+                                            x1={p1[0]} y1={p1[1]} x2={p2[0]} y2={p2[1]}
+                                            style={{
+                                              ['--len' as never]: len.toFixed(2),
+                                              animationDelay: `${chordStart + i * chordStagger}s`,
+                                            }}
+                                          />
+                                        );
+                                      })}
+                                    </g>
+                                    {/* Outer nodes — pop in at the spoke tips */}
                                     <g fill="rgb(235,245,255)">
-                                      {allNodes.map(([x, y], i) => (
+                                      {outer.map(([x, y], i) => (
                                         <circle
-                                          key={i}
-                                          className={i === allNodes.length - 1 ? "ve-node ve-center" : "ve-node"}
+                                          key={`n${i}`}
+                                          className="ve-node"
                                           cx={x}
                                           cy={y}
                                           r="2.4"
-                                          style={{ animationDelay: `${i * 0.05}s` }}
+                                          style={{ animationDelay: `${outerNodeDelay + i * 0.04}s` }}
                                         />
                                       ))}
                                     </g>
+                                    {/* Central seed point — appears first */}
+                                    <circle
+                                      className="ve-center"
+                                      cx={cx}
+                                      cy={cy}
+                                      r="3"
+                                      fill="rgb(235,245,255)"
+                                      style={{ animationDelay: `${centerDelay}s` }}
+                                    />
                                   </>
                                 );
                               })()}
