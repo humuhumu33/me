@@ -650,6 +650,15 @@ export function Index() {
                               preserveAspectRatio="xMidYMid slice"
                               className="absolute inset-0 w-full h-full"
                             >
+                              <defs>
+                                <filter id="ve-glow" x="-30%" y="-30%" width="160%" height="160%">
+                                  <feGaussianBlur stdDeviation="1.5" result="blur" />
+                                  <feMerge>
+                                    <feMergeNode in="blur" />
+                                    <feMergeNode in="SourceGraphic" />
+                                  </feMerge>
+                                </filter>
+                              </defs>
                               {(() => {
                                 const cx = 100, cy = 100;
                                 const R = 70;
@@ -679,7 +688,7 @@ export function Index() {
                                 return (
                                   <>
                                     {/* Spokes — extend from the central point outward */}
-                                    <g stroke="rgb(220,235,255)" strokeWidth="0.7" fill="none" strokeLinecap="round">
+                                    <g stroke="rgb(220,235,255)" strokeWidth="0.85" fill="none" strokeLinecap="butt" filter="url(#ve-glow)">
                                       {outer.map(([x, y], i) => {
                                         const len = Math.hypot(x - cx, y - cy);
                                         return (
@@ -696,7 +705,7 @@ export function Index() {
                                       })}
                                     </g>
                                     {/* Chords between outer vertices — drawn in coordinated waves */}
-                                    <g stroke="rgb(220,235,255)" strokeWidth="0.6" fill="none" strokeLinecap="round">
+                                    <g stroke="rgb(220,235,255)" strokeWidth="0.75" fill="none" strokeLinecap="butt" filter="url(#ve-glow)">
                                       {chordWaves.flatMap((wave, w) =>
                                         wave.pairs.map(([a, b], i) => {
                                           const p1 = outer[a];
