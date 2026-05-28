@@ -603,11 +603,20 @@ export function Index() {
                     {/* Hero — black band, portrait beside a short lede */}
                     <section className="bg-black text-white px-[clamp(1.5rem,5vw,6rem)] pt-[clamp(2.5rem,6vh,5rem)] pb-[clamp(3rem,7vh,6rem)]">
                       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-[clamp(1.5rem,3vw,3rem)] items-end">
-                        <img
-                          src={portrait}
-                          alt={PORTRAIT_ALT}
-                          className="block w-[clamp(9rem,18vw,16rem)] h-[clamp(11rem,22vw,20rem)] object-cover grayscale"
-                        />
+                        <div className="group relative w-[clamp(9rem,18vw,16rem)] h-[clamp(11rem,22vw,20rem)] overflow-hidden">
+                          <img
+                            src={portrait}
+                            alt={PORTRAIT_ALT}
+                            className="block w-full h-full object-cover grayscale transition-opacity duration-500 group-hover:opacity-0"
+                          />
+                          <div
+                            aria-hidden="true"
+                            className="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-mono text-[0.6rem] leading-[0.85] text-green-400 overflow-hidden break-all p-1 select-none"
+                          >
+                            {"110101010 ".repeat(400)}
+                          </div>
+                        </div>
+
                         <div className="flex flex-col gap-[clamp(1.25rem,2.4vh,2rem)]">
                           <p className="font-mono text-[clamp(0.7rem,0.8vw,0.85rem)] tracking-[0.28em] uppercase m-0 text-white/55">
                             Bio
