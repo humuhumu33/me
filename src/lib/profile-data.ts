@@ -184,6 +184,7 @@ export const life: readonly string[] = [
 ];
 
 import storyImg01 from "@/assets/story/01-vladivostok.jpg";
+import storyImgTrinity from "@/assets/story/02-trinity.jpg";
 import storyImg02 from "@/assets/story/02-perella.jpg";
 import storyImg03 from "@/assets/story/03-adrian-lee.jpg";
 import storyImg04 from "@/assets/story/04-ox1.jpg";
@@ -211,8 +212,16 @@ export const storyChapters: StoryChapter[] = [
     years: "Beginnings",
     org: "Vladivostok",
     subtitle: "Russia",
-    body: "I was born in Vladivostok during Perestroika. My mother is a lawyer, my father an engineer. I grew up taking things apart — radios, computers, eventually drones and wearables — and learning how they worked by rebuilding them. I left for Ireland to study economics at Trinity College Dublin and graduated with a gold medal. I have since sailed more than ten thousand offshore miles across Ireland, the Caribbean, the US and the Gulf.",
+    body: "I was born in Vladivostok during Perestroika. My mother is a lawyer, my father an engineer. I grew up taking things apart — radios, computers, eventually drones and wearables — and learning how they worked by rebuilding them. I have since sailed more than ten thousand offshore miles across Ireland, the Caribbean, the US and the Gulf.",
     image: storyImg01,
+  },
+  {
+    years: "2006 — 2010",
+    org: "Trinity College Dublin",
+    subtitle: "Economics",
+    body: "I left Russia for Ireland to read economics at Trinity College Dublin. I held a Foundation Scholarship and graduated with a gold medal. The Long Room — its barrel vault, its marble busts, its quiet — set the standard for the kind of work I wanted to do afterwards.",
+    image: storyImgTrinity,
+    href: "https://www.tcd.ie/",
   },
   {
     years: "2010 — 2013",
