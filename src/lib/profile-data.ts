@@ -220,7 +220,7 @@ export const storyChapters: StoryChapter[] = [
     years: "2006 - 2010",
     org: "Trinity College Dublin",
     subtitle: "Economics",
-    body: "I left Russia for Ireland to read economics at Trinity College Dublin. I held a Foundation Scholarship and graduated with a gold medal. Alongside my degree, I founded the Trinity Investors Society and the Trinity Fund, an education fund for disadvantaged kids. The Long Room, with its barrel vault, marble busts and stillness, set the standard for the kind of work I wanted to do afterwards.",
+    body: "I left Russia for Ireland to read economics at Trinity College Dublin. I held a Foundation Scholarship and graduated with a gold medal. Alongside my degree, I founded the Trinity Investors Society and the Trinity Fund, an education fund for disadvantaged kids.",
     image: storyImgTrinity,
     href: "https://www.tcd.ie/",
   },
