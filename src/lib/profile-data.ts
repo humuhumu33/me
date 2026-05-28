@@ -191,54 +191,53 @@ export interface StoryChapter {
 }
 
 export const storyStats: { value: string; label: string }[] = [
-  { value: "4", label: "Companies & protocols" },
-  { value: "$20bn+", label: "Assets & flows managed" },
-  { value: "$20m", label: "Raised" },
-  { value: "10,000+", label: "Offshore miles sailed" },
+  { value: "7", label: "Companies and protocols" },
+  { value: "$20bn+", label: "Capital managed" },
+  { value: "$20m", label: "Capital raised" },
 ];
 
 export const storyChapters: StoryChapter[] = [
   {
     years: "Beginnings",
-    org: "Vladivostok, Russia",
-    subtitle: "Origins",
-    body: "I was born in Vladivostok during Perestroika. My mother was a lawyer and my father was an engineer. I taught myself to build drones, computers, and wearable devices, studied economics at Trinity College Dublin, graduated with a gold medal, and later sailed over 10,000 offshore miles.",
+    org: "Vladivostok",
+    subtitle: "Russia",
+    body: "I was born in Vladivostok during Perestroika. My mother is a lawyer, my father an engineer. I grew up taking things apart — radios, computers, eventually drones and wearables — and learning how they worked by rebuilding them. I left for Ireland to study economics at Trinity College Dublin and graduated with a gold medal. I have since sailed more than ten thousand offshore miles across Ireland, the Caribbean, the US and the Gulf.",
   },
   {
     years: "2010 — 2013",
     org: "Perella Weinberg Partners",
-    subtitle: "Investment Banking — M&A",
-    body: "I joined the London team early, focusing on energy sector transactions. Learned institutional discipline and how capital moves at scale.",
+    subtitle: "Mergers & Acquisitions",
+    body: "I joined the founding London team as an analyst, covering energy sector transactions. Three years inside how large companies are bought, sold and financed.",
   },
   {
     years: "2013 — 2021",
     org: "Adrian Lee & Partners",
     subtitle: "Active Asset Management",
-    body: "I managed a $20 billion active currency overlay for US pension funds and endowments. Eight years inside the orchestration layer of global institutional capital.",
+    body: "I spent eight years managing active currency overlay programs for US pension funds and endowments, with mandates totalling around $20 billion. The work was systematic, long-horizon, and taught me how institutional capital actually moves.",
   },
   {
     years: "2022",
     org: "OX1",
-    subtitle: "Market-Neutral Digital Assets",
-    body: "I launched and managed a $30 million market-neutral crypto fund through the FTX crisis, returning all LP capital. Counterparty risk is sovereignty risk.",
+    subtitle: "Digital Asset Fund",
+    body: "I launched and ran a $30 million market-neutral crypto fund. We traded through the collapse of FTX and returned all LP capital. The year reframed what I thought I understood about counterparty risk.",
   },
   {
     years: "2023 — 2025",
     org: "Arete Capital",
     subtitle: "Venture Capital",
-    body: "I raised a $20 million hybrid venture fund, oversubscribed and backed by Marc Andreessen and Chris Dixon at a16z. Invested across deep tech, AI, and real-world assets, backing founders building physical infrastructure.",
+    body: "I raised a $20 million hybrid venture fund and invested across deep tech, AI and real-world assets. The thesis was simple: the next cycle of value would come from physical infrastructure and the software that runs on top of it.",
   },
   {
     years: "2025 — Present",
     org: "UOR Foundation",
-    subtitle: "Open Protocol Foundation",
-    body: "I am a Founding Member of the UOR Foundation, stewarding an open standard for content-addressed storage, compute, and networking. 150+ contributors building the substrate for verified, self-owned systems.",
+    subtitle: "Open Protocol",
+    body: "I am a founding member of the UOR Foundation, which stewards an open standard for content-addressed storage, compute and networking. The work is done in public with a growing group of contributors.",
   },
   {
     years: "2025 — Present",
     org: "Hologram Technologies",
-    subtitle: "Deep Tech — Local AI Compute",
-    body: "I co-founded Hologram to build software-defined high-performance compute for local AI inference. Edge-first, offline-capable, and private — running on the hardware people already own. I have two daughters, and I am building the compute environment I want them to inherit.",
+    subtitle: "Local AI Compute",
+    body: "I co-founded Hologram to build software-defined high-performance compute for local AI inference — edge-first, offline-capable, running on hardware people already own. I have two daughters. I am building the compute environment I want them to inherit.",
   },
 ];
 

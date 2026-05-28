@@ -600,7 +600,7 @@ export function Index() {
               {tab === "life" && (
                 <div className="h-full overflow-y-auto -mx-[clamp(1.5rem,3vw,3.5rem)] -my-[clamp(1.25rem,2.4vh,2.25rem)] bg-white text-black">
                   <article className="w-full pb-[clamp(4rem,10vh,8rem)]">
-                    {/* Hero — black band, portrait beside thesis */}
+                    {/* Hero — black band, portrait beside a short lede */}
                     <section className="bg-black text-white px-[clamp(1.5rem,5vw,6rem)] pt-[clamp(2.5rem,6vh,5rem)] pb-[clamp(3rem,7vh,6rem)]">
                       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-[clamp(1.5rem,3vw,3rem)] items-end">
                         <img
@@ -609,11 +609,14 @@ export function Index() {
                           className="block w-[clamp(9rem,18vw,16rem)] h-[clamp(11rem,22vw,20rem)] object-cover grayscale"
                         />
                         <div className="flex flex-col gap-[clamp(1.25rem,2.4vh,2rem)]">
-                          <h2 className="font-sans font-bold uppercase leading-[0.88] tracking-[-0.04em] m-0 text-white text-[clamp(1.75rem,4.2vw,4.25rem)]">
-                            Born in Vladivostok. Trained in markets. Building sovereign compute.
+                          <p className="font-mono text-[clamp(0.7rem,0.8vw,0.85rem)] tracking-[0.28em] uppercase m-0 text-white/55">
+                            Bio
+                          </p>
+                          <h2 className="font-sans font-bold uppercase leading-[0.9] tracking-[-0.04em] m-0 text-white text-[clamp(1.75rem,3.6vw,3.5rem)] max-w-[36rem]">
+                            Ilya Paveliev.
                           </h2>
-                          <p className="font-sans m-0 max-w-[44rem] text-[clamp(1rem,1.2vw,1.25rem)] leading-[1.55] text-white/80">
-                            Twenty years across institutional capital and frontier technology — investment banking at Perella Weinberg, a $20bn currency overlay for US pensions, a market-neutral crypto fund through the FTX crisis, and an oversubscribed venture fund backed by a16z. Today I co-found Hologram Technologies, building local AI compute, and steward the UOR open protocol. The throughline is sovereignty: capital, code, and now the compute environment I want my daughters to inherit.
+                          <p className="font-sans m-0 max-w-[44rem] text-[clamp(1rem,1.2vw,1.25rem)] leading-[1.65] text-white/80">
+                            I have spent fifteen years moving between institutional capital and frontier technology — investment banking, currency overlay, digital assets, venture, and now building. Today I co-found Hologram Technologies and serve as a founding member of the UOR Foundation. I live in Dubai with my wife and two daughters.
                           </p>
                         </div>
                       </div>
@@ -621,7 +624,10 @@ export function Index() {
 
                     {/* By the numbers */}
                     <section className="px-[clamp(1.5rem,5vw,6rem)] mt-[clamp(4rem,8vh,7rem)]">
-                      <dl className="grid grid-cols-2 md:grid-cols-4 gap-y-[clamp(2rem,4vh,3rem)] gap-x-[clamp(1.5rem,3vw,3rem)] m-0 border-t-2 border-black pt-[clamp(2rem,4vh,3rem)]">
+                      <p className="font-mono text-[clamp(0.7rem,0.8vw,0.85rem)] tracking-[0.28em] uppercase m-0 mb-[clamp(1.5rem,3vh,2.25rem)] text-black/55">
+                        By the numbers
+                      </p>
+                      <dl className="grid grid-cols-2 md:grid-cols-3 gap-y-[clamp(2rem,4vh,3rem)] gap-x-[clamp(1.5rem,3vw,3rem)] m-0 border-t-2 border-black pt-[clamp(2rem,4vh,3rem)]">
                         {storyStats.map((s) => (
                           <div key={s.label}>
                             <dt className="sr-only">{s.label}</dt>
@@ -638,6 +644,9 @@ export function Index() {
 
                     {/* Chapters */}
                     <section className="px-[clamp(1.5rem,5vw,6rem)] mt-[clamp(4rem,8vh,7rem)]">
+                      <p className="font-mono text-[clamp(0.7rem,0.8vw,0.85rem)] tracking-[0.28em] uppercase m-0 mb-[clamp(1.5rem,3vh,2.25rem)] text-black/55">
+                        The backstory
+                      </p>
                       <ol className="list-none p-0 m-0">
                         {storyChapters.map((c, i) => (
                           <li
@@ -654,7 +663,7 @@ export function Index() {
                               <p className="font-sans text-[clamp(0.72rem,0.82vw,0.88rem)] tracking-[0.22em] uppercase m-0 mt-[clamp(0.6rem,1vh,0.9rem)] text-black/55">
                                 {c.subtitle}
                               </p>
-                              <p className="font-sans m-0 mt-[clamp(1rem,2vh,1.5rem)] max-w-[52rem] text-[clamp(1rem,1.15vw,1.25rem)] leading-[1.6] text-black/85">
+                              <p className="font-sans m-0 mt-[clamp(1rem,2vh,1.5rem)] max-w-[52rem] text-[clamp(1rem,1.15vw,1.25rem)] leading-[1.7] text-black/85">
                                 {c.body}
                               </p>
                             </div>
