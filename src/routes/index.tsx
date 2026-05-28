@@ -328,8 +328,8 @@ export function Index() {
         <div className="absolute inset-0">
           <GravityDots
             spacing={26}
-            radius={1.4}
-            color="rgba(255,255,255,0.50)"
+            radius={1.2}
+            color="rgba(255,255,255,0.35)"
           />
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(255,255,255,0.04),transparent_55%)]" />
