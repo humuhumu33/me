@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import banner from "@/assets/banner.jpeg";
 import portrait from "@/assets/portrait.png";
+import { GravityDots } from "@/components/GravityDots";
 
 
 import {
