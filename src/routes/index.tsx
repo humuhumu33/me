@@ -698,7 +698,8 @@ export function Index() {
                             </svg>
                           </div>
                         </div>
-                        </div>
+
+
 
 
                         <div className="flex flex-col gap-[clamp(1.25rem,2.4vh,2rem)]">
