@@ -608,9 +608,14 @@ export function Index() {
                           alt={PORTRAIT_ALT}
                           className="block w-[clamp(9rem,18vw,16rem)] h-[clamp(11rem,22vw,20rem)] object-cover grayscale"
                         />
-                        <h2 className="font-sans font-bold uppercase leading-[0.85] tracking-[-0.045em] m-0 text-white text-[clamp(2.5rem,7.5vw,8rem)]">
-                          Building the<br />future of<br />sovereign AI.
-                        </h2>
+                        <div className="flex flex-col gap-[clamp(1.25rem,2.4vh,2rem)]">
+                          <h2 className="font-sans font-bold uppercase leading-[0.88] tracking-[-0.04em] m-0 text-white text-[clamp(1.75rem,4.2vw,4.25rem)]">
+                            Born in Vladivostok. Trained in markets. Building sovereign compute.
+                          </h2>
+                          <p className="font-sans m-0 max-w-[44rem] text-[clamp(1rem,1.2vw,1.25rem)] leading-[1.55] text-white/80">
+                            Twenty years across institutional capital and frontier technology — investment banking at Perella Weinberg, a $20bn currency overlay for US pensions, a market-neutral crypto fund through the FTX crisis, and an oversubscribed venture fund backed by a16z. Today I co-found Hologram Technologies, building local AI compute, and steward the UOR open protocol. The throughline is sovereignty: capital, code, and now the compute environment I want my daughters to inherit.
+                          </p>
+                        </div>
                       </div>
                     </section>
 
