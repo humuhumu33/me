@@ -659,14 +659,14 @@ export function Index() {
                             <div className="flex flex-col gap-[clamp(1rem,1.8vh,1.5rem)]">
                               <div className="flex flex-col md:flex-row gap-[clamp(1.25rem,2.4vh,2rem)]">
                                 <div className="shrink-0">
-                                  <div className="overflow-hidden bg-black/5 w-[clamp(8rem,12vw,13rem)]">
+                                  <div className="overflow-hidden bg-black/5 w-[clamp(10rem,15vw,16rem)]">
                                     <img
                                       src={c.image}
                                       alt={`${c.org} — ${c.subtitle}`}
                                       loading="lazy"
                                       width={400}
-                                      height={300}
-                                      className="block w-full h-auto aspect-[4/3] object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
+                                      height={247}
+                                      className="block w-full h-auto aspect-[1.618/1] object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
                                     />
                                   </div>
                                 </div>
