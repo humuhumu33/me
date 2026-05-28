@@ -310,13 +310,13 @@ export function Index() {
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.09) 1px, transparent 1px)",
-          backgroundSize: "22px 22px",
+            "radial-gradient(rgba(255,255,255,0.22) 1.2px, transparent 1.4px)",
+          backgroundSize: "26px 26px",
           backgroundPosition: "0 0",
           maskImage:
-            "radial-gradient(ellipse at center, rgba(0,0,0,0.85), rgba(0,0,0,0) 75%)",
+            "radial-gradient(ellipse at center, rgba(0,0,0,1), rgba(0,0,0,0) 85%)",
           WebkitMaskImage:
-            "radial-gradient(ellipse at center, rgba(0,0,0,0.85), rgba(0,0,0,0) 75%)",
+            "radial-gradient(ellipse at center, rgba(0,0,0,1), rgba(0,0,0,0) 85%)",
         }}
       />
       <p className="sr-only">
