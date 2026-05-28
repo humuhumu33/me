@@ -183,11 +183,21 @@ export const life: readonly string[] = [
   "Father to two wonderful daughters.",
 ];
 
+import storyImg01 from "@/assets/story/01-vladivostok.jpg";
+import storyImg02 from "@/assets/story/02-perella.jpg";
+import storyImg03 from "@/assets/story/03-adrian-lee.jpg";
+import storyImg04 from "@/assets/story/04-ox1.jpg";
+import storyImg05 from "@/assets/story/05-arete.jpg";
+import storyImg06 from "@/assets/story/06-uor.jpg";
+import storyImg07 from "@/assets/story/07-hologram.jpg";
+
 export interface StoryChapter {
   years: string;
   org: string;
   subtitle: string;
   body: string;
+  image: string;
+  href?: string;
 }
 
 export const storyStats: { value: string; label: string }[] = [
@@ -202,42 +212,53 @@ export const storyChapters: StoryChapter[] = [
     org: "Vladivostok",
     subtitle: "Russia",
     body: "I was born in Vladivostok during Perestroika. My mother is a lawyer, my father an engineer. I grew up taking things apart — radios, computers, eventually drones and wearables — and learning how they worked by rebuilding them. I left for Ireland to study economics at Trinity College Dublin and graduated with a gold medal. I have since sailed more than ten thousand offshore miles across Ireland, the Caribbean, the US and the Gulf.",
+    image: storyImg01,
   },
   {
     years: "2010 — 2013",
     org: "Perella Weinberg Partners",
     subtitle: "Mergers & Acquisitions",
     body: "I joined the founding London team as an analyst, covering energy sector transactions. Three years inside how large companies are bought, sold and financed.",
+    image: storyImg02,
+    href: "https://www.pwpartners.com/",
   },
   {
     years: "2013 — 2021",
     org: "Adrian Lee & Partners",
     subtitle: "Active Asset Management",
     body: "I spent eight years managing active currency overlay programs for US pension funds and endowments, with mandates totalling around $20 billion. The work was systematic, long-horizon, and taught me how institutional capital actually moves.",
+    image: storyImg03,
   },
   {
     years: "2022",
     org: "OX1",
     subtitle: "Digital Asset Fund",
     body: "I launched and ran a $30 million market-neutral crypto fund. We traded through the collapse of FTX and returned all LP capital. The year reframed what I thought I understood about counterparty risk.",
+    image: storyImg04,
   },
   {
     years: "2023 — 2025",
     org: "Arete Capital",
     subtitle: "Venture Capital",
     body: "I raised a $20 million hybrid venture fund and invested across deep tech, AI and real-world assets. The thesis was simple: the next cycle of value would come from physical infrastructure and the software that runs on top of it.",
+    image: storyImg05,
+    href: "https://www.aretecapital.xyz/posts/realworld-asset-thesis-tradmarkets",
   },
   {
     years: "2025 — Present",
     org: "UOR Foundation",
     subtitle: "Open Protocol",
     body: "I am a founding member of the UOR Foundation, which stewards an open standard for content-addressed storage, compute and networking. The work is done in public with a growing group of contributors.",
+    image: storyImg06,
+    href: "https://uor.foundation/",
   },
   {
     years: "2025 — Present",
     org: "Hologram Technologies",
     subtitle: "Local AI Compute",
     body: "I co-founded Hologram to build software-defined high-performance compute for local AI inference — edge-first, offline-capable, running on hardware people already own. I have two daughters. I am building the compute environment I want them to inherit.",
+    image: storyImg07,
+    href: "https://gethologram.ai/",
   },
 ];
 
