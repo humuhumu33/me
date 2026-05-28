@@ -213,7 +213,7 @@ export const storyChapters: StoryChapter[] = [
     years: "Beginnings",
     org: "Vladivostok",
     subtitle: "Russia",
-    body: "I was born in Vladivostok during Perestroika. My mother is a lawyer, my father an engineer. I grew up taking things apart — radios, computers, eventually drones and wearables — and learning how they worked by rebuilding them. I have since sailed more than ten thousand offshore miles across Ireland, the Caribbean, the US and the Gulf.",
+    body: "I was born in Vladivostok during Perestroika. My mother is a lawyer, my father an engineer. I grew up taking things apart: radios, computers, eventually drones and wearables, and learning how they worked by rebuilding them. I have since sailed more than ten thousand offshore miles across Ireland, the Caribbean, the US and the Gulf.",
     image: storyImg01,
   },
   {
@@ -266,7 +266,7 @@ export const storyChapters: StoryChapter[] = [
     years: "2025 - Present",
     org: "Hologram Technologies",
     subtitle: "Local AI Compute",
-    body: "I co-founded Hologram to build software-defined high-performance compute for local AI inference — edge-first, offline-capable, running on hardware people already own. I have two daughters. I am building the compute environment I want them to inherit.",
+    body: "I co-founded Hologram to build software-defined high-performance compute for local AI inference. Edge-first, offline-capable, running on hardware people already own. I have two daughters. I am building the compute environment I want them to inherit.",
     image: storyImg07,
     href: "https://gethologram.ai/",
   },
@@ -277,5 +277,5 @@ export const PORTRAIT_PATH = "/og-portrait.jpg";
 export const PORTRAIT_ALT =
   "Portrait of Ilya Paveliev, co-founder of Hologram Technologies and general partner at Arete Capital.";
 
-/** Last meaningful content update — bump when experience/thinking changes. */
+/** Last meaningful content update. Bump when experience/thinking changes. */
 export const CONTENT_UPDATED_AT = "2026-05-21";
