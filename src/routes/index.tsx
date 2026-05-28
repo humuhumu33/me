@@ -659,17 +659,19 @@ export function Index() {
                             <div className="flex flex-col gap-[clamp(1rem,1.8vh,1.5rem)]">
                               <div className="flex flex-col md:flex-row gap-[clamp(1.25rem,2.4vh,2rem)]">
                                 <div className="shrink-0">
-                                  <div className="overflow-hidden bg-black/5 w-[clamp(14rem,20vw,22rem)]">
+                                  <div className="group relative overflow-hidden rounded-[2px] bg-muted w-[clamp(14rem,20vw,22rem)] ring-1 ring-foreground/10 shadow-[0_1px_2px_rgba(0,0,0,0.06),0_12px_32px_-12px_rgba(0,0,0,0.25)] dark:shadow-[0_1px_2px_rgba(0,0,0,0.4),0_18px_40px_-12px_rgba(0,0,0,0.6)] dark:ring-foreground/15">
                                     <img
                                       src={c.image}
                                       alt={`${c.org} — ${c.subtitle}`}
                                       loading="lazy"
                                       width={500}
                                       height={309}
-                                      className="block w-full h-auto aspect-[1.618/1] object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
+                                      className="block w-full h-auto aspect-[1.618/1] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] dark:brightness-[0.92] dark:contrast-[1.02]"
                                     />
+                                    <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-foreground/5 mix-blend-overlay" />
                                   </div>
                                 </div>
+
                                 <div className="flex-1 min-w-0">
                                   <h4 className="font-sans font-bold uppercase leading-[0.95] tracking-[-0.03em] m-0 text-black text-[clamp(1.4rem,2.6vw,2.4rem)]">
                                     {c.org}
