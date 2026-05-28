@@ -304,21 +304,6 @@ export function Index() {
 
   return (
     <main className="relative w-screen bg-black text-white min-h-svh md:h-screen md:overflow-hidden">
-      {/* Subtle dot grid background */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.22) 1.2px, transparent 1.4px)",
-          backgroundSize: "26px 26px",
-          backgroundPosition: "0 0",
-          maskImage:
-            "radial-gradient(ellipse at center, rgba(0,0,0,1), rgba(0,0,0,0) 85%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse at center, rgba(0,0,0,1), rgba(0,0,0,0) 85%)",
-        }}
-      />
       <p className="sr-only">
         Updated <time dateTime={CONTENT_UPDATED_AT}>{CONTENT_UPDATED_AT}</time>. Structured data is
         available at <a href="/api/profile.json">/api/profile.json</a> and{" "}
