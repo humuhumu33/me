@@ -651,43 +651,47 @@ export function Index() {
                         {storyChapters.map((c, i) => (
                           <li
                             key={c.org}
-                            className={`border-t border-black/20 py-[clamp(2.5rem,5vh,4rem)] grid grid-cols-1 md:grid-cols-[10rem_1fr] gap-[clamp(1rem,2vw,2.5rem)] ${i === storyChapters.length - 1 ? "border-b border-black/20" : ""}`}
+                            className={`border-t border-black/20 py-[clamp(2rem,4vh,3.5rem)] grid grid-cols-1 md:grid-cols-[10rem_1fr] gap-[clamp(1rem,2vw,2.5rem)] ${i === storyChapters.length - 1 ? "border-b border-black/20" : ""}`}
                           >
-                            <p className="font-mono text-[clamp(0.75rem,0.85vw,0.9rem)] tracking-[0.18em] uppercase m-0 text-black/50 pt-[clamp(0.5rem,1vh,0.75rem)]">
+                            <p className="font-mono text-[clamp(0.75rem,0.85vw,0.9rem)] tracking-[0.18em] uppercase m-0 text-black/50 pt-[clamp(0.2rem,0.5vh,0.4rem)]">
                               {c.years}
                             </p>
-                            <div className="flex flex-col gap-[clamp(1.25rem,2.4vh,2rem)]">
-                              <div className="overflow-hidden bg-black/5">
-                                <img
-                                  src={c.image}
-                                  alt={`${c.org} — ${c.subtitle}`}
-                                  loading="lazy"
-                                  width={1280}
-                                  height={800}
-                                  className="block w-full h-auto aspect-[16/10] object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
-                                />
-                              </div>
-                              <div>
-                                <h4 className="font-sans font-bold uppercase leading-[0.95] tracking-[-0.03em] m-0 text-black text-[clamp(1.75rem,3.2vw,3rem)]">
-                                  {c.org}
-                                </h4>
-                                <p className="font-sans text-[clamp(0.72rem,0.82vw,0.88rem)] tracking-[0.22em] uppercase m-0 mt-[clamp(0.6rem,1vh,0.9rem)] text-black/55">
-                                  {c.subtitle}
-                                </p>
-                                <p className="font-sans m-0 mt-[clamp(1rem,2vh,1.5rem)] max-w-[52rem] text-[clamp(1rem,1.15vw,1.25rem)] leading-[1.7] text-black/85">
-                                  {c.body}
-                                </p>
-                                {c.href && (
-                                  <a
-                                    href={c.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-[0.5em] mt-[clamp(1rem,2vh,1.5rem)] font-mono text-[clamp(0.72rem,0.82vw,0.88rem)] tracking-[0.22em] uppercase text-black border-b border-black/30 hover:border-black pb-[0.2em] transition-colors no-underline"
-                                  >
-                                    Visit
-                                    <span aria-hidden>↗</span>
-                                  </a>
-                                )}
+                            <div className="flex flex-col gap-[clamp(1rem,1.8vh,1.5rem)]">
+                              <div className="flex flex-col md:flex-row gap-[clamp(1.25rem,2.4vh,2rem)]">
+                                <div className="shrink-0">
+                                  <div className="overflow-hidden bg-black/5 w-[clamp(8rem,12vw,13rem)]">
+                                    <img
+                                      src={c.image}
+                                      alt={`${c.org} — ${c.subtitle}`}
+                                      loading="lazy"
+                                      width={400}
+                                      height={300}
+                                      className="block w-full h-auto aspect-[4/3] object-cover transition-transform duration-700 ease-out hover:scale-[1.02]"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <h4 className="font-sans font-bold uppercase leading-[0.95] tracking-[-0.03em] m-0 text-black text-[clamp(1.4rem,2.6vw,2.4rem)]">
+                                    {c.org}
+                                  </h4>
+                                  <p className="font-sans text-[clamp(0.72rem,0.82vw,0.88rem)] tracking-[0.22em] uppercase m-0 mt-[clamp(0.5rem,0.8vh,0.7rem)] text-black/55">
+                                    {c.subtitle}
+                                  </p>
+                                  <p className="font-sans m-0 mt-[clamp(0.75rem,1.4vh,1.1rem)] max-w-[48rem] text-[clamp(0.95rem,1.05vw,1.15rem)] leading-[1.7] text-black/85">
+                                    {c.body}
+                                  </p>
+                                  {c.href && (
+                                    <a
+                                      href={c.href}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-[0.5em] mt-[clamp(0.75rem,1.4vh,1.1rem)] font-mono text-[clamp(0.72rem,0.82vw,0.88rem)] tracking-[0.22em] uppercase text-black border-b border-black/30 hover:border-black pb-[0.2em] transition-colors no-underline"
+                                    >
+                                      Visit
+                                      <span aria-hidden>↗</span>
+                                    </a>
+                                  )}
+                                </div>
                               </div>
                             </div>
                           </li>
