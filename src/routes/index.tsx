@@ -605,9 +605,26 @@ export function Index() {
                       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-[clamp(1.5rem,3vw,3rem)] items-end">
                         <div className="group relative w-[clamp(9rem,18vw,16rem)] h-[clamp(11rem,22vw,20rem)] overflow-hidden bg-black">
                           <style>{`
-                            @keyframes binaryStream {
-                              0% { transform: translateY(-50%); }
-                              100% { transform: translateY(0%); }
+                            @keyframes netRotate {
+                              0% { transform: rotate(0deg); }
+                              100% { transform: rotate(360deg); }
+                            }
+                            @keyframes netPulse {
+                              0%, 100% { opacity: 0.35; }
+                              50% { opacity: 1; }
+                            }
+                            @keyframes nodePulse {
+                              0%, 100% { r: 2; opacity: 0.7; }
+                              50% { r: 3.4; opacity: 1; }
+                            }
+                            @keyframes edgeDraw {
+                              0% { stroke-dashoffset: 120; opacity: 0.15; }
+                              50% { opacity: 0.95; }
+                              100% { stroke-dashoffset: 0; opacity: 0.15; }
+                            }
+                            @keyframes shapeFade {
+                              0%, 100% { opacity: 0; }
+                              50% { opacity: 0.18; }
                             }
                           `}</style>
                           <img
@@ -617,23 +634,109 @@ export function Index() {
                           />
                           <div
                             aria-hidden="true"
-                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex select-none pointer-events-none"
+                            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
                           >
-                            {Array.from({ length: 16 }).map((_, i) => (
-                              <div
-                                key={i}
-                                className="flex-1 font-mono text-[0.7rem] leading-[1] text-green-400 whitespace-pre overflow-hidden text-center"
+                            <svg
+                              viewBox="0 0 200 200"
+                              preserveAspectRatio="xMidYMid slice"
+                              className="absolute inset-0 w-full h-full"
+                            >
+                              {/* Rotating geometric scaffolding */}
+                              <g
                                 style={{
-                                  animation: `binaryStream ${2 + (i % 5) * 0.6}s linear infinite`,
-                                  animationDelay: `${(i * 0.13) % 1.5}s`,
-                                  opacity: 0.55 + ((i * 37) % 45) / 100,
+                                  transformOrigin: "100px 100px",
+                                  animation: "netRotate 28s linear infinite",
                                 }}
                               >
-                                {Array.from({ length: 80 })
-                                  .map(() => (Math.random() > 0.5 ? "1" : "0"))
-                                  .join("\n")}
-                              </div>
-                            ))}
+                                {/* Hexagon */}
+                                <polygon
+                                  points="100,30 161,65 161,135 100,170 39,135 39,65"
+                                  fill="none"
+                                  stroke="rgb(180,200,255)"
+                                  strokeWidth="0.5"
+                                  style={{ animation: "shapeFade 6s ease-in-out infinite" }}
+                                />
+                                {/* Inner triangle */}
+                                <polygon
+                                  points="100,55 140,125 60,125"
+                                  fill="none"
+                                  stroke="rgb(140,220,200)"
+                                  strokeWidth="0.5"
+                                  style={{ animation: "shapeFade 5s ease-in-out infinite", animationDelay: "1.2s" }}
+                                />
+                                {/* Inverted triangle */}
+                                <polygon
+                                  points="100,145 60,75 140,75"
+                                  fill="none"
+                                  stroke="rgb(220,180,140)"
+                                  strokeWidth="0.5"
+                                  style={{ animation: "shapeFade 5s ease-in-out infinite", animationDelay: "2.5s" }}
+                                />
+                                {/* Outer circle */}
+                                <circle
+                                  cx="100"
+                                  cy="100"
+                                  r="78"
+                                  fill="none"
+                                  stroke="rgb(200,200,220)"
+                                  strokeWidth="0.3"
+                                  strokeDasharray="2 4"
+                                />
+                              </g>
+
+                              {/* Edges — connecting nodes into shapes */}
+                              <g stroke="rgb(170,210,255)" strokeWidth="0.6" fill="none">
+                                {[
+                                  // Hexagon outer
+                                  "M100,30 L161,65", "M161,65 L161,135", "M161,135 L100,170",
+                                  "M100,170 L39,135", "M39,135 L39,65", "M39,65 L100,30",
+                                  // Spokes to center
+                                  "M100,30 L100,100", "M161,65 L100,100", "M161,135 L100,100",
+                                  "M100,170 L100,100", "M39,135 L100,100", "M39,65 L100,100",
+                                  // Inner cross-links
+                                  "M70,80 L130,80", "M70,120 L130,120", "M70,80 L130,120", "M130,80 L70,120",
+                                ].map((d, i) => (
+                                  <path
+                                    key={i}
+                                    d={d}
+                                    strokeDasharray="120"
+                                    style={{
+                                      animation: `edgeDraw ${3 + (i % 4) * 0.6}s ease-in-out infinite`,
+                                      animationDelay: `${(i * 0.18) % 2.5}s`,
+                                    }}
+                                  />
+                                ))}
+                              </g>
+
+                              {/* Nodes */}
+                              <g fill="rgb(220,240,255)">
+                                {[
+                                  [100, 30], [161, 65], [161, 135], [100, 170], [39, 135], [39, 65],
+                                  [100, 100], [70, 80], [130, 80], [70, 120], [130, 120],
+                                  [100, 55], [100, 145], [60, 100], [140, 100],
+                                ].map(([cx, cy], i) => (
+                                  <circle
+                                    key={i}
+                                    cx={cx}
+                                    cy={cy}
+                                    r="2.4"
+                                    style={{
+                                      animation: `nodePulse ${2 + (i % 5) * 0.35}s ease-in-out infinite`,
+                                      animationDelay: `${(i * 0.17) % 2}s`,
+                                    }}
+                                  />
+                                ))}
+                              </g>
+
+                              {/* Center accent */}
+                              <circle
+                                cx="100"
+                                cy="100"
+                                r="4"
+                                fill="rgb(140,220,200)"
+                                style={{ animation: "netPulse 2.4s ease-in-out infinite" }}
+                              />
+                            </svg>
                           </div>
                         </div>
 
