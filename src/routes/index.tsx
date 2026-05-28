@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import banner from "@/assets/banner.jpeg";
 import portrait from "@/assets/portrait.png";
+import { GravityDots } from "@/components/GravityDots";
 
 
 import {
@@ -322,17 +323,17 @@ export function Index() {
         <a itemProp="sameAs" rel="me" href="https://x.com/TrinityInvestor">X</a>
       </div>
 
-      {/* Pure dark background with subtle dot grid */}
+      {/* Pure dark background with subtle dot grid that responds to cursor */}
       <div className="absolute inset-0 bg-black">
-        <div
-          aria-hidden
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(rgba(255,255,255,0.35) 1.2px, transparent 1.6px)",
-            backgroundSize: "26px 26px",
-          }}
-        />
+        <div className="absolute inset-0">
+          <GravityDots
+            spacing={26}
+            radius={1.1}
+            color="rgba(255,255,255,0.35)"
+            pullRadius={180}
+            pullStrength={14}
+          />
+        </div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(255,255,255,0.04),transparent_55%)]" />
       </div>
 
