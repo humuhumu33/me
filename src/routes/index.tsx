@@ -304,21 +304,6 @@ export function Index() {
 
   return (
     <main className="relative w-screen bg-black text-white min-h-svh md:h-screen md:overflow-hidden">
-      {/* Subtle dot grid background */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.22) 1.2px, transparent 1.4px)",
-          backgroundSize: "26px 26px",
-          backgroundPosition: "0 0",
-          maskImage:
-            "radial-gradient(ellipse at center, rgba(0,0,0,1), rgba(0,0,0,0) 85%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse at center, rgba(0,0,0,1), rgba(0,0,0,0) 85%)",
-        }}
-      />
       <p className="sr-only">
         Updated <time dateTime={CONTENT_UPDATED_AT}>{CONTENT_UPDATED_AT}</time>. Structured data is
         available at <a href="/api/profile.json">/api/profile.json</a> and{" "}
@@ -337,8 +322,17 @@ export function Index() {
         <a itemProp="sameAs" rel="me" href="https://x.com/TrinityInvestor">X</a>
       </div>
 
-      {/* Pure dark background */}
+      {/* Pure dark background with subtle dot grid */}
       <div className="absolute inset-0 bg-black">
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(rgba(255,255,255,0.35) 1.2px, transparent 1.6px)",
+            backgroundSize: "26px 26px",
+          }}
+        />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(255,255,255,0.04),transparent_55%)]" />
       </div>
 
