@@ -177,15 +177,6 @@ export function GravityDots({
         }
       }
 
-          // Facing factor: how much the surface normal points toward camera (+z)
-          const facing = nz2; // 1 = toward, -1 = away
-          // Back-face fade: smooth so silhouette stays soft
-          const facingAlpha =
-            facing > 0 ? 0.4 + 0.6 * facing : 0.08 * Math.max(0, 1 + facing);
-
-          pts.push({ x: px, y: py, depth: z2, alpha: facingAlpha });
-        }
-      }
 
       // Sort back-to-front so front dots overlap back ones cleanly
       pts.sort((a, b) => a.depth - b.depth);
