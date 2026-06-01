@@ -70,12 +70,21 @@ export function GravityDots({
     // ----- Camera / view state -----
     const LERP_ROT = 0.18;
     const LERP_ZOOM = 0.12;
+    const LERP_PAN = 0.22;
 
     // Rotation (radians) — drag rotates these
     let targetRotX = -0.55; // tilt forward so we see the donut hole
     let targetRotY = 0.0;
     let currentRotX = targetRotX;
     let currentRotY = targetRotY;
+
+    // World translation in camera space (X/Y in screen plane, Z along view axis)
+    let targetPanX = 0;
+    let targetPanY = 0;
+    let targetPanZ = 0;
+    let currentPanX = 0;
+    let currentPanY = 0;
+    let currentPanZ = 0;
 
     // Zoom in log-space (0 = base scale)
     let targetZoom = 0;
@@ -87,16 +96,19 @@ export function GravityDots({
       currentRotX += (targetRotX - currentRotX) * LERP_ROT;
       currentRotY += (targetRotY - currentRotY) * LERP_ROT;
       currentZoom += (targetZoom - currentZoom) * LERP_ZOOM;
+      currentPanX += (targetPanX - currentPanX) * LERP_PAN;
+      currentPanY += (targetPanY - currentPanY) * LERP_PAN;
+      currentPanZ += (targetPanZ - currentPanZ) * LERP_PAN;
 
       ctx.clearRect(0, 0, width, height);
 
-      // Base screen scale: fit torus (~1.4 world units radius) into viewport
+      // Base screen scale: fit torus into viewport
       const baseScale = Math.min(width, height) * 0.32;
       const scale = baseScale * Math.pow(2, zoomOut ? -currentZoom : currentZoom);
       const cx = width / 2;
       const cy = height / 2;
 
-      // Camera distance for perspective
+      // Camera distance for perspective (pan Z pushes torus toward / away)
       const camZ = 3.2;
       const focal = 2.4;
 
@@ -136,7 +148,12 @@ export function GravityDots({
           const y2 = wy * cosX - z1 * sinX;
           const z2 = wy * sinX + z1 * cosX;
 
-          // Outward surface normal (in world), rotated the same way
+          // Apply camera-space translation (pan)
+          const xC = x1 + currentPanX;
+          const yC = y2 + currentPanY;
+          const zC = z2 + currentPanZ;
+
+          // Outward surface normal, rotated the same way (translation doesn't affect direction)
           const nx0 = cosV * cosU;
           const ny0 = cosV * sinU;
           const nz0 = sinV;
@@ -146,20 +163,20 @@ export function GravityDots({
           const nz2 = ny0 * sinX + nz1 * cosX;
 
           // Perspective projection
-          const denom = camZ - z2;
+          const denom = camZ - zC;
           if (denom <= 0.05) continue;
-          const px = cx + (x1 * focal * scale) / denom;
-          const py = cy + (y2 * focal * scale) / denom;
+          const px = cx + (xC * focal * scale) / denom;
+          const py = cy + (yC * focal * scale) / denom;
 
           // Facing factor: how much the surface normal points toward camera (+z)
-          const facing = nz2; // 1 = toward, -1 = away
-          // Back-face fade: smooth so silhouette stays soft
+          const facing = nz2;
           const facingAlpha =
             facing > 0 ? 0.4 + 0.6 * facing : 0.08 * Math.max(0, 1 + facing);
 
-          pts.push({ x: px, y: py, depth: z2, alpha: facingAlpha });
+          pts.push({ x: px, y: py, depth: zC, alpha: facingAlpha });
         }
       }
+
 
       // Sort back-to-front so front dots overlap back ones cleanly
       pts.sort((a, b) => a.depth - b.depth);
@@ -184,19 +201,22 @@ export function GravityDots({
       if (targetZoom > 5) targetZoom = 5;
     };
 
-    // ----- Drag to rotate (panning wraps because a torus has no edges) -----
+    // ----- Drag: left = orbit, right / shift = pan in 3D -----
     let dragging = false;
+    let panMode = false;
     let lastX = 0;
     let lastY = 0;
-    const DRAG_SENS = 0.005;
+    const ROT_SENS = 0.005;
+    const PAN_SENS = 0.004;
 
     const onPointerDown = (e: PointerEvent) => {
-      if (e.button !== 0 && e.pointerType === "mouse") return;
       dragging = true;
+      // Right button (2) or middle (1) or shift = pan; otherwise orbit
+      panMode = e.button === 2 || e.button === 1 || e.shiftKey;
       lastX = e.clientX;
       lastY = e.clientY;
       canvas.setPointerCapture(e.pointerId);
-      canvas.style.cursor = "grabbing";
+      canvas.style.cursor = panMode ? "move" : "grabbing";
     };
     const onPointerMove = (e: PointerEvent) => {
       if (!dragging) return;
@@ -204,11 +224,15 @@ export function GravityDots({
       const dy = e.clientY - lastY;
       lastX = e.clientX;
       lastY = e.clientY;
-      targetRotY += dx * DRAG_SENS;
-      targetRotX += dy * DRAG_SENS;
-      // Clamp vertical tilt so we don't flip upside down
-      if (targetRotX < -Math.PI / 2 + 0.05) targetRotX = -Math.PI / 2 + 0.05;
-      if (targetRotX > Math.PI / 2 - 0.05) targetRotX = Math.PI / 2 - 0.05;
+      if (panMode) {
+        targetPanX += dx * PAN_SENS;
+        targetPanY += dy * PAN_SENS;
+      } else {
+        targetRotY += dx * ROT_SENS;
+        targetRotX += dy * ROT_SENS;
+        if (targetRotX < -Math.PI / 2 + 0.05) targetRotX = -Math.PI / 2 + 0.05;
+        if (targetRotX > Math.PI / 2 - 0.05) targetRotX = Math.PI / 2 - 0.05;
+      }
     };
     const onPointerUp = (e: PointerEvent) => {
       dragging = false;
@@ -219,6 +243,7 @@ export function GravityDots({
       }
       canvas.style.cursor = "grab";
     };
+    const onContextMenu = (e: MouseEvent) => e.preventDefault();
 
     canvas.style.cursor = "grab";
     canvas.style.touchAction = "none";
@@ -228,6 +253,7 @@ export function GravityDots({
     canvas.addEventListener("pointermove", onPointerMove);
     canvas.addEventListener("pointerup", onPointerUp);
     canvas.addEventListener("pointercancel", onPointerUp);
+    canvas.addEventListener("contextmenu", onContextMenu);
 
     raf = requestAnimationFrame(render);
 
@@ -239,6 +265,7 @@ export function GravityDots({
       canvas.removeEventListener("pointermove", onPointerMove);
       canvas.removeEventListener("pointerup", onPointerUp);
       canvas.removeEventListener("pointercancel", onPointerUp);
+      canvas.removeEventListener("contextmenu", onContextMenu);
     };
   }, [spacing, radius, color, sensitivity, zoomOut]);
 
