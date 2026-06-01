@@ -70,12 +70,21 @@ export function GravityDots({
     // ----- Camera / view state -----
     const LERP_ROT = 0.18;
     const LERP_ZOOM = 0.12;
+    const LERP_PAN = 0.22;
 
     // Rotation (radians) — drag rotates these
     let targetRotX = -0.55; // tilt forward so we see the donut hole
     let targetRotY = 0.0;
     let currentRotX = targetRotX;
     let currentRotY = targetRotY;
+
+    // World translation in camera space (X/Y in screen plane, Z along view axis)
+    let targetPanX = 0;
+    let targetPanY = 0;
+    let targetPanZ = 0;
+    let currentPanX = 0;
+    let currentPanY = 0;
+    let currentPanZ = 0;
 
     // Zoom in log-space (0 = base scale)
     let targetZoom = 0;
