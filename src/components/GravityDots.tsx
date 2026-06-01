@@ -130,19 +130,18 @@ export function GravityDots({
     };
 
     const onWheel = (e: WheelEvent) => {
-      e.preventDefault();
       targetZoom += e.deltaY * sensitivity;
       if (targetZoom < ZOOM_MIN) targetZoom = ZOOM_MIN;
       if (targetZoom > ZOOM_MAX) targetZoom = ZOOM_MAX;
     };
 
-    canvas.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("wheel", onWheel, { passive: true });
     raf = requestAnimationFrame(render);
 
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
-      canvas.removeEventListener("wheel", onWheel);
+      window.removeEventListener("wheel", onWheel);
     };
   }, [spacing, radius, color, sensitivity, zoomOut]);
 
