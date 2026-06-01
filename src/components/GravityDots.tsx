@@ -96,16 +96,19 @@ export function GravityDots({
       currentRotX += (targetRotX - currentRotX) * LERP_ROT;
       currentRotY += (targetRotY - currentRotY) * LERP_ROT;
       currentZoom += (targetZoom - currentZoom) * LERP_ZOOM;
+      currentPanX += (targetPanX - currentPanX) * LERP_PAN;
+      currentPanY += (targetPanY - currentPanY) * LERP_PAN;
+      currentPanZ += (targetPanZ - currentPanZ) * LERP_PAN;
 
       ctx.clearRect(0, 0, width, height);
 
-      // Base screen scale: fit torus (~1.4 world units radius) into viewport
+      // Base screen scale: fit torus into viewport
       const baseScale = Math.min(width, height) * 0.32;
       const scale = baseScale * Math.pow(2, zoomOut ? -currentZoom : currentZoom);
       const cx = width / 2;
       const cy = height / 2;
 
-      // Camera distance for perspective
+      // Camera distance for perspective (pan Z pushes torus toward / away)
       const camZ = 3.2;
       const focal = 2.4;
 
@@ -145,7 +148,12 @@ export function GravityDots({
           const y2 = wy * cosX - z1 * sinX;
           const z2 = wy * sinX + z1 * cosX;
 
-          // Outward surface normal (in world), rotated the same way
+          // Apply camera-space translation (pan)
+          const xC = x1 + currentPanX;
+          const yC = y2 + currentPanY;
+          const zC = z2 + currentPanZ;
+
+          // Outward surface normal, rotated the same way (translation doesn't affect direction)
           const nx0 = cosV * cosU;
           const ny0 = cosV * sinU;
           const nz0 = sinV;
@@ -155,10 +163,19 @@ export function GravityDots({
           const nz2 = ny0 * sinX + nz1 * cosX;
 
           // Perspective projection
-          const denom = camZ - z2;
+          const denom = camZ - zC;
           if (denom <= 0.05) continue;
-          const px = cx + (x1 * focal * scale) / denom;
-          const py = cy + (y2 * focal * scale) / denom;
+          const px = cx + (xC * focal * scale) / denom;
+          const py = cy + (yC * focal * scale) / denom;
+
+          // Facing factor: how much the surface normal points toward camera (+z)
+          const facing = nz2;
+          const facingAlpha =
+            facing > 0 ? 0.4 + 0.6 * facing : 0.08 * Math.max(0, 1 + facing);
+
+          pts.push({ x: px, y: py, depth: zC, alpha: facingAlpha });
+        }
+      }
 
           // Facing factor: how much the surface normal points toward camera (+z)
           const facing = nz2; // 1 = toward, -1 = away
