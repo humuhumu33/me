@@ -253,6 +253,7 @@ export function GravityDots({
     canvas.addEventListener("pointermove", onPointerMove);
     canvas.addEventListener("pointerup", onPointerUp);
     canvas.addEventListener("pointercancel", onPointerUp);
+    canvas.addEventListener("contextmenu", onContextMenu);
 
     raf = requestAnimationFrame(render);
 
@@ -264,6 +265,7 @@ export function GravityDots({
       canvas.removeEventListener("pointermove", onPointerMove);
       canvas.removeEventListener("pointerup", onPointerUp);
       canvas.removeEventListener("pointercancel", onPointerUp);
+      canvas.removeEventListener("contextmenu", onContextMenu);
     };
   }, [spacing, radius, color, sensitivity, zoomOut]);
 
