@@ -90,9 +90,39 @@ export function GravityDots({
     let targetZoom = 0;
     let currentZoom = 0;
 
+    // Inertial velocities — applied when not dragging, decayed each frame
+    let velRotX = 0;
+    let velRotY = 0;
+    let velPanX = 0;
+    let velPanY = 0;
+    const FRICTION = 0.94; // per-frame decay (≈ ~1s glide)
+    const VEL_EPS = 0.00005;
+
     let raf = 0;
 
     const render = () => {
+      // Apply inertia when not actively dragging
+      if (!dragging && (Math.abs(velRotX) > VEL_EPS || Math.abs(velRotY) > VEL_EPS)) {
+        targetRotY += velRotY;
+        targetRotX += velRotX;
+        if (targetRotX < -Math.PI / 2 + 0.05) {
+          targetRotX = -Math.PI / 2 + 0.05;
+          velRotX = 0;
+        }
+        if (targetRotX > Math.PI / 2 - 0.05) {
+          targetRotX = Math.PI / 2 - 0.05;
+          velRotX = 0;
+        }
+        velRotX *= FRICTION;
+        velRotY *= FRICTION;
+      }
+      if (!dragging && (Math.abs(velPanX) > VEL_EPS || Math.abs(velPanY) > VEL_EPS)) {
+        targetPanX += velPanX;
+        targetPanY += velPanY;
+        velPanX *= FRICTION;
+        velPanY *= FRICTION;
+      }
+
       currentRotX += (targetRotX - currentRotX) * LERP_ROT;
       currentRotY += (targetRotY - currentRotY) * LERP_ROT;
       currentZoom += (targetZoom - currentZoom) * LERP_ZOOM;
