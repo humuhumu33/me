@@ -201,19 +201,22 @@ export function GravityDots({
       if (targetZoom > 5) targetZoom = 5;
     };
 
-    // ----- Drag to rotate (panning wraps because a torus has no edges) -----
+    // ----- Drag: left = orbit, right / shift = pan in 3D -----
     let dragging = false;
+    let panMode = false;
     let lastX = 0;
     let lastY = 0;
-    const DRAG_SENS = 0.005;
+    const ROT_SENS = 0.005;
+    const PAN_SENS = 0.004;
 
     const onPointerDown = (e: PointerEvent) => {
-      if (e.button !== 0 && e.pointerType === "mouse") return;
       dragging = true;
+      // Right button (2) or middle (1) or shift = pan; otherwise orbit
+      panMode = e.button === 2 || e.button === 1 || e.shiftKey;
       lastX = e.clientX;
       lastY = e.clientY;
       canvas.setPointerCapture(e.pointerId);
-      canvas.style.cursor = "grabbing";
+      canvas.style.cursor = panMode ? "move" : "grabbing";
     };
     const onPointerMove = (e: PointerEvent) => {
       if (!dragging) return;
@@ -221,11 +224,15 @@ export function GravityDots({
       const dy = e.clientY - lastY;
       lastX = e.clientX;
       lastY = e.clientY;
-      targetRotY += dx * DRAG_SENS;
-      targetRotX += dy * DRAG_SENS;
-      // Clamp vertical tilt so we don't flip upside down
-      if (targetRotX < -Math.PI / 2 + 0.05) targetRotX = -Math.PI / 2 + 0.05;
-      if (targetRotX > Math.PI / 2 - 0.05) targetRotX = Math.PI / 2 - 0.05;
+      if (panMode) {
+        targetPanX += dx * PAN_SENS;
+        targetPanY += dy * PAN_SENS;
+      } else {
+        targetRotY += dx * ROT_SENS;
+        targetRotX += dy * ROT_SENS;
+        if (targetRotX < -Math.PI / 2 + 0.05) targetRotX = -Math.PI / 2 + 0.05;
+        if (targetRotX > Math.PI / 2 - 0.05) targetRotX = Math.PI / 2 - 0.05;
+      }
     };
     const onPointerUp = (e: PointerEvent) => {
       dragging = false;
@@ -236,6 +243,7 @@ export function GravityDots({
       }
       canvas.style.cursor = "grab";
     };
+    const onContextMenu = (e: MouseEvent) => e.preventDefault();
 
     canvas.style.cursor = "grab";
     canvas.style.touchAction = "none";
