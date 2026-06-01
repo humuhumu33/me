@@ -58,7 +58,12 @@ export function GravityDots({
     const a0 = rgbaMatch && rgbaMatch[4] ? Number(rgbaMatch[4]) : 1;
 
     const LAYERS = 4;
-    let zoom = 0; // accumulated zoom cycles; fractional part is the phase
+    const ZOOM_MIN = -2; // 2 octaves inward (zoom in limit)
+    const ZOOM_MAX = 2;  // 2 octaves outward (zoom out limit)
+    const LERP = 0.08;   // interpolation factor per frame (lower = smoother)
+
+    let targetZoom = 0;
+    let currentZoom = 0;
 
     const drawLattice = (s: number, alpha: number, cx: number, cy: number) => {
       if (alpha <= 0.001) return;
@@ -87,16 +92,16 @@ export function GravityDots({
     };
 
     let raf = 0;
-    let dirty = true;
 
     const render = () => {
-      if (!dirty) {
-        raf = requestAnimationFrame(render);
-        return;
+      // Ease currentZoom toward targetZoom
+      if (Math.abs(currentZoom - targetZoom) > 0.0001) {
+        currentZoom += (targetZoom - currentZoom) * LERP;
+      } else {
+        currentZoom = targetZoom;
       }
-      dirty = false;
 
-      let t = zoom % 1;
+      let t = currentZoom % 1;
       if (t < 0) t += 1;
       if (zoomOut) t = 1 - t;
 
@@ -126,8 +131,9 @@ export function GravityDots({
 
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
-      zoom += e.deltaY * sensitivity;
-      dirty = true;
+      targetZoom += e.deltaY * sensitivity;
+      if (targetZoom < ZOOM_MIN) targetZoom = ZOOM_MIN;
+      if (targetZoom > ZOOM_MAX) targetZoom = ZOOM_MAX;
     };
 
     canvas.addEventListener("wheel", onWheel, { passive: false });
