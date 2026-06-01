@@ -4,20 +4,19 @@ type Props = {
   spacing?: number;
   radius?: number;
   color?: string;
-  /** Scroll sensitivity: zoom cycles per wheel unit (higher = more responsive). */
   sensitivity?: number;
-  /** Reverse direction: true = scroll-down zooms in, false = scroll-down zooms out. */
   zoomOut?: boolean;
   className?: string;
 };
 
 /**
- * Fractal triangular lattice (Buckminster Fuller's Isotropic Vector Matrix)
- * with Google Earth-style controls:
- *  - Mouse wheel zooms toward the cursor (anchor point stays put)
- *  - Click & drag pans the lattice
- *  - Infinite zoom (no min/max) — self-similar octaves cross-fade seamlessly
- *  - Eased motion for smooth, weighty feel
+ * Dot-grid torus with Google Earth-style controls:
+ *  - Drag to rotate (panning wraps seamlessly — it's a torus, no edges)
+ *  - Wheel zooms (eased, anchored to camera)
+ *  - Back-facing dots fade with depth for 3D readability
+ *
+ * Dots are placed on a triangular lattice over the (u, v) surface of the
+ * torus, then projected with a simple perspective camera.
  */
 export function GravityDots({
   spacing = 26,
@@ -50,117 +49,148 @@ export function GravityDots({
     resize();
     window.addEventListener("resize", resize);
 
-    // Parse base color → rgba with adjustable alpha
-    const rgbaMatch = color.match(
+    // Parse base color
+    const m = color.match(
       /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(?:,\s*([\d.]+)\s*)?\)/,
     );
-    const r0 = rgbaMatch ? Number(rgbaMatch[1]) : 255;
-    const g0 = rgbaMatch ? Number(rgbaMatch[2]) : 255;
-    const b0 = rgbaMatch ? Number(rgbaMatch[3]) : 255;
-    const a0 = rgbaMatch && rgbaMatch[4] ? Number(rgbaMatch[4]) : 1;
+    const r0 = m ? Number(m[1]) : 255;
+    const g0 = m ? Number(m[2]) : 255;
+    const b0 = m ? Number(m[3]) : 255;
+    const a0 = m && m[4] ? Number(m[4]) : 1;
 
-    const LAYERS = 4;
+    // ----- Torus geometry (world units) -----
+    const R = 1.0; // major radius (ring center to tube center)
+    const r = 0.4; // minor radius (tube)
+    // Lattice density around the two loops
+    const N_U = 96; // around the big ring
+    const N_V = 36; // around the tube
+    const dU = (Math.PI * 2) / N_U;
+    const dV = (Math.PI * 2) / N_V;
+
+    // ----- Camera / view state -----
+    const LERP_ROT = 0.18;
     const LERP_ZOOM = 0.12;
-    const LERP_PAN = 0.18;
 
-    // Continuous zoom (no bounds — infinite both ways)
+    // Rotation (radians) — drag rotates these
+    let targetRotX = -0.55; // tilt forward so we see the donut hole
+    let targetRotY = 0.0;
+    let currentRotX = targetRotX;
+    let currentRotY = targetRotY;
+
+    // Zoom in log-space (0 = base scale)
     let targetZoom = 0;
     let currentZoom = 0;
-    // Pan offset (in screen pixels at currentZoom = 0 frame, but applied directly)
-    let targetPanX = 0;
-    let targetPanY = 0;
-    let currentPanX = 0;
-    let currentPanY = 0;
-
-    const drawLattice = (s: number, alpha: number, cx: number, cy: number) => {
-      if (alpha <= 0.001) return;
-      const rowH = s * 0.8660254; // sqrt(3)/2
-      const iMin = Math.floor(-cx / s) - 2;
-      const iMax = Math.ceil((width - cx) / s) + 2;
-      const jMin = Math.floor(-cy / rowH) - 2;
-      const jMax = Math.ceil((height - cy) / rowH) + 2;
-
-      const rScale = Math.min(s / spacing, 3);
-      const r = radius * rScale;
-
-      ctx.fillStyle = `rgba(${r0},${g0},${b0},${a0 * alpha})`;
-      for (let j = jMin; j <= jMax; j++) {
-        const y = cy + j * rowH;
-        if (y < -r || y > height + r) continue;
-        const xOff = j & 1 ? s / 2 : 0;
-        for (let i = iMin; i <= iMax; i++) {
-          const x = cx + i * s + xOff;
-          if (x < -r || x > width + r) continue;
-          ctx.beginPath();
-          ctx.arc(x, y, r, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-    };
 
     let raf = 0;
 
     const render = () => {
-      // Ease toward targets
+      currentRotX += (targetRotX - currentRotX) * LERP_ROT;
+      currentRotY += (targetRotY - currentRotY) * LERP_ROT;
       currentZoom += (targetZoom - currentZoom) * LERP_ZOOM;
-      currentPanX += (targetPanX - currentPanX) * LERP_PAN;
-      currentPanY += (targetPanY - currentPanY) * LERP_PAN;
-
-      let t = currentZoom % 1;
-      if (t < 0) t += 1;
-      if (zoomOut) t = 1 - t;
 
       ctx.clearRect(0, 0, width, height);
-      // Origin: viewport center + pan offset
-      const cx = width / 2 + currentPanX;
-      const cy = height / 2 + currentPanY;
 
-      for (let k = 0; k < LAYERS; k++) {
-        const exp = k - 1 + t;
-        const s = spacing * Math.pow(2, exp);
+      // Base screen scale: fit torus (~1.4 world units radius) into viewport
+      const baseScale = Math.min(width, height) * 0.32;
+      const scale = baseScale * Math.pow(2, zoomOut ? -currentZoom : currentZoom);
+      const cx = width / 2;
+      const cy = height / 2;
 
-        let alpha: number;
-        if (k === 0) {
-          alpha = t * t * (3 - 2 * t);
-        } else if (k === LAYERS - 1) {
-          const u = 1 - t;
-          alpha = u * u * (3 - 2 * u);
-        } else {
-          alpha = 1;
+      // Camera distance for perspective
+      const camZ = 3.2;
+      const focal = 2.4;
+
+      const cosX = Math.cos(currentRotX);
+      const sinX = Math.sin(currentRotX);
+      const cosY = Math.cos(currentRotY);
+      const sinY = Math.sin(currentRotY);
+
+      // Dot pixel radius scales with zoom
+      const dotR = Math.max(0.5, radius * Math.min(scale / baseScale, 3));
+
+      type P = { x: number; y: number; depth: number; alpha: number };
+      const pts: P[] = [];
+
+      for (let j = 0; j < N_V; j++) {
+        const v = j * dV;
+        // Triangular lattice: offset alternate rings around the tube
+        const uOff = j & 1 ? dU * 0.5 : 0;
+        const cosV = Math.cos(v);
+        const sinV = Math.sin(v);
+        const ringR = R + r * cosV;
+        const z0 = r * sinV;
+
+        for (let i = 0; i < N_U; i++) {
+          const u = i * dU + uOff;
+          const cosU = Math.cos(u);
+          const sinU = Math.sin(u);
+
+          // Torus surface point in world space
+          const wx = ringR * cosU;
+          const wy = ringR * sinU;
+          const wz = z0;
+
+          // Rotate around Y (drag X), then X (drag Y)
+          const x1 = wx * cosY + wz * sinY;
+          const z1 = -wx * sinY + wz * cosY;
+          const y2 = wy * cosX - z1 * sinX;
+          const z2 = wy * sinX + z1 * cosX;
+
+          // Outward surface normal (in world), rotated the same way
+          const nx0 = cosV * cosU;
+          const ny0 = cosV * sinU;
+          const nz0 = sinV;
+          const nx1 = nx0 * cosY + nz0 * sinY;
+          const nz1 = -nx0 * sinY + nz0 * cosY;
+          const ny2 = ny0 * cosX - nz1 * sinX;
+          const nz2 = ny0 * sinX + nz1 * cosX;
+
+          // Perspective projection
+          const denom = camZ - z2;
+          if (denom <= 0.05) continue;
+          const px = cx + (x1 * focal * scale) / denom;
+          const py = cy + (y2 * focal * scale) / denom;
+
+          // Facing factor: how much the surface normal points toward camera (+z)
+          const facing = nz2; // 1 = toward, -1 = away
+          // Back-face fade: smooth so silhouette stays soft
+          const facingAlpha =
+            facing > 0 ? 0.4 + 0.6 * facing : 0.08 * Math.max(0, 1 + facing);
+
+          pts.push({ x: px, y: py, depth: z2, alpha: facingAlpha });
         }
+      }
 
-        drawLattice(s, alpha, cx, cy);
+      // Sort back-to-front so front dots overlap back ones cleanly
+      pts.sort((a, b) => a.depth - b.depth);
+
+      for (const p of pts) {
+        if (p.x < -dotR || p.x > width + dotR) continue;
+        if (p.y < -dotR || p.y > height + dotR) continue;
+        ctx.fillStyle = `rgba(${r0},${g0},${b0},${a0 * p.alpha})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, dotR, 0, Math.PI * 2);
+        ctx.fill();
       }
 
       raf = requestAnimationFrame(render);
     };
 
-    // ----- Zoom toward cursor (Google Earth style) -----
+    // ----- Wheel zoom -----
     const onWheel = (e: WheelEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      // Mouse position relative to viewport center + current pan
-      const mx = e.clientX - rect.left - width / 2 - targetPanX;
-      const my = e.clientY - rect.top - height / 2 - targetPanY;
-
-      const dz = e.deltaY * sensitivity * (zoomOut ? -1 : 1);
-      // After zoom, scale factor is 2^(-dz) (zooming "in" means lattice expands)
-      const scale = Math.pow(2, -dz);
-
-      // Keep the point under the cursor fixed:
-      // new_pan = mouse_screen - mouse_world * scale  → adjust pan by mouse * (scale - 1)
-      targetPanX -= mx * (scale - 1);
-      targetPanY -= my * (scale - 1);
-
-      targetZoom += dz;
+      targetZoom += -e.deltaY * sensitivity;
+      // Soft clamp so it can't go absurdly far
+      if (targetZoom < -3) targetZoom = -3;
+      if (targetZoom > 5) targetZoom = 5;
     };
 
-    // ----- Click & drag to pan -----
+    // ----- Drag to rotate (panning wraps because a torus has no edges) -----
     let dragging = false;
     let lastX = 0;
     let lastY = 0;
+    const DRAG_SENS = 0.005;
 
     const onPointerDown = (e: PointerEvent) => {
-      // Only left button / primary pointer
       if (e.button !== 0 && e.pointerType === "mouse") return;
       dragging = true;
       lastX = e.clientX;
@@ -174,11 +204,11 @@ export function GravityDots({
       const dy = e.clientY - lastY;
       lastX = e.clientX;
       lastY = e.clientY;
-      targetPanX += dx;
-      targetPanY += dy;
-      // Snap current so drag feels 1:1 instead of lagging
-      currentPanX += dx;
-      currentPanY += dy;
+      targetRotY += dx * DRAG_SENS;
+      targetRotX += dy * DRAG_SENS;
+      // Clamp vertical tilt so we don't flip upside down
+      if (targetRotX < -Math.PI / 2 + 0.05) targetRotX = -Math.PI / 2 + 0.05;
+      if (targetRotX > Math.PI / 2 - 0.05) targetRotX = Math.PI / 2 - 0.05;
     };
     const onPointerUp = (e: PointerEvent) => {
       dragging = false;
