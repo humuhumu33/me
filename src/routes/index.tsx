@@ -609,8 +609,16 @@ export function Index() {
                 <div className="h-full overflow-y-auto -mx-[clamp(1.5rem,3vw,3.5rem)] -my-[clamp(1.25rem,2.4vh,2.25rem)] bg-white text-black">
                   <article className="w-full pb-[clamp(4rem,10vh,8rem)]">
                     {/* Hero — black band, portrait beside a short lede */}
-                    <section className="bg-black text-white px-[clamp(1.5rem,5vw,6rem)] pt-[clamp(2.5rem,6vh,5rem)] pb-[clamp(3rem,7vh,6rem)]">
-                      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-[clamp(1.5rem,3vw,3rem)] items-end">
+                    <section className="relative overflow-hidden bg-black text-white px-[clamp(1.5rem,5vw,6rem)] pt-[clamp(2.5rem,6vh,5rem)] pb-[clamp(3rem,7vh,6rem)]">
+                      <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
+                        <GravityDots
+                          spacing={26}
+                          radius={0.9}
+                          color="rgba(255,255,255,0.22)"
+                        />
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(255,255,255,0.04),transparent_55%)]" />
+                      </div>
+                      <div className="relative z-10 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-[clamp(1.5rem,3vw,3rem)] items-end">
                         <div className="group relative w-[clamp(9rem,18vw,16rem)] h-[clamp(11rem,22vw,20rem)] overflow-hidden bg-black">
                           <style>{`
                             @keyframes veNodeIn {
