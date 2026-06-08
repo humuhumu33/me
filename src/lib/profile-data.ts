@@ -205,7 +205,7 @@ export interface StoryChapter {
 export const storyStats: { value: string; label: string }[] = [
   { value: "7", label: "Companies and protocols" },
   { value: "$20bn+", label: "Capital managed" },
-  { value: "10k+", label: "Miles sailed" },
+  { value: "10k+", label: "OFFSHORE MILES SAILED" },
 ];
 
 export const storyChapters: StoryChapter[] = [
